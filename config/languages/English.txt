@@ -1,1 +1,12 @@
 WELCOME=WELCOME TO THE MONOPOLY GAME (Digital Bank Edition)
+INVALID_OPTION=Invalid option!, Please choose an option within the interval
+NEW_GAME=New game
+LOAD_GAME=Load game
+EXIT=Exit
+PROMPT_OPTION=Select an option
+GOODBYE=Goodbye...
+MAIN_MENU=Main menu
+PROMPT_GAME_NAME=Choose the name of the game
+FILE_EXISTS=The is already a saved game with this name
+SAVED_GAMES_LIST=Saved games
+NO_SAVED_GAMES=No saved games, creating a new one...

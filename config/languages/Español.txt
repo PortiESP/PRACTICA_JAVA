@@ -1,1 +1,12 @@
 WELCOME=BIENVENIDO AL MONOPOLY (Edición Banco Digital)
+INVALID_OPTION=¡Opción no válida!. Por favor, elija una opción dentro del intervalo
+NEW_GAME=Nueva partida
+LOAD_GAME=Cargar partida
+EXIT=Salir
+PROMPT_OPTION=Seleccione una opción
+GOODBYE=Hasta luego...
+MAIN_MENU=Menu principal
+PROMPT_GAME_NAME=Elige el nombre de la partida
+FILE_EXISTS=Ya existe una partida con ese nombre
+SAVED_GAMES_LIST=Partidas guardadas
+NO_SAVED_GAMES=No hay ninguna partida guardada, creando una nueva...

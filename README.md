@@ -77,9 +77,19 @@ El fichero de idioma es un fichero de texto plano que contiene las frases que el
 
 ![Flujo inicial del programa](assets/figura5.png)
 
-El juego cargará los datos del tablero (las tarjetas de suerte, comunidad, propiedades, etc) desde el archivo `config/MonopolyCode.txt`, y los guardará en el mapa `monopolyCodeArray`. Este archivo contiene los datos de las tarjetas de suerte, comunidad, propiedades siguiendo el formato `id;class;string`. Dado que las diferentes tarjetas constan de diferentes atributos, se usará el carácter `;` para separar los atributos de cada tarjeta.
+El juego se encargará de preguntar al usuario si desea cargar una partida o empezar una nueva.
 
-> Atributos de las trajetas según su clase
+> **Cargar partida**
+>
+> Se deberá listar las partidas guardadas en el directorio `config/oldGames/` y el usuario seleccionará la partida que desea cargar. Las partidas guardadas se guardan en ficheros XML. Cuando el usuario seleccione la partida que desea cargar, se leerá el fichero correspondiente y se cargará el estado de la partida en el juego en el mapa `monopolyCodeArray`
+
+> **Nueva partida**
+>
+> Se deberá preguntar al usuario el número de jugadores que van a jugar y el nombre/color de cada uno de ellos (*Este valor se usará como identificador del jugador*) y se cargarán los de las propiedades desde el fichero `config/MonopolyCode.txt` en el mapa `monopolyCodeArray`. 
+
+El juego, al cargar los datos del tablero (las tarjetas de suerte, comunidad, propiedades, etc) desde el archivo `config/MonopolyCode.txt`, y los guardará en el mapa `monopolyCodeArray`. Este archivo contiene los datos de las tarjetas de suerte, comunidad, propiedades siguiendo el formato `id;class;string`. Dado que las diferentes tarjetas constan de diferentes atributos, se usará el carácter `;` para separar los atributos de cada tarjeta.
+
+> Atributos de las tarjetas según su clase
 >
 > - `PAYMENT_CHARGE_CARD` -> `id;class;string` (*La cantidad a pagar aparece en el string seguida de el símbolo de `€`, esta cantidad puede ser negativa (el usuario cobra la cantidad indicada) o positiva (el usuario paga la cantidad indicada)*)
 > - `STREET` -> `id;class;string;rent;w1house;w2house;w3house;w4house;hotel;housePrice;hotelPrice;mortgage`
@@ -87,18 +97,9 @@ El juego cargará los datos del tablero (las tarjetas de suerte, comunidad, prop
 > - `STATION` -> `id;class;string;rent;rent2;rent3;rent4;mortgage`
 > - `REPAIRS_CARD` -> `id;class;string;pricePerHouse;pricePerHotel`
 
-A continuación el juego se encargará de preguntar al usuario si desea cargar una partida o empezar una nueva.
-
-> **Cargar partida**
->
-> Se deberá listar las partidas guardadas en el directorio `config/oldGames/` y el usuario seleccionará la partida que desea cargar. Las partidas guardadas se guardan en ficheros XML. Cuando el usuario seleccione la partida que desea cargar, se leerá el fichero correspondiente y se cargará el estado de la partida en el juego en el mapa `monopolyCodeArray` actualizando así los valores de las propiedades que pertenezcan a un jugador.
-
-> **Nueva partida**
->
-> Se deberá preguntar al usuario el número de jugadores que van a jugar y el nombre/color de cada uno de ellos (*Este valor se usará como identificador del jugador*)
-
-
 ## Aspectos a tener en cuenta
 
 - Usar **constantes** para todo lo que sea posible.
 - Para los menus, usar números para seleccionar la opción deseada (*no usar letras*), para así evitar problemas con los idiomas.
+- Poner en private o protected todo lo que sea posible.
+- Comprobar que todos los strings están traducidos

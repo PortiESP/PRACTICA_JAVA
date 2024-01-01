@@ -10,5 +10,8 @@ public class Const {
       PRINT_PADDING + "| |  | || |__| || |\\  || |__| || |     | |__| || |____ | |   \n" +
       PRINT_PADDING + "|_|  |_| \\____/ |_| \\_| \\____/ |_|      \\____/ |______||_|\n" +
       PRINT_PADDING + "\n";
+  public static final String DEFAULT_LANG = "English";
+  public static final String SAVES_PATH = "./config/oldGames/";
+  public static final String LANGUAGES_PATH = "./config/languages/";
 
 }
