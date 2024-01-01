@@ -53,6 +53,7 @@ El fichero de idioma es un fichero de texto plano que contiene las frases que el
   - Deben estas en mayúsculas
   - Deben describir brevemente la frase que identifican
   - Si la frase contiene una variable, esta debe aparecer en el string como `%NOMBRE_VAR%`
+  - Los identificadores no pueden contener el carácter `=`
 
 > **EJEMPLO**
 > 
