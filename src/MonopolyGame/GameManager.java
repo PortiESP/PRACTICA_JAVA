@@ -16,16 +16,16 @@ public class GameManager {
   // ---------------------------------------------- Start the game ----------------------------------------------
   public void start() {
     // Print the MONOPOLY logo
-    io.printRaw(Const.MONOPOLY_LOGO);
+    io.print(Const.MONOPOLY_LOGO);
     // Print the language selection menu
     String langFileName = languageSelectionMenu();
     // Load the language from the file
     io.setLanguage(langFileName);
 
     // Print the welcome message
-    io.printRaw("\n");
-    io.printRaw("\n");
-    io.print("WELCOME");
+    io.print("\n");
+    io.print("\n");
+    io.printMsg("WELCOME");
   }
   // -----------------------------------------------------------------------------------------------------------
 
@@ -34,11 +34,11 @@ public class GameManager {
     ArrayList<String> languages = getFilesList("./config/Languages");
 
     // Language selection menu
-    io.printRaw("[i] Language selection:\n");
-    io.printRaw("\n");
+    io.print("[i] Language selection:\n");
+    io.print("\n");
     for (int i = 0; i < languages.size(); i++)
-      io.printRaw(String.format("\t- [%d] %s\n", i + 1, languages.get(i)));
-    io.printRaw("\n");
+      io.print(String.format("\t- [%d] %s\n", i + 1, languages.get(i)));
+    io.print("\n");
     int option = io.readInt("Select an option");
 
     return languages.get(option - 1);

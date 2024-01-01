@@ -15,20 +15,21 @@ public class IOManager {
   }
 
   // Print a message without checking the messages map
-  public void printRaw(String msg) {
+  public void print(String msg) {
     System.out.print(Const.PRINT_PADDING + msg);
   }
 
   // Print a message
-  public void print(String id) {
-    String msg = this.languageManager.get(id);
-    msg = msg != null ? msg : id; // Print the message, if it exists, otherwise print the message id
-    printRaw(msg);
+  public void printMsg(String id) throws RuntimeException {
+    String msg = this.languageManager.get(id); // Print the message, if it exists, otherwise throw an exception
+    if (msg == null)
+      throw new RuntimeException("Message not found for Id '" + id + "'\n");
+    print(msg);
   }
 
   // Print a message with a new line
   public void println(String id) {
-    print(id + "\n");
+    printMsg(id + "\n");
   }
 
   // Read an input (integer)
