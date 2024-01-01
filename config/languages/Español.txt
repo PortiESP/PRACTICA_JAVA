@@ -1,0 +1,1 @@
+WELCOME=BIENVENIDO AL MONOPOLY (Edición Banco Digital)
