@@ -32,11 +32,12 @@ public class GameManager {
     // Game configuration ----------------------------
     // Print the main menu (load game, new game, exit)
     int option = mainMenu();
+
     // Execute the selected option
-    if (option == 1) // New game
+    if (option == 1) // ------------------------ New game
       this.game.newGame(askNewFileName());
 
-    else if (option == 2) { // Load game
+    else if (option == 2) { // ----------------- Load game
       String filename = askExistingFileName();
       // If there are no saved games, start a new game
       if (filename == null) {
@@ -46,11 +47,14 @@ public class GameManager {
         this.game.loadGame(filename);
       }
 
-    } else if (option == 3)
+    } else if (option == 3) // ----------------- Change language
+      return;
+    else if (option == 4) // ------------------- Exit
       exit();
 
     // Start the game ----------------------------
     this.game.play();
+
   }
   // -----------------------------------------------------------------------------------------------------------
 
@@ -90,9 +94,10 @@ public class GameManager {
     io.print("\n");
     io.print("\t- [1] " + io.getMsg("NEW_GAME") + "\n");
     io.print("\t- [2] " + io.getMsg("LOAD_GAME") + "\n");
-    io.print("\t- [3] " + io.getMsg("EXIT") + "\n");
+    io.print("\t- [3] " + io.getMsg("CHANGE_LANGUAGE") + "\n");
+    io.print("\t- [4] " + io.getMsg("EXIT") + "\n");
     io.print("\n");
-    return io.readInt("PROMPT_OPTION", 1, 3);
+    return io.readInt("PROMPT_OPTION", 1, 4);
   }
 
   // Ask file name and check if it exists
