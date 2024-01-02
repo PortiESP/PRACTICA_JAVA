@@ -4,12 +4,31 @@ import src.MonopolyGame.IO.IOManager;
 import java.io.File;
 import java.util.ArrayList;
 
+/**
+ * This class is responsible for printing the language selection menu, the main menu, and starting the game.
+ * The game is started by instantiating a {@code GameManager} object and calling the {@code start()} method.
+ */
 public class GameManager {
   // Attributes
   private IOManager io = new IOManager(); // IO Manager (print, read inputs, etc.)
   private Game game; // Game instance
 
-  // ---------------------------------------------- Start the game ----------------------------------------------
+  // ========================================= Start the game =========================================
+  /**
+   * This method is responsible creating/loading a game and starting it.
+   * 
+   * It will create a new game instance in order to restart the game when the user selects the back to menu option.
+   * Then it will print the language selection menu and set the chosen language for the game strings.
+   * After that, it will print a welcome message and the main menu. 
+   * 
+   * The main menu has 4 options:
+   * - New game: Create a new game and ask the user for a name for the game.
+   * - Load game: Load a saved game from a given list.
+   * - Change language: Returns to the previous screen with the language selection menu.
+   * - Exit: Exits the game.
+   * 
+   * Finally, it will start the game by calling the {@code play()}.
+   */
   public void start() {
     // Instantiate the game or reset it
     this.game = new Game();
@@ -29,7 +48,7 @@ public class GameManager {
     io.printlnMsg("WELCOME");
     io.print("\n");
 
-    // Game configuration ----------------------------
+    // Game configuration ========================
     // Print the main menu (load game, new game, exit)
     int option = mainMenu();
 
@@ -52,15 +71,19 @@ public class GameManager {
     else if (option == 4) // ------------------- Exit
       exit();
 
-    // Start the game ----------------------------
+    // Start the game ============================
     this.game.play();
 
   }
-  // -----------------------------------------------------------------------------------------------------------
+  // ========================================================================================================
 
-  // Language selection menu
+  /**
+   * This method prints the language selection menu, the options are based on the files available at the {@code /config/languages} directory.
+   * 
+   * @return The selected language. E.G.: "English" for English, "Spanish" for Spanish, etc.
+   */
   public String languageSelectionMenu() {
-    ArrayList<String> languages = getFilesList(Const.LANGUAGES_PATH);
+    ArrayList<String> languages = getSavedGamesFilesList(Const.LANGUAGES_PATH);
 
     // Language selection menu
     io.print("[i] Language selection:\n");
@@ -73,7 +96,13 @@ public class GameManager {
     return languages.get(option - 1);
   }
 
-  public ArrayList<String> getFilesList(String path) {
+  /**
+   * This method returns a list of files in a given directory.
+   * 
+   * @param path The path to the directory.
+   * @return An array list with the names of the files in the directory (without extension).
+   */
+  public ArrayList<String> getSavedGamesFilesList(String path) {
     File folder = new File(path);
     File[] listOfFiles = folder.listFiles();
 
@@ -87,7 +116,17 @@ public class GameManager {
     return fileNames;
   }
 
-  // Main menu
+  /**
+   * This method prints the main menu and asks the user to select an option.
+   * 
+   * The main menu has 4 options:
+   * - New game: Create a new game and ask the user for a name for the game.
+   * - Load game: Load a saved game from a given list.
+   * - Change language: Returns to the previous screen with the language selection menu.
+   * - Exit: Exits the game.
+   * 
+   * @return The selected option.
+   */
   public int mainMenu() {
     // Main menu
     io.print(String.format("[i] %s:\n", io.getMsg("MAIN_MENU")));
@@ -100,19 +139,27 @@ public class GameManager {
     return io.readInt("PROMPT_OPTION", 1, 4);
   }
 
-  // Ask file name and check if it exists
+  /**
+   * This method asks the user for a name for the new game, if the name already exists, it will ask the user to select a different name.
+   * 
+   * @return The name typed by the user.
+   */
   public String askNewFileName() {
     String filename = io.readString("PROMPT_GAME_NAME"); // Ask the user for a file name
-    while (fileExists(filename)) {
+    while (savedGameExists(filename)) {
       io.printlnMsg("FILE_EXISTS");
       filename = io.readString("PROMPT_GAME_NAME"); // Ask the user for a file name
     }
     return filename;
   }
 
-  // Prints a list of existing games and asks the user to select one
+  /**
+   * This method asks the user to select a saved game from a list. If there are no saved games, it will return null.
+   * 
+   * @return The name of the selected file (without extension).
+   */
   public String askExistingFileName() {
-    ArrayList<String> files = getFilesList(Const.SAVES_PATH);
+    ArrayList<String> files = getSavedGamesFilesList(Const.SAVES_PATH);
 
     // If there are no saved games, return null
     if (files.size() == 0) {
@@ -133,13 +180,20 @@ public class GameManager {
     return files.get(option - 1).split(".xml")[0];
   }
 
-  // Check if a file exists
-  public boolean fileExists(String filename) {
+  /**
+   * This method checks if a saved game exists in the {@code /config/oldGames} directory.
+   * 
+   * @param filename The name of the file to check.
+   * @return True if the file exists, false otherwise.
+   */
+  public boolean savedGameExists(String filename) {
     File file = new File(Const.SAVES_PATH + filename + ".xml");
     return file.exists();
   }
 
-  // Exit
+  /**
+   * This method prints a goodbye message and exits the program.
+   */
   public void exit() {
     io.print("\n");
     io.printlnMsg("GOODBYE");

@@ -104,6 +104,7 @@ El juego, al cargar los datos del tablero (las tarjetas de suerte, comunidad, pr
 - Poner en private o protected todo lo que sea posible.
 - Comprobar que todos los strings están traducidos
 - Comprobar que los strings se comprueban con equals
+- Tests unitarios
 
 ## Cosas que justificar
 - ¿? Mapa de `monopolyCodes` en vez de array
