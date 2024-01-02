@@ -75,9 +75,11 @@ public class IOManager {
   }
 
   // Print debug messages
-  public static void log(String message) {
-    if (IOManager.debug)
-      System.out.println("[DEBUG] " + message);
+  public static void log(Object message) {
+    if (IOManager.debug) {
+      System.out.print("[DEBUG] ");
+      System.out.println(message);
+    }
   }
 
   // Change the language

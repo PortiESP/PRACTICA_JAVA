@@ -92,8 +92,8 @@ El juego, al cargar los datos del tablero (las tarjetas de suerte, comunidad, pr
 > Atributos de las tarjetas según su clase
 >
 > - `PAYMENT_CHARGE_CARD` -> `id;class;string` (*La cantidad a pagar aparece en el string seguida de el símbolo de `€`, esta cantidad puede ser negativa (el usuario cobra la cantidad indicada) o positiva (el usuario paga la cantidad indicada)*)
-> - `STREET` -> `id;class;string;rent;w1house;w2house;w3house;w4house;hotel;housePrice;hotelPrice;mortgage`
-> - `SERVICE` -> `id;class;string;rent;rent2;mortgage`
+> - `STREET` -> `id;class;string;rent;w1house;w2house;w3house;w4house;whotel;housePrice;hotelPrice;mortgage`
+> - `SERVICE` -> `id;class;string;w1serviceFactor;w2serviceFactor;mortgage`
 > - `STATION` -> `id;class;string;rent;rent2;rent3;rent4;mortgage`
 > - `REPAIRS_CARD` -> `id;class;string;pricePerHouse;pricePerHotel`
 
@@ -103,4 +103,4 @@ El juego, al cargar los datos del tablero (las tarjetas de suerte, comunidad, pr
 - Para los menus, usar números para seleccionar la opción deseada (*no usar letras*), para así evitar problemas con los idiomas.
 - Poner en private o protected todo lo que sea posible.
 - Comprobar que todos los strings están traducidos
-- Comproba que los strings se comprueban con equals
+- Comprobar que los strings se comprueban con equals
