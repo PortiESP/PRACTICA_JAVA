@@ -30,6 +30,18 @@ public class Game {
       int option = operationsMenu();
       IOManager.log("Option: " + option); // DEBUG
 
+      // Execute the selected option
+      if (option == 1) { // Cod Op
+        // TODO
+      } else if (option == 2) { // Game status
+        // TODO
+      } else if (option == 3) { // Save game
+        // TODO
+      } else if (option == 4) { // Exit
+        IOManager.log("Exiting...");
+        break;
+      }
+
     }
   }
   // -----------------------------------------------------------------------------------------------------------
@@ -60,7 +72,7 @@ public class Game {
     io.print(String.format("\t[1] %s\n", io.getMsg("OPERATIONS_MENU_OPTION_COD_OP")));
     io.print(String.format("\t[2] %s\n", io.getMsg("OPERATIONS_MENU_OPTION_GAME_STATUS")));
     io.print(String.format("\t[3] %s\n", io.getMsg("OPERATIONS_MENU_OPTION_SAVE_GAME")));
-    io.print(String.format("\t[4] %s\n", io.getMsg("EXIT")));
+    io.print(String.format("\t[4] %s\n", io.getMsg("OPERATIONS_MENU_OPTION_SAVE_EXIT")));
     io.print("\n");
 
     return io.readInt("PROMPT_OPTION", 1, 4);

@@ -7,6 +7,7 @@ public class MonopolyBank {
     // Instantiate the game manager and start the game
     GameManager gameManager = new GameManager();
     // Run the game
-    gameManager.start();
+    while (true)
+      gameManager.start();
   }
 }

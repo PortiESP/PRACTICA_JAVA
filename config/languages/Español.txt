@@ -17,3 +17,4 @@ OPERATIONS_MENU=Menu de opciones
 OPERATIONS_MENU_OPTION_COD_OP=Introducir código de operación
 OPERATIONS_MENU_OPTION_GAME_STATUS=Ver estado del juego
 OPERATIONS_MENU_OPTION_SAVE_GAME=Guardar partida
+OPERATIONS_MENU_OPTION_SAVE_EXIT=Salir al menu principal
