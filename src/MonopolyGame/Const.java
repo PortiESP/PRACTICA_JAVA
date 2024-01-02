@@ -17,4 +17,5 @@ public class Const {
   public static final String CONFIG_FILENAME = "MonopolyCode.txt";
   public static final String CONFIG_CODES_FILE_PATH = CONFIG_PATH + CONFIG_FILENAME;
   public static final String CURRENCY_SYMBOL = "€";
+  public static final int STARTING_MONEY = 1500;
 }

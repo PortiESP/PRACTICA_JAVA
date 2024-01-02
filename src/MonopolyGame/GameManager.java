@@ -27,6 +27,7 @@ public class GameManager {
     io.printlnMsg("WELCOME");
     io.print("\n");
 
+    // Game configuration ----------------------------
     // Print the main menu (load game, new game, exit)
     int option = mainMenu();
     // Execute the selected option
@@ -46,7 +47,7 @@ public class GameManager {
     } else if (option == 3)
       exit();
 
-    // Start the game
+    // Start the game ----------------------------
     this.game.play();
   }
   // -----------------------------------------------------------------------------------------------------------

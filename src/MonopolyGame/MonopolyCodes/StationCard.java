@@ -2,10 +2,9 @@ package src.MonopolyGame.MonopolyCodes;
 
 import src.MonopolyGame.Player;
 
-public class StationCard extends MonopolyCode {
+public class StationCard extends Property {
   // Attributes
-  private int[] rent;
-  private Player owner;
+  private int rent[];
 
   // Constructor
   public StationCard(String description, String rent1, String rent2, String rent3, String rent4) {

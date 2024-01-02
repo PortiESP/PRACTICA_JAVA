@@ -2,6 +2,7 @@ package src.MonopolyGame;
 
 import java.io.FileReader;
 import java.io.Reader;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.io.BufferedReader;
@@ -19,22 +20,26 @@ public class Game {
   private IOManager io = new IOManager(); // IO Manager (print, read inputs, etc.)
   private String gameFilename; // Save game filename
   private Map<String, MonopolyCode> monopolyCodes = new HashMap<>(); // Monopoly codes map (key: code, value: MonopolyCode 'or child class instance')
+  private ArrayList<Player> players = new ArrayList<>(); // Players list
 
   // Methods
   // ---------------------------------------------- Game main loop ----------------------------------------------
   public void play() {
-    // TODO
+    while (true) {
+      // Print the operations menu
+      int option = operationsMenu();
+      IOManager.log("Option: " + option); // DEBUG
+
+    }
   }
   // -----------------------------------------------------------------------------------------------------------
 
   public void newGame(String filename) {
     this.gameFilename = filename;
-
     // Reset the cards to their default values
     resetCards();
     // Create players
     createPlayers();
-
   }
 
   public void loadGame(String filename) {
@@ -46,6 +51,19 @@ public class Game {
   public void saveGame() {
     io.print("Save game " + gameFilename);
     // TODO
+  }
+
+  public int operationsMenu() {
+    io.print("\n");
+    io.printlnMsg("OPERATIONS_MENU");
+    io.print("\n");
+    io.print(String.format("\t[1] %s\n", io.getMsg("OPERATIONS_MENU_OPTION_COD_OP")));
+    io.print(String.format("\t[2] %s\n", io.getMsg("OPERATIONS_MENU_OPTION_GAME_STATUS")));
+    io.print(String.format("\t[3] %s\n", io.getMsg("OPERATIONS_MENU_OPTION_SAVE_GAME")));
+    io.print(String.format("\t[4] %s\n", io.getMsg("EXIT")));
+    io.print("\n");
+
+    return io.readInt("PROMPT_OPTION", 1, 4);
   }
 
   public void resetCards() {
@@ -98,7 +116,26 @@ public class Game {
   }
 
   public void createPlayers() {
+    // Ask the number of players
+    io.print("\n");
+    int numPlayers = io.readInt("PROMPT_NUM_PLAYERS");
+    io.print("\n");
 
+    // Ask the name of each player
+    for (int i = 0; i < numPlayers; i++) {
+      String name = io.readString("PROMPT_PLAYER_NAME", i + 1);
+      // Check if the name is already taken
+      while (players.contains(new Player(name))) {
+        io.printlnMsg("NAME_ALREADY_TAKEN");
+        name = io.readString("PROMPT_PLAYER_NAME", i + 1);
+      }
+      players.add(new Player(name));
+    }
+
+    // DEBUG: Print all the players
+    IOManager.log("Created all players");
+    for (Player player : players)
+      IOManager.log(player);
   }
 
 }

@@ -52,7 +52,7 @@ El fichero de idioma es un fichero de texto plano que contiene las frases que el
   - No pueden contener espacios (*palabras separadas por `_`*)
   - Deben estas en mayúsculas
   - Deben describir brevemente la frase que identifican
-  - Si la frase contiene una variable, esta debe aparecer en el string como `%NOMBRE_VAR%`
+  - Si la frase contiene una variable, esta debe aparecer en el string como `%s` (*como los placeholders de C `printf`*)
   - Los identificadores no pueden contener el carácter `=`
 
 > **EJEMPLO**
@@ -104,3 +104,9 @@ El juego, al cargar los datos del tablero (las tarjetas de suerte, comunidad, pr
 - Poner en private o protected todo lo que sea posible.
 - Comprobar que todos los strings están traducidos
 - Comprobar que los strings se comprueban con equals
+
+## Cosas que justificar
+- ¿? Mapa de `monopolyCodes` en vez de array
+- ¿? Clase estática para el LanguageManager
+- ¿? Por qué no he usado colores para identificar a los jugadores
+- ¿? Por qué los newGame y loadGame están en Game

@@ -2,18 +2,15 @@ package src.MonopolyGame.MonopolyCodes;
 
 import src.MonopolyGame.Player;
 
-public class StreetCard extends MonopolyCode {
+public class StreetCard extends Property {
   // Attributes
-  private int rent;
   private int[] wHousesRent;
   private int wHotelRent;
   private int housePrice;
   private int hotelPrice;
-  private int mortgageValue;
   private int propertyPrice;
   private int houseCount;
   private int hotelCount;
-  private Player owner;
 
   // Constructor
   public StreetCard(String description, String rent, String w1house, String w2house, String w3house, String w4house,

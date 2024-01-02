@@ -6,12 +6,13 @@ import src.MonopolyGame.Const;
 
 public class IOManager {
   private static boolean debug = true;
-  private LanguageManager languageManager;
+  private static LanguageManager languageManager;
   private Scanner scanner = new Scanner(System.in);
 
   // Constructor
   public IOManager() {
-    this.languageManager = new LanguageManager();
+    if (IOManager.languageManager == null)
+      IOManager.languageManager = new LanguageManager();
   }
 
   // Print a message without checking the messages map
@@ -21,14 +22,14 @@ public class IOManager {
 
   // Print a message
   public void printMsg(String id) throws RuntimeException {
-    String msg = this.languageManager.get(id); // Print the message, if it exists, otherwise throw an exception
+    String msg = IOManager.languageManager.get(id); // Print the message, if it exists, otherwise throw an exception
     if (msg == null)
       throw new RuntimeException("Message not found for Id '" + id + "'\n");
     print(msg);
   }
 
   public String getMsg(String id) throws RuntimeException {
-    String msg = this.languageManager.get(id);
+    String msg = IOManager.languageManager.get(id);
     if (msg == null)
       throw new RuntimeException("Message not found for Id '" + id + "'\n");
     return msg;
@@ -36,7 +37,7 @@ public class IOManager {
 
   // Print a message with a new line
   public void printlnMsg(String id) {
-    String msg = this.languageManager.get(id); // Print the message, if it exists, otherwise throw an exception
+    String msg = IOManager.languageManager.get(id); // Print the message, if it exists, otherwise throw an exception
     if (msg == null)
       throw new RuntimeException("Message not found for Id '" + id + "'\n");
     print(msg + '\n');
@@ -74,6 +75,17 @@ public class IOManager {
     return input;
   }
 
+  // Read an input (string) with parameters
+  public String readString(String prompt, Object... params) {
+    print("[>] " + String.format(getMsg(prompt), (Object[]) params) + " >>> ");
+    String input = this.scanner.nextLine();
+    // Flush the scanner
+    while (input.length() == 0) {
+      input = this.scanner.nextLine();
+    }
+    return input;
+  }
+
   // Print debug messages
   public static void log(Object message) {
     if (IOManager.debug) {
@@ -84,6 +96,6 @@ public class IOManager {
 
   // Change the language
   public void setLanguage(String language) {
-    this.languageManager.load(language);
+    IOManager.languageManager.load(language);
   }
 }
