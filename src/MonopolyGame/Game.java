@@ -21,6 +21,19 @@ import src.MonopolyGame.MonopolyCodes.ServiceCard;
 import src.MonopolyGame.MonopolyCodes.StationCard;
 import src.MonopolyGame.MonopolyCodes.StreetCard;
 
+/**
+ * <p>
+ * This class is responsible for managing the game. The game is started by instantiating a {@code Game} object and calling the {@code play()} method.
+ * <p>
+ * 
+ * <p>
+ * ⚠️ The {@code Game} class also contains the methods {@code newGame()} and {@code loadGame()} that are responsible for creating a new game or loading a saved game. This methods should be called before the {@code play()} method.
+ * </p>
+ * 
+ * <p>
+ * It has the main loop of the game, the operations menu, the game status, and the save game methods.
+ * <p>
+ */
 public class Game implements Serializable {
   // Attributes
   private IOManager io; // IO Manager (print, read inputs, etc.)
@@ -30,7 +43,31 @@ public class Game implements Serializable {
 
   // Methods
   // ---------------------------------------------- Game main loop ----------------------------------------------
+  /**
+   * <p>
+   * This method is responsible for the main loop of the game. It will first check if the game has been created or loaded, otherwise it will create a new game with default name.
+   * </p>
+   * 
+   * <p>
+   * <h4>Main loop</h4>
+   * The main loop will print the operations menu and execute the selected option. The available options are:
+   * 
+   * <ul>
+   *    <li>{@code 1} <strong>Card code</strong>: Executes the operation defined for the given code</li>
+   *    <li>{@code 2} <strong>Game status</strong>: Print the game status (filename, players, etc.)</li>
+   *    <li>{@code 3} <strong>Save game</strong>: Save the game to a file</li>
+   *    <li>{@code 4} <strong>Exit</strong>: Exit the game</li>
+   * </ul>
+   * </p>
+   */
   public void play() {
+
+    // Check if the game has been created or loaded, otherwise create a new game with default name
+    if (this.players == null) {
+      newGame("default_game");
+    }
+
+    // ======================= Main loop ========================
     while (true) {
       // Print the operations menu
       int option = operationsMenu();
@@ -47,11 +84,16 @@ public class Game implements Serializable {
         IOManager.log("Exiting...");
         break;
       }
-
     }
+    // ==========================================================
   }
   // -----------------------------------------------------------------------------------------------------------
 
+  /**
+   * Creates a new game with with the <strong>default values</strong>.
+   * 
+   * @param filename The name of the game
+   */
   public void newGame(String filename) {
     this.gameFilename = filename;
     this.io = new IOManager();
@@ -64,23 +106,28 @@ public class Game implements Serializable {
     createPlayers();
   }
 
+  /**
+   * Loads a game from a file, the file must be located in the {@code Const.SAVES_PATH} directory.
+   * 
+   * @param filename The name of the game
+   */
   public void loadGame(String filename) {
     this.gameFilename = filename;
 
-    // Read XML Game file
     try {
-      // Deserialize the game
+      // Prepare the XML decoder
       FileInputStream file = new FileInputStream(Const.SAVES_PATH + this.gameFilename + ".xml");
       XMLDecoder xmlFile = new XMLDecoder(file);
 
+      // Read the game from the file
       Game auxGame = (Game) xmlFile.readObject();
+      // Close the XML decoder
+      xmlFile.close();
 
-      // Set the game attributes
+      // Overwrite the current game with the loaded game data
       this.io = auxGame.getIo();
       this.monopolyCodes = auxGame.getMonopolyCodes();
       this.players = auxGame.getPlayers();
-
-      xmlFile.close();
 
     } catch (Exception e) {
       IOManager.log("Unable to load the game");
@@ -88,17 +135,21 @@ public class Game implements Serializable {
     }
   }
 
+  /**
+   * Saves the game to a file with the name given to the game, the file will be located in the {@code Const.SAVES_PATH} directory.
+   */
   public void saveGame() {
     IOManager.log("Save game " + gameFilename);
 
     try {
-      // Serialize the game
+      // Prepare the XML encoder
       FileOutputStream file = new FileOutputStream(Const.SAVES_PATH + this.gameFilename + ".xml");
       BufferedOutputStream buffer = new BufferedOutputStream(file);
       XMLEncoder xmlFile = new XMLEncoder(buffer);
 
+      // Write the game to the file
       xmlFile.writeObject(this);
-
+      // Close the XML encoder
       xmlFile.close();
 
     } catch (Exception e) {
@@ -107,6 +158,11 @@ public class Game implements Serializable {
     }
   }
 
+  /**
+   * Prints the operations menu and returns the selected option.
+   * 
+   * @return The selected option
+   */
   public int operationsMenu() {
     io.print("\n");
     io.printlnMsg("OPERATIONS_MENU");
@@ -120,32 +176,44 @@ public class Game implements Serializable {
     return io.readInt("PROMPT_OPTION", 1, 4);
   }
 
+  /**
+   * Prints the game status (filename, players, etc.).
+   */
   public void gameStatus() {
     io.print("\n");
+    // Title
     io.print(String.format("[i] %s\n", io.getMsg("GAME_STATUS")));
     io.print("\n");
+    // Filename
     io.print(String.format("\t- %s: %s\n", io.getMsg("GAME_STATUS_FILENAME"), gameFilename));
     io.print("\n");
+    // Players
     io.print(String.format("\t- %s:\n", io.getMsg("GAME_STATUS_PLAYERS")));
     for (int i = 0; i < players.size(); i++)
       io.print(String.format("\t\t- %s\n", players.get(i).summary()));
+
     io.print("\n");
     io.print("\n");
 
   }
 
+  /**
+   * Reads the {@code Const.CONFIG_CODES_FILE_PATH} file and resets the cards (<em>available operations based on a code</em>) to their default values.
+   */
   public void resetCards() {
-    // Load monopoly codes from the config file
     try {
+      // Prepare the file reader
       Reader file = new FileReader(Const.CONFIG_CODES_FILE_PATH);
       BufferedReader reader = new BufferedReader(file);
 
       // Read the file configuration file
       String line = reader.readLine();
+
+      // Read each line
       while (line != null) {
-        // Split the line in fields
-        String[] fields = line.split(";");
-        // Extract the code and type
+        // Split the line by its fields
+        String[] fields = line.split(Const.CODES_DELIMITER);
+        // Extract the card code and card type (station, street, etc.)
         String cardCode = fields[0];
         String cardType = fields[1];
 
@@ -184,20 +252,27 @@ public class Game implements Serializable {
     }
   }
 
+  /**
+   * Creates the players of the game. It will ask the number of players and the name of each player, the names will be used to uniquely identify the players.
+   */
   public void createPlayers() {
-    // Ask the number of players
     io.print("\n");
+
+    // Ask the number of players
     int numPlayers = io.readInt("PROMPT_NUM_PLAYERS");
     io.print("\n");
 
     // Ask the name of each player
     for (int i = 0; i < numPlayers; i++) {
+      // Read the name
       String name = io.readString("PROMPT_PLAYER_NAME", i + 1);
       // Check if the name is already taken
       while (players.contains(new Player(name))) {
         io.printlnMsg("NAME_ALREADY_TAKEN");
         name = io.readString("PROMPT_PLAYER_NAME", i + 1);
       }
+
+      // Add the player to the list
       players.add(new Player(name));
     }
 
@@ -207,6 +282,7 @@ public class Game implements Serializable {
       IOManager.log(player);
   }
 
+  // ---------------------------------------------- Getters and setters ----------------------------------------------
   public IOManager getIo() {
     return io;
   }
