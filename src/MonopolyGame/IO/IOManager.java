@@ -24,11 +24,15 @@ import src.MonopolyGame.Const;
  * </p>
  * 
  * <p>
- * The printed values are padded with {@code Const.PRINT_PADDING} to make the output more readable and stand out from the rest of the terminal lines.
+ * The printed values are <strong>padded</strong> with {@code Const.PRINT_PADDING} to make the output more readable and stand out from the rest of the terminal lines.
  * </p>
  * 
  * <p>
- * The debug messages are printed to the standard output.
+ * The debug messages are printed to the standard output only if the {@code debug} flag is set to {@code true}.
+ * </p>
+ * 
+ * <p>
+ * The attributes {@code debug} and {@code languageManager} are static, so they can be accessed from any instance of this class.
  * </p>
  */
 public class IOManager implements Serializable {
