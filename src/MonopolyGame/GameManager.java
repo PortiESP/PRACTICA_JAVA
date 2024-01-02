@@ -5,7 +5,7 @@ import java.io.File;
 import java.util.ArrayList;
 
 /**
- * This class is responsible for printing the language selection menu, the main menu, and starting the game.
+ * This class is responsible for printing the language selection menu, the main menu.
  * The game is started by instantiating a {@code GameManager} object and calling the {@code start()} method.
  */
 public class GameManager {
@@ -17,15 +17,22 @@ public class GameManager {
   /**
    * This method is responsible creating/loading a game and starting it.
    * 
+   * <p>
    * It will create a new game instance in order to restart the game when the user selects the back to menu option.
    * Then it will print the language selection menu and set the chosen language for the game strings.
    * After that, it will print a welcome message and the main menu. 
+   * </p>
    * 
+   * <p>
    * The main menu has 4 options:
-   * - New game: Create a new game and ask the user for a name for the game.
-   * - Load game: Load a saved game from a given list.
-   * - Change language: Returns to the previous screen with the language selection menu.
-   * - Exit: Exits the game.
+   * 
+   * <ul>
+   *    <li>New game: Create a new game and ask the user for a name for the game.</li>
+   *    <li>Load game: Load a saved game from a given list.</li>
+   *    <li>Change language: Returns to the previous screen with the language selection menu.</li>
+   *    <li>Exit: Exits the game.</li>
+   * </ul>
+   * </p>
    * 
    * Finally, it will start the game by calling the {@code play()}.
    */
@@ -119,11 +126,12 @@ public class GameManager {
   /**
    * This method prints the main menu and asks the user to select an option.
    * 
-   * The main menu has 4 options:
-   * - New game: Create a new game and ask the user for a name for the game.
-   * - Load game: Load a saved game from a given list.
-   * - Change language: Returns to the previous screen with the language selection menu.
-   * - Exit: Exits the game.
+   * <ul>
+   *    <li>New game: Create a new game and ask the user for a name for the game.</li>
+   *    <li>Load game: Load a saved game from a given list.</li>
+   *    <li>Change language: Returns to the previous screen with the language selection menu.</li>
+   *    <li>Exit: Exits the game.</li>
+   * </ul>
    * 
    * @return The selected option.
    */
