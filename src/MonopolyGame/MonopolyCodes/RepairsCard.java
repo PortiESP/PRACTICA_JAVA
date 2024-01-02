@@ -11,6 +11,10 @@ public class RepairsCard extends MonopolyCode {
   private int pricePerHouse;
   private int pricePerHotel;
 
+  // Constructor (for serialization)
+  public RepairsCard() {
+  }
+
   // Constructor
   public RepairsCard(String description) {
     this.description = description;

@@ -12,6 +12,10 @@ public class StreetCard extends Property {
   private int houseCount;
   private int hotelCount;
 
+  // Constructors (for serialization)
+  public StreetCard() {
+  }
+
   // Constructor
   public StreetCard(String description, String rent, String w1house, String w2house, String w3house, String w4house,
       String whotel,

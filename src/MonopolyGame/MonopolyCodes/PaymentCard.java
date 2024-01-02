@@ -6,6 +6,10 @@ public class PaymentCard extends MonopolyCode {
   // Attributes
   private int amount; // Amount to pay
 
+  // Constructors (for serialization)
+  public PaymentCard() {
+  }
+
   // Constructor
   public PaymentCard(String description) {
     this.description = description;

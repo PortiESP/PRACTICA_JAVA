@@ -1,10 +1,11 @@
 package src.MonopolyGame.IO;
 
+import java.io.Serializable;
 import java.util.Scanner;
 
 import src.MonopolyGame.Const;
 
-public class IOManager {
+public class IOManager implements Serializable {
   private static boolean debug = true;
   private static LanguageManager languageManager;
   private Scanner scanner = new Scanner(System.in);
@@ -97,5 +98,29 @@ public class IOManager {
   // Change the language
   public void setLanguage(String language) {
     IOManager.languageManager.load(language);
+  }
+
+  public static boolean isDebug() {
+    return debug;
+  }
+
+  public static LanguageManager getLanguageManager() {
+    return languageManager;
+  }
+
+  public Scanner getScanner() {
+    return scanner;
+  }
+
+  public static void setDebug(boolean debug) {
+    IOManager.debug = debug;
+  }
+
+  public static void setLanguageManager(LanguageManager languageManager) {
+    IOManager.languageManager = languageManager;
+  }
+
+  public void setScanner(Scanner scanner) {
+    this.scanner = scanner;
   }
 }

@@ -2,10 +2,16 @@ package src.MonopolyGame;
 
 import java.io.FileReader;
 import java.io.Reader;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.beans.XMLDecoder;
+import java.beans.XMLEncoder;
+import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 
 import src.MonopolyGame.IO.IOManager;
 import src.MonopolyGame.MonopolyCodes.MonopolyCode;
@@ -15,12 +21,12 @@ import src.MonopolyGame.MonopolyCodes.ServiceCard;
 import src.MonopolyGame.MonopolyCodes.StationCard;
 import src.MonopolyGame.MonopolyCodes.StreetCard;
 
-public class Game {
+public class Game implements Serializable {
   // Attributes
-  private IOManager io = new IOManager(); // IO Manager (print, read inputs, etc.)
+  private IOManager io; // IO Manager (print, read inputs, etc.)
   private String gameFilename; // Save game filename
-  private Map<String, MonopolyCode> monopolyCodes = new HashMap<>(); // Monopoly codes map (key: code, value: MonopolyCode 'or child class instance')
-  private ArrayList<Player> players = new ArrayList<>(); // Players list
+  private Map<String, MonopolyCode> monopolyCodes; // Monopoly codes map (key: code, value: MonopolyCode 'or child class instance')
+  private ArrayList<Player> players; // Players list
 
   // Methods
   // ---------------------------------------------- Game main loop ----------------------------------------------
@@ -34,9 +40,9 @@ public class Game {
       if (option == 1) { // Cod Op
         // TODO
       } else if (option == 2) { // Game status
-        // TODO
+        gameStatus();
       } else if (option == 3) { // Save game
-        // TODO
+        saveGame();
       } else if (option == 4) { // Exit
         IOManager.log("Exiting...");
         break;
@@ -48,6 +54,10 @@ public class Game {
 
   public void newGame(String filename) {
     this.gameFilename = filename;
+    this.io = new IOManager();
+    this.monopolyCodes = new HashMap<>();
+    this.players = new ArrayList<>();
+
     // Reset the cards to their default values
     resetCards();
     // Create players
@@ -56,13 +66,45 @@ public class Game {
 
   public void loadGame(String filename) {
     this.gameFilename = filename;
-    io.print("Load game " + gameFilename);
-    // TODO
+
+    // Read XML Game file
+    try {
+      // Deserialize the game
+      FileInputStream file = new FileInputStream(Const.SAVES_PATH + this.gameFilename + ".xml");
+      XMLDecoder xmlFile = new XMLDecoder(file);
+
+      Game auxGame = (Game) xmlFile.readObject();
+
+      // Set the game attributes
+      this.io = auxGame.getIo();
+      this.monopolyCodes = auxGame.getMonopolyCodes();
+      this.players = auxGame.getPlayers();
+
+      xmlFile.close();
+
+    } catch (Exception e) {
+      IOManager.log("Unable to load the game");
+      e.printStackTrace();
+    }
   }
 
   public void saveGame() {
-    io.print("Save game " + gameFilename);
-    // TODO
+    IOManager.log("Save game " + gameFilename);
+
+    try {
+      // Serialize the game
+      FileOutputStream file = new FileOutputStream(Const.SAVES_PATH + this.gameFilename + ".xml");
+      BufferedOutputStream buffer = new BufferedOutputStream(file);
+      XMLEncoder xmlFile = new XMLEncoder(buffer);
+
+      xmlFile.writeObject(this);
+
+      xmlFile.close();
+
+    } catch (Exception e) {
+      IOManager.log("Unable to save the game");
+      e.printStackTrace();
+    }
   }
 
   public int operationsMenu() {
@@ -76,6 +118,20 @@ public class Game {
     io.print("\n");
 
     return io.readInt("PROMPT_OPTION", 1, 4);
+  }
+
+  public void gameStatus() {
+    io.print("\n");
+    io.print(String.format("[i] %s\n", io.getMsg("GAME_STATUS")));
+    io.print("\n");
+    io.print(String.format("\t- %s: %s\n", io.getMsg("GAME_STATUS_FILENAME"), gameFilename));
+    io.print("\n");
+    io.print(String.format("\t- %s:\n", io.getMsg("GAME_STATUS_PLAYERS")));
+    for (int i = 0; i < players.size(); i++)
+      io.print(String.format("\t\t- %s\n", players.get(i).summary()));
+    io.print("\n");
+    io.print("\n");
+
   }
 
   public void resetCards() {
@@ -107,6 +163,7 @@ public class Game {
           monopolyCodes.put(cardCode, new RepairsCard(fields[2]));
         else {
           IOManager.log("Error adding card, the code " + cardCode + " has an invalid type: " + cardType);
+          reader.close();
           throw new RuntimeException("Error adding card, the code " + cardCode + " has an invalid type: " + cardType);
         }
 
@@ -148,6 +205,38 @@ public class Game {
     IOManager.log("Created all players");
     for (Player player : players)
       IOManager.log(player);
+  }
+
+  public IOManager getIo() {
+    return io;
+  }
+
+  public void setIo(IOManager io) {
+    this.io = io;
+  }
+
+  public String getGameFilename() {
+    return gameFilename;
+  }
+
+  public void setGameFilename(String gameFilename) {
+    this.gameFilename = gameFilename;
+  }
+
+  public Map<String, MonopolyCode> getMonopolyCodes() {
+    return monopolyCodes;
+  }
+
+  public void setMonopolyCodes(Map<String, MonopolyCode> monopolyCodes) {
+    this.monopolyCodes = monopolyCodes;
+  }
+
+  public ArrayList<Player> getPlayers() {
+    return players;
+  }
+
+  public void setPlayers(ArrayList<Player> players) {
+    this.players = players;
   }
 
 }

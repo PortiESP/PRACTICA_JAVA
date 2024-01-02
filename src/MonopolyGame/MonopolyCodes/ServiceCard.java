@@ -5,6 +5,10 @@ import src.MonopolyGame.Player;
 public class ServiceCard extends Property {
   private int[] priceFactor;
 
+  // Constructors (for serialization)
+  public ServiceCard() {
+  }
+
   // Constructor
   public ServiceCard(String description, String priceFactor1, String priceFactor2) {
     this.description = description;

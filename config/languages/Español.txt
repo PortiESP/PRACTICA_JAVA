@@ -18,3 +18,7 @@ OPERATIONS_MENU_OPTION_COD_OP=Introducir código de operación
 OPERATIONS_MENU_OPTION_GAME_STATUS=Ver estado del juego
 OPERATIONS_MENU_OPTION_SAVE_GAME=Guardar partida
 OPERATIONS_MENU_OPTION_SAVE_EXIT=Salir al menu principal
+GAME_SAVED=La partida ha sido guardada correctamente
+GAME_STATUS=Estado actual de la partida
+GAME_STATUS_FILENAME=Nombre de la partida
+GAME_STATUS_PLAYERS=Resumen de los jugadores

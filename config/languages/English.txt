@@ -18,3 +18,7 @@ OPERATIONS_MENU_OPTION_COD_OP=Enter the operation code
 OPERATIONS_MENU_OPTION_GAME_STATUS=Check the game status
 OPERATIONS_MENU_OPTION_SAVE_GAME=Save game
 OPERATIONS_MENU_OPTION_SAVE_EXIT=Exit to main menu
+GAME_SAVED=The game has been saved successfully
+GAME_STATUS=Current game status
+GAME_STATUS_FILENAME=Game name
+GAME_STATUS_PLAYERS=Players summary

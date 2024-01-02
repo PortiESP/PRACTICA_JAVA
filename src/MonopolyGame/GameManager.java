@@ -7,10 +7,12 @@ import java.util.ArrayList;
 public class GameManager {
   // Attributes
   private IOManager io = new IOManager(); // IO Manager (print, read inputs, etc.)
-  private Game game = new Game(); // Game instance
+  private Game game; // Game instance
 
   // ---------------------------------------------- Start the game ----------------------------------------------
   public void start() {
+    // Instantiate the game or reset it
+    this.game = new Game();
     // Load default language
     io.setLanguage(Const.DEFAULT_LANG);
 
@@ -123,7 +125,7 @@ public class GameManager {
 
     // Ask the user to select a game
     int option = io.readInt("PROMPT_OPTION", 1, files.size());
-    return files.get(option - 1);
+    return files.get(option - 1).split(".xml")[0];
   }
 
   // Check if a file exists

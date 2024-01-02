@@ -2,12 +2,13 @@ package src.MonopolyGame.MonopolyCodes;
 
 import src.MonopolyGame.Player;
 
+import java.io.Serializable;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import src.MonopolyGame.Const;
 
-public abstract class MonopolyCode {
+public abstract class MonopolyCode implements Serializable {
   // Attributes
   protected String description; // Card description
 
@@ -26,6 +27,14 @@ public abstract class MonopolyCode {
       return Integer.parseInt(matcher.group(1));
     else // If the number is not found
       return 0;
+  }
+
+  public String getDescription() {
+    return description;
+  }
+
+  public void setDescription(String description) {
+    this.description = description;
   }
 
 }

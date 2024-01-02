@@ -6,6 +6,10 @@ public class StationCard extends Property {
   // Attributes
   private int rent[];
 
+  // Constructors (for serialization)
+  public StationCard() {
+  }
+
   // Constructor
   public StationCard(String description, String rent1, String rent2, String rent3, String rent4) {
     this.description = description;
