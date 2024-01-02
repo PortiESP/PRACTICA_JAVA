@@ -103,3 +103,4 @@ El juego, al cargar los datos del tablero (las tarjetas de suerte, comunidad, pr
 - Para los menus, usar números para seleccionar la opción deseada (*no usar letras*), para así evitar problemas con los idiomas.
 - Poner en private o protected todo lo que sea posible.
 - Comprobar que todos los strings están traducidos
+- Comproba que los strings se comprueban con equals

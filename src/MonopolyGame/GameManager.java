@@ -116,7 +116,7 @@ public class GameManager {
     io.print(String.format("[i] %s:\n", io.getMsg("SAVED_GAMES_LIST")));
     io.print("\n");
     for (int i = 0; i < files.size(); i++)
-      io.print(String.format("\t- [%d] %s\n", i + 1, files.get(i)));
+      io.print(String.format("\t- [%d] %s\n", i + 1, files.get(i).split(".xml")[0]));
 
     io.print("\n");
 
@@ -127,7 +127,7 @@ public class GameManager {
 
   // Check if a file exists
   public boolean fileExists(String filename) {
-    File file = new File(Const.SAVES_PATH + filename + ".txt");
+    File file = new File(Const.SAVES_PATH + filename + ".xml");
     return file.exists();
   }
 

@@ -13,5 +13,8 @@ public class Const {
   public static final String DEFAULT_LANG = "English";
   public static final String SAVES_PATH = "./config/oldGames/";
   public static final String LANGUAGES_PATH = "./config/languages/";
-
+  public static final String CONFIG_PATH = "./config/";
+  public static final String CONFIG_FILENAME = "MonopolyCode.txt";
+  public static final String CONFIG_CODES_FILE_PATH = CONFIG_PATH + CONFIG_FILENAME;
+  public static final String CURRENCY_SYMBOL = "€";
 }
