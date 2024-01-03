@@ -78,12 +78,13 @@ public class Game implements Serializable {
         // TODO
       } else if (option == 2) { // Game status
         gameStatus();
-      } else if (option == 3) { // Save game
+      } else if (option == 3) { // Exit
         saveGame();
-      } else if (option == 4) { // Exit
-        IOManager.log("Exiting...");
+        IOManager.log("Saving and returning to the main menu...");
         break;
       }
+
+      saveGame();
     }
     // ==========================================================
   }
@@ -161,19 +162,24 @@ public class Game implements Serializable {
   /**
    * Prints the operations menu and returns the selected option.
    * 
+  
+   * 
    * @return The selected option
    */
   public int operationsMenu() {
+    /*
+     * Options can be modified by changing the print statements with the new option, also update the maximum value of 
+     * the `io.readInt()` method and handle the behavior of the new option in the if else statement in the `play()` method.
+     */
     io.print("\n");
     io.printlnMsg("OPERATIONS_MENU");
     io.print("\n");
     io.print(String.format("\t[1] %s\n", io.getMsg("OPERATIONS_MENU_OPTION_COD_OP")));
     io.print(String.format("\t[2] %s\n", io.getMsg("OPERATIONS_MENU_OPTION_GAME_STATUS")));
-    io.print(String.format("\t[3] %s\n", io.getMsg("OPERATIONS_MENU_OPTION_SAVE_GAME")));
-    io.print(String.format("\t[4] %s\n", io.getMsg("OPERATIONS_MENU_OPTION_SAVE_EXIT")));
+    io.print(String.format("\t[3] %s\n", io.getMsg("OPERATIONS_MENU_OPTION_SAVE_EXIT")));
     io.print("\n");
 
-    return io.readInt("PROMPT_OPTION", 1, 4);
+    return io.readInt("PROMPT_OPTION", 1, 3);
   }
 
   /**
