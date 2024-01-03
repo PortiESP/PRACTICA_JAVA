@@ -40,6 +40,7 @@ public class Game implements Serializable {
   private String gameFilename; // Save game filename
   private Map<String, MonopolyCode> monopolyCodes; // Monopoly codes map (key: code, value: MonopolyCode 'or child class instance')
   private ArrayList<Player> players; // Players list
+  private boolean autosave = true; // Autosave flag
 
   // Methods
   // ---------------------------------------------- Game main loop ----------------------------------------------
@@ -88,7 +89,8 @@ public class Game implements Serializable {
         break;
       }
 
-      saveGame();
+      if (autosave)
+        saveGame();
     }
     // ==========================================================
   }
