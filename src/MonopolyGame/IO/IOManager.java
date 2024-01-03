@@ -37,21 +37,15 @@ import src.MonopolyGame.Const;
  */
 public class IOManager implements Serializable {
   private static boolean debug = true; // Enables debug mode to print debug messages (True = on, False = off)
-  private static LanguageManager languageManager; // Language manager to get the messages from the language files
-  private Scanner scanner = new Scanner(System.in);
-
-  // Constructor
-  public IOManager() {
-    if (IOManager.languageManager == null)
-      IOManager.languageManager = new LanguageManager();
-  }
+  private static LanguageManager languageManager = new LanguageManager(); // Language manager to get the messages from the language files
+  private static Scanner scanner = new Scanner(System.in);
 
   /**
    * Print a raw message (<em>without checking the messages map</em>), basically a wrapper for {@code System.out.print()}.
    * 
    * @param msg The message to print 
    */
-  public void print(String msg) {
+  public static void print(String msg) {
     System.out.print(Const.PRINT_PADDING + msg);
   }
 
@@ -61,7 +55,7 @@ public class IOManager implements Serializable {
    * @param id The message id. Example: {@code "NEW_GAME"}
    * @throws RuntimeException If the message id is not found in the messages map.
    */
-  public void printMsg(String id) throws RuntimeException {
+  public static void printMsg(String id) throws RuntimeException {
     String msg = IOManager.languageManager.get(id); // Print the message, if it exists, otherwise throw an exception
     if (msg == null)
       throw new RuntimeException("Message not found for Id '" + id + "'\n");
@@ -74,7 +68,7 @@ public class IOManager implements Serializable {
    * @param id The message id. Example: {@code "NEW_GAME"}
    * @throws RuntimeException If the message id is not found in the messages map.
    */
-  public void printlnMsg(String id) {
+  public static void printlnMsg(String id) {
     String msg = IOManager.languageManager.get(id); // Print the message, if it exists, otherwise throw an exception
     if (msg == null)
       throw new RuntimeException("Message not found for Id '" + id + "'\n");
@@ -88,7 +82,7 @@ public class IOManager implements Serializable {
    * @return The message in the current language.
    * @throws RuntimeException If the message id is not found in the messages map.
    */
-  public String getMsg(String id) throws RuntimeException {
+  public static String getMsg(String id) throws RuntimeException {
     String msg = IOManager.languageManager.get(id);
     if (msg == null)
       throw new RuntimeException("Message not found for Id '" + id + "'\n");
@@ -100,7 +94,7 @@ public class IOManager implements Serializable {
    * 
    * @return The number typed by the user.
    */
-  public int readInt() {
+  public static int readInt() {
     return readInt("");
   }
 
@@ -110,7 +104,7 @@ public class IOManager implements Serializable {
    * @param prompt The message ID that will be printed before reading the input.
    * @return The number typed by the user.
    */
-  public int readInt(String prompt) {
+  public static int readInt(String prompt) {
     // Check if the input is an integer
     int value = -1;
     while (value == -1) {
@@ -134,7 +128,7 @@ public class IOManager implements Serializable {
    * @param max The maximum value of the input.
    * @return The number typed by the user.
    */
-  public int readInt(String prompt, int min, int max) {
+  public static int readInt(String prompt, int min, int max) {
     int option = readInt(prompt);
     while (option < min || option > max) {
       printlnMsg("INVALID_OPTION");
@@ -149,7 +143,7 @@ public class IOManager implements Serializable {
    * @param prompt The message ID that will be printed before reading the input.
    * @return The string typed by the user.
    */
-  public String readString(String prompt) {
+  public static String readString(String prompt) {
     String input = "";
 
     // Read the input
@@ -160,7 +154,7 @@ public class IOManager implements Serializable {
         print("[>] " + prompt + " >>> ");
       }
 
-      input = this.scanner.nextLine();
+      input = IOManager.scanner.nextLine();
 
     } while (input.length() == 0);
 
@@ -174,7 +168,7 @@ public class IOManager implements Serializable {
    * @param params The parameters of the message.
    * @return The string typed by the user.
    */
-  public String readString(String prompt, Object... params) {
+  public static String readString(String prompt, Object... params) {
     return readString(String.format(getMsg(prompt), (Object[]) params));
   }
 
@@ -195,7 +189,7 @@ public class IOManager implements Serializable {
    * 
    * @param language The language to load. Example: {@code "English"}
    */
-  public void setLanguage(String language) {
+  public static void setLanguage(String language) {
     IOManager.languageManager.load(language);
   }
 
@@ -208,7 +202,7 @@ public class IOManager implements Serializable {
     return languageManager;
   }
 
-  public Scanner getScanner() {
+  public static Scanner getScanner() {
     return scanner;
   }
 
@@ -220,7 +214,7 @@ public class IOManager implements Serializable {
     IOManager.languageManager = languageManager;
   }
 
-  public void setScanner(Scanner scanner) {
-    this.scanner = scanner;
+  public static void setScanner(Scanner scanner) {
+    IOManager.scanner = scanner;
   }
 }

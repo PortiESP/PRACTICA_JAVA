@@ -176,35 +176,35 @@ public class Game implements Serializable {
      * Options can be modified by changing the print statements with the new option, also update the maximum value of 
      * the `io.readInt()` method and handle the behavior of the new option in the if else statement in the `play()` method.
      */
-    io.print("\n");
-    io.printlnMsg("OPERATIONS_MENU");
-    io.print("\n");
-    io.print(String.format("\t[1] %s\n", io.getMsg("OPERATIONS_MENU_OPTION_COD_OP")));
-    io.print(String.format("\t[2] %s\n", io.getMsg("OPERATIONS_MENU_OPTION_GAME_STATUS")));
-    io.print(String.format("\t[3] %s\n", io.getMsg("OPERATIONS_MENU_OPTION_SAVE_EXIT")));
-    io.print("\n");
+    IOManager.print("\n");
+    IOManager.printlnMsg("OPERATIONS_MENU");
+    IOManager.print("\n");
+    IOManager.print(String.format("\t[1] %s\n", IOManager.getMsg("OPERATIONS_MENU_OPTION_COD_OP")));
+    IOManager.print(String.format("\t[2] %s\n", IOManager.getMsg("OPERATIONS_MENU_OPTION_GAME_STATUS")));
+    IOManager.print(String.format("\t[3] %s\n", IOManager.getMsg("OPERATIONS_MENU_OPTION_SAVE_EXIT")));
+    IOManager.print("\n");
 
-    return io.readInt("PROMPT_OPTION", 1, 3);
+    return IOManager.readInt("PROMPT_OPTION", 1, 3);
   }
 
   /**
    * Prints the game status (filename, players, etc.).
    */
   public void gameStatus() {
-    io.print("\n");
+    IOManager.print("\n");
     // Title
-    io.print(String.format("[i] %s\n", io.getMsg("GAME_STATUS")));
-    io.print("\n");
+    IOManager.print(String.format("[i] %s\n", IOManager.getMsg("GAME_STATUS")));
+    IOManager.print("\n");
     // Filename
-    io.print(String.format("\t- %s: %s\n", io.getMsg("GAME_STATUS_FILENAME"), gameFilename));
-    io.print("\n");
+    IOManager.print(String.format("\t- %s: %s\n", IOManager.getMsg("GAME_STATUS_FILENAME"), gameFilename));
+    IOManager.print("\n");
     // Players
-    io.print(String.format("\t- %s:\n", io.getMsg("GAME_STATUS_PLAYERS")));
+    IOManager.print(String.format("\t- %s:\n", IOManager.getMsg("GAME_STATUS_PLAYERS")));
     for (int i = 0; i < players.size(); i++)
-      io.print(String.format("\t\t- %s\n", players.get(i).summary()));
+      IOManager.print(String.format("\t\t- %s\n", players.get(i).summary()));
 
-    io.print("\n");
-    io.print("\n");
+    IOManager.print("\n");
+    IOManager.print("\n");
 
   }
 
@@ -267,20 +267,20 @@ public class Game implements Serializable {
    * Creates the players of the game. It will ask the number of players and the name of each player, the names will be used to uniquely identify the players.
    */
   public void createPlayers() {
-    io.print("\n");
+    IOManager.print("\n");
 
     // Ask the number of players
-    int numPlayers = io.readInt("PROMPT_NUM_PLAYERS");
-    io.print("\n");
+    int numPlayers = IOManager.readInt("PROMPT_NUM_PLAYERS");
+    IOManager.print("\n");
 
     // Ask the name of each player
     for (int i = 0; i < numPlayers; i++) {
       // Read the name
-      String name = io.readString("PROMPT_PLAYER_NAME", i + 1);
+      String name = IOManager.readString("PROMPT_PLAYER_NAME", i + 1);
       // Check if the name is already taken
       while (players.contains(new Player(name))) {
-        io.printlnMsg("NAME_ALREADY_TAKEN");
-        name = io.readString("PROMPT_PLAYER_NAME", i + 1);
+        IOManager.printlnMsg("NAME_ALREADY_TAKEN");
+        name = IOManager.readString("PROMPT_PLAYER_NAME", i + 1);
       }
 
       // Add the player to the list
@@ -300,15 +300,15 @@ public class Game implements Serializable {
    * @return The typed operation code (string)
    */
   public String operationCodeMenu() {
-    io.print("\n");
+    IOManager.print("\n");
 
     // Ask a valid code
     String opCode = null;
     while (opCode == null) {
-      opCode = io.readString("PROMPT_OP_CODE");
+      opCode = IOManager.readString("PROMPT_OP_CODE");
       // Check if the code is valid
       if (!monopolyCodes.containsKey(opCode)) {
-        io.printlnMsg("INVALID_CODE");
+        IOManager.printlnMsg("INVALID_CODE");
         opCode = null;
       }
     }
@@ -323,16 +323,16 @@ public class Game implements Serializable {
    * @return The selected player
    */
   public Player askCurrentPlayer() {
-    io.print("\n");
+    IOManager.print("\n");
 
     // Ask a valid player
-    io.printlnMsg("PLAYER_TURN");
+    IOManager.printlnMsg("PLAYER_TURN");
     // Print all the players
     for (int i = 0; i < players.size(); i++)
-      io.print(String.format("\t - [%d] %s\n", i + 1, players.get(i).getName()));
+      IOManager.print(String.format("\t - [%d] %s\n", i + 1, players.get(i).getName()));
 
-    io.print("\n");
-    int opt = io.readInt("PROMPT_PLAYER_LIST", 1, players.size());
+    IOManager.print("\n");
+    int opt = IOManager.readInt("PROMPT_PLAYER_LIST", 1, players.size());
 
     return this.players.get(opt - 1);
   }

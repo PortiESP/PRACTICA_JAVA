@@ -34,9 +34,9 @@ public class StreetCard extends Property {
     this.hotelCount = 0;
   }
 
-  // @Override
-  // public void doOperation(Player player) {
+  @Override
+  public void doOperation(Player player) {
 
-  // }
+  }
 
 }

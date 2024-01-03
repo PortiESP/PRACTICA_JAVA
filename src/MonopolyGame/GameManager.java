@@ -41,20 +41,20 @@ public class GameManager {
     this.game = new Game();
 
     // Load default language
-    io.setLanguage(Const.DEFAULT_LANG);
+    IOManager.setLanguage(Const.DEFAULT_LANG);
 
     // Print the MONOPOLY logo
-    io.print(Const.MONOPOLY_LOGO);
+    IOManager.print(Const.MONOPOLY_LOGO);
     // Print the language selection menu
     String langFileName = languageSelectionMenu();
     // Load the language from the file
-    io.setLanguage(langFileName);
+    IOManager.setLanguage(langFileName);
 
     // Print the welcome message
-    io.print("\n");
-    io.print("\n");
-    io.printlnMsg("WELCOME");
-    io.print("\n");
+    IOManager.print("\n");
+    IOManager.print("\n");
+    IOManager.printlnMsg("WELCOME");
+    IOManager.print("\n");
 
     // Game configuration ========================
     // Print the main menu (load game, new game, exit)
@@ -68,7 +68,7 @@ public class GameManager {
       String filename = askExistingFileName();
       // If there are no saved games, start a new game
       if (filename == null) {
-        io.printlnMsg("NO_SAVED_GAMES");
+        IOManager.printlnMsg("NO_SAVED_GAMES");
         this.game.newGame(askNewFileName());
       } else {
         this.game.loadGame(filename);
@@ -89,7 +89,7 @@ public class GameManager {
   public void startDebug() {
     this.game = new Game();
 
-    io.setLanguage("English");
+    IOManager.setLanguage("English");
     this.game.loadGame("default_game");
 
     IOManager.log("[!!!] Playing the default game");
@@ -106,12 +106,12 @@ public class GameManager {
     ArrayList<String> languages = getSavedGamesFilesList(Const.LANGUAGES_PATH);
 
     // Language selection menu
-    io.print("[i] Language selection:\n");
-    io.print("\n");
+    IOManager.print("[i] Language selection:\n");
+    IOManager.print("\n");
     for (int i = 0; i < languages.size(); i++)
-      io.print(String.format("\t- [%d] %s\n", i + 1, languages.get(i)));
-    io.print("\n");
-    int option = io.readInt("PROMPT_OPTION", 1, languages.size());
+      IOManager.print(String.format("\t- [%d] %s\n", i + 1, languages.get(i)));
+    IOManager.print("\n");
+    int option = IOManager.readInt("PROMPT_OPTION", 1, languages.size());
 
     return languages.get(option - 1);
   }
@@ -150,14 +150,14 @@ public class GameManager {
    */
   public int mainMenu() {
     // Main menu
-    io.print(String.format("[i] %s:\n", io.getMsg("MAIN_MENU")));
-    io.print("\n");
-    io.print("\t- [1] " + io.getMsg("NEW_GAME") + "\n");
-    io.print("\t- [2] " + io.getMsg("LOAD_GAME") + "\n");
-    io.print("\t- [3] " + io.getMsg("CHANGE_LANGUAGE") + "\n");
-    io.print("\t- [4] " + io.getMsg("EXIT") + "\n");
-    io.print("\n");
-    return io.readInt("PROMPT_OPTION", 1, 4);
+    IOManager.print(String.format("[i] %s:\n", IOManager.getMsg("MAIN_MENU")));
+    IOManager.print("\n");
+    IOManager.print("\t- [1] " + IOManager.getMsg("NEW_GAME") + "\n");
+    IOManager.print("\t- [2] " + IOManager.getMsg("LOAD_GAME") + "\n");
+    IOManager.print("\t- [3] " + IOManager.getMsg("CHANGE_LANGUAGE") + "\n");
+    IOManager.print("\t- [4] " + IOManager.getMsg("EXIT") + "\n");
+    IOManager.print("\n");
+    return IOManager.readInt("PROMPT_OPTION", 1, 4);
   }
 
   /**
@@ -166,10 +166,10 @@ public class GameManager {
    * @return The name typed by the user.
    */
   public String askNewFileName() {
-    String filename = io.readString("PROMPT_GAME_NAME"); // Ask the user for a file name
+    String filename = IOManager.readString("PROMPT_GAME_NAME"); // Ask the user for a file name
     while (savedGameExists(filename)) {
-      io.printlnMsg("FILE_EXISTS");
-      filename = io.readString("PROMPT_GAME_NAME"); // Ask the user for a file name
+      IOManager.printlnMsg("FILE_EXISTS");
+      filename = IOManager.readString("PROMPT_GAME_NAME"); // Ask the user for a file name
     }
     return filename;
   }
@@ -188,16 +188,16 @@ public class GameManager {
     }
 
     // Print the list of existing games
-    io.print("\n");
-    io.print(String.format("[i] %s:\n", io.getMsg("SAVED_GAMES_LIST")));
-    io.print("\n");
+    IOManager.print("\n");
+    IOManager.print(String.format("[i] %s:\n", IOManager.getMsg("SAVED_GAMES_LIST")));
+    IOManager.print("\n");
     for (int i = 0; i < files.size(); i++)
-      io.print(String.format("\t- [%d] %s\n", i + 1, files.get(i).split(".xml")[0]));
+      IOManager.print(String.format("\t- [%d] %s\n", i + 1, files.get(i).split(".xml")[0]));
 
-    io.print("\n");
+    IOManager.print("\n");
 
     // Ask the user to select a game
-    int option = io.readInt("PROMPT_OPTION", 1, files.size());
+    int option = IOManager.readInt("PROMPT_OPTION", 1, files.size());
     return files.get(option - 1).split(".xml")[0];
   }
 
@@ -216,9 +216,9 @@ public class GameManager {
    * This method prints a goodbye message and exits the program.
    */
   public void exit() {
-    io.print("\n");
-    io.printlnMsg("GOODBYE");
-    io.print("\n");
+    IOManager.print("\n");
+    IOManager.printlnMsg("GOODBYE");
+    IOManager.print("\n");
     System.exit(0);
   }
 }
