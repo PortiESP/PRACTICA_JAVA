@@ -75,6 +75,10 @@ public class IOManager implements Serializable {
     print(msg + '\n');
   }
 
+  public static void printlnMsg(String id, Object... params) {
+    print(String.format(getMsg(id), (Object[]) params) + '\n');
+  }
+
   /**
    * Returns the message in the current language based on the message id.
    * 

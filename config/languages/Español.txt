@@ -35,7 +35,7 @@ YES=Si
 NO=No
 PLAYER_DONT_BUY_PROPERTY=El jugador no ha comprado la propiedad
 ASK_MANAGE_PROPERTY=Quieres entrar al menu de gestion de la propiedad
-PROPERTY_MANAGEMENT_MENU=Menu de gestion de la propiedad
+PROPERTY_MANAGEMENT_MENU=Menu de gestion de la propiedad [%s]
 PLAYER_CANT_AFFORD=El jugador no se puede permitir el pago
 PROPERTY_CANT_SELL_HOUSES=La propiedad no tiene tantas casas para vender
 PROPERTY_ALREADY_HAS_HOTEL=La propiedad ya tiene un hotel
@@ -47,3 +47,5 @@ PROPERTY_CANT_SELL_MORTGAGED=La propiedad no se puede vender porque esta hipotec
 PAYMENT_CARD=El jugador ha sacado la carta
 PLAYER_LOSER=El jugador [%s] ha perdido
 PROPERTY_ASK_BUY=¿Quieres comprar la propiedad [%s] por %d?
+PROMPT_AMOUNT=Introduzca la cantidad
+PROPERTY_SUMMARY=Casas=%d ~ Hotel=%s ~ Hipotecada=%s ~ Ingresos=%d

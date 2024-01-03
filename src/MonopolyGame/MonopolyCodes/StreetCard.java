@@ -54,19 +54,23 @@ public class StreetCard extends Property {
   }
 
   public int propertyManagementMenu(Player player) {
+    String y = IOManager.getMsg("YES");
+    String n = IOManager.getMsg("NO");
     // Ask the player what he wants to do with the property
     IOManager.print("\n");
-    IOManager.printMsg("PROPERTY_MANAGEMENT_MENU");
-    IOManager.print(String.format(" [%s]", this.description));
+    IOManager.printlnMsg("PROPERTY_MANAGEMENT_MENU", this.description);
     IOManager.print("\n");
-    IOManager.print("\t- [1] Buy houses");
-    IOManager.print("\t- [2] Sell houses");
-    IOManager.print("\t- [3] Buy hotel");
-    IOManager.print("\t- [4] Sell hotel");
-    IOManager.print("\t- [5] Mortgage property");
-    IOManager.print("\t- [6] Pay off property mortgage");
-    IOManager.print("\t- [7] Sell property");
-    IOManager.print("\t- [0] Exit");
+    IOManager.printlnMsg("PROPERTY_SUMMARY", houseCount, (hotel ? y : n), (isMortgaged ? y : n),
+        calculateAmountToPay());
+    IOManager.print("\n");
+    IOManager.print("\t- [1] Buy houses\n");
+    IOManager.print("\t- [2] Sell houses\n");
+    IOManager.print("\t- [3] Buy hotel\n");
+    IOManager.print("\t- [4] Sell hotel\n");
+    IOManager.print("\t- [5] Mortgage property\n");
+    IOManager.print("\t- [6] Pay off property mortgage\n");
+    IOManager.print("\t- [7] Sell property\n");
+    IOManager.print("\t- [0] Exit\n");
     IOManager.print("\n");
 
     // Get the player's choice

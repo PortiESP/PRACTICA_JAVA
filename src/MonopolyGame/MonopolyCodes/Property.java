@@ -51,13 +51,12 @@ public abstract class Property extends MonopolyCode {
   public int propertyManagementMenu(Player player) {
     // Ask the player what he wants to do with the property
     IOManager.print("\n");
-    IOManager.printMsg("PROPERTY_MANAGEMENT_MENU");
-    IOManager.print(String.format(" [%s]", this.description));
+    IOManager.printlnMsg("PROPERTY_MANAGEMENT_MENU", this.description);
     IOManager.print("\n");
-    IOManager.print("\t- [1] Mortgage property");
-    IOManager.print("\t- [2] Pay off property mortgage");
-    IOManager.print("\t- [3] Sell property");
-    IOManager.print("\t- [0] Exit");
+    IOManager.print("\t- [1] Mortgage property\n");
+    IOManager.print("\t- [2] Pay off property mortgage\n");
+    IOManager.print("\t- [3] Sell property\n");
+    IOManager.print("\t- [0] Exit\n");
     IOManager.print("\n");
 
     // Get the player's choice
