@@ -1350,8 +1350,11 @@
     <void method="put">
      <string>38</string>
      <object class="src.MonopolyGame.MonopolyCodes.PaymentCard">
+      <void property="amount">
+       <int>-100</int>
+      </void>
       <void property="description">
-       <string>IMPUESTO LUJO</string>
+       <string>IMPUESTO LUJO -100€</string>
       </void>
      </object>
     </void>

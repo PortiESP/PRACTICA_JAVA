@@ -169,19 +169,19 @@ public class StreetCard extends Property {
 
   // --------------------------------------------- Getters & Setters ---------------------------------------------
 
-  public int[] getwHousesRent() {
+  public int[] getWHousesRent() {
     return wHousesRent;
   }
 
-  public void setwHousesRent(int[] wHousesRent) {
+  public void setWHousesRent(int[] wHousesRent) {
     this.wHousesRent = wHousesRent;
   }
 
-  public int getwHotelRent() {
+  public int getWHotelRent() {
     return wHotelRent;
   }
 
-  public void setwHotelRent(int wHotelRent) {
+  public void setWHotelRent(int wHotelRent) {
     this.wHotelRent = wHotelRent;
   }
 
