@@ -1,6 +1,5 @@
 package src.MonopolyGame.MonopolyCodes;
 
-import src.MonopolyGame.Player;
 import src.MonopolyGame.IO.IOManager;
 
 public class ServiceCard extends Property {

@@ -10,7 +10,6 @@ import java.util.ArrayList;
  */
 public class GameManager {
   // Attributes
-  private IOManager io = new IOManager(); // IO Manager (print, read inputs, etc.)
   private Game game; // Game instance
 
   // ========================================= Start the game =========================================
