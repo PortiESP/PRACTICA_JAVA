@@ -96,23 +96,34 @@ public class IOManager implements Serializable {
   }
 
   /**
-   * Read an input (integer). This method is a wrapper for {@code Scanner.nextInt()}.
+   * Read an input (integer). This method is a wrapper for {@code readInt(prompt)}.
    * 
    * @return The number typed by the user.
    */
   public int readInt() {
-    return this.scanner.nextInt();
+    return readInt("");
   }
 
   /**
-   * Read an input (string). This method is similar to {@code readInt()}, but it prints a prompt before reading the input.
+   * Read an input (string). Prints a prompt before reading the input.
    * 
    * @param prompt The message ID that will be printed before reading the input.
    * @return The number typed by the user.
    */
   public int readInt(String prompt) {
-    print("[>] " + getMsg(prompt) + " >>> ");
-    return this.scanner.nextInt();
+    // Check if the input is an integer
+    int value = -1;
+    while (value == -1) {
+      String input = readString(prompt);
+      try {
+        value = Integer.parseInt(input);
+      } catch (NumberFormatException e) {
+        printlnMsg("INVALID_OPTION");
+        value = -1;
+      }
+    }
+
+    return value;
   }
 
   /**
@@ -139,12 +150,20 @@ public class IOManager implements Serializable {
    * @return The string typed by the user.
    */
   public String readString(String prompt) {
-    print("[>] " + getMsg(prompt) + " >>> ");
-    String input = this.scanner.nextLine();
-    // Flush the scanner
-    while (input.length() == 0) {
+    String input = "";
+
+    // Read the input
+    do {
+      try {
+        print("[>] " + getMsg(prompt) + " >>> ");
+      } catch (RuntimeException e) {
+        print("[>] " + prompt + " >>> ");
+      }
+
       input = this.scanner.nextLine();
-    }
+
+    } while (input.length() == 0);
+
     return input;
   }
 
@@ -156,13 +175,7 @@ public class IOManager implements Serializable {
    * @return The string typed by the user.
    */
   public String readString(String prompt, Object... params) {
-    print("[>] " + String.format(getMsg(prompt), (Object[]) params) + " >>> ");
-    String input = this.scanner.nextLine();
-    // Flush the scanner
-    while (input.length() == 0) {
-      input = this.scanner.nextLine();
-    }
-    return input;
+    return readString(String.format(getMsg(prompt), (Object[]) params));
   }
 
   /**

@@ -1,5 +1,5 @@
 WELCOME=BIENVENIDO AL MONOPOLY (Edición Banco Digital)
-INVALID_OPTION=¡Opción no válida!. Por favor, elija una opción dentro del intervalo
+INVALID_OPTION=¡Opción no válida!
 NEW_GAME=Nueva partida
 LOAD_GAME=Cargar partida
 CHANGE_LANGUAGE=Idioma

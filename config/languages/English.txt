@@ -1,5 +1,5 @@
 WELCOME=WELCOME TO THE MONOPOLY GAME (Digital Bank Edition)
-INVALID_OPTION=Invalid option!, Please choose an option within the interval
+INVALID_OPTION=Invalid option!
 NEW_GAME=New game
 LOAD_GAME=Load game
 CHANGE_LANGUAGE=Language

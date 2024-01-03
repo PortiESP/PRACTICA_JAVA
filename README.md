@@ -97,7 +97,7 @@ El juego, al cargar los datos del tablero (las tarjetas de suerte, comunidad, pr
 > - `STATION` -> `id;class;string;rent;rent2;rent3;rent4;mortgage`
 > - `REPAIRS_CARD` -> `id;class;string;pricePerHouse;pricePerHotel`
 
-## Aspectos a tener en cuenta
+## Aspectos a tener en cuenta antes de entregar el proyecto
 
 - Usar **constantes** para todo lo que sea posible.
 - Para los menus, usar números para seleccionar la opción deseada (*no usar letras*), para así evitar problemas con los idiomas.
@@ -105,6 +105,7 @@ El juego, al cargar los datos del tablero (las tarjetas de suerte, comunidad, pr
 - Comprobar que todos los strings están traducidos
 - Comprobar que los strings se comprueban con equals
 - Tests unitarios
+- JavaDocs
 
 ## Cosas que justificar
 - ¿? Mapa de `monopolyCodes` en vez de array
