@@ -232,7 +232,7 @@ public class Game implements Serializable {
 
         // Create a new instance of the MonopolyCode based on its type
         if ("PAYMENT_CHARGE_CARD".equals(cardType))
-          monopolyCodes.put(cardCode, new PaymentCard(fields[2]));
+          monopolyCodes.put(cardCode, new PaymentCard(fields[2] + (fields.length > 3 ? " " + fields[3] + "€" : ""))); // Handle the case "IMPUESTO LUJO" where the amount is a 4th field
         else if ("STREET".equals(cardType))
           monopolyCodes.put(cardCode, new StreetCard(fields[2], fields[3], fields[4], fields[5], fields[6], fields[7],
               fields[8], fields[9], fields[10], fields[11]));
