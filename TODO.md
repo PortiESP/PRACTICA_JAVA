@@ -11,7 +11,7 @@ TO-DO
 - Repairs card
 - Payment card
 - Check broke
-- AUTOSAVE variable
+- Keep local language (do not serialize selected language)
 
 # Aspectos a tener en cuenta antes de entregar el proyecto
 

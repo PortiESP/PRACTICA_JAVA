@@ -90,9 +90,19 @@ public class GameManager {
 
     IOManager.setLanguage("English");
 
-    // this.game.newGame("default_game");
+    // Load the default game
     this.game.loadGame("default_game");
+    // Reset the cards
+    this.game.resetCards();
+    // Reset the players (template players)
+    ArrayList<Player> players = new ArrayList<>();
+    players.add(new Player("Player 1"));
+    players.add(new Player("Player 2"));
+    players.add(new Player("Player 3"));
+    players.add(new Player("Player 4"));
+    this.game.setPlayers(players);
 
+    // Disable autosave
     this.game.setAutosave(false);
 
     IOManager.log("[!!!] Playing the default game");
