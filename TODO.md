@@ -16,6 +16,6 @@ TO-DO
 
 # Cosas que justificar en el informe
 - [ ] Mapa de `monopolyCodes` en vez de array
-- [ ] Clase estática para el LanguageManager
+- [ ] Clase estática para el LanguageManager y IOManager
 - [ ] Por qué no he usado colores para identificar a los jugadores
 - [ ] Por qué los newGame y loadGame están en Game

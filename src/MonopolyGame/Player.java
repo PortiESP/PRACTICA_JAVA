@@ -3,7 +3,10 @@ package src.MonopolyGame;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import src.MonopolyGame.IO.IOManager;
 import src.MonopolyGame.MonopolyCodes.Property;
+import src.MonopolyGame.MonopolyCodes.ServiceCard;
+import src.MonopolyGame.MonopolyCodes.StationCard;
 
 /**
  * This class represents a player in the game. It contains the player's name, money, properties and if he is broke. 
@@ -48,6 +51,34 @@ public class Player implements Serializable {
     return String.format("%s [$%d]", this.name, this.money);
   }
 
+  /**
+   * Get the number of stations the player owns.
+   * 
+   * @return The number of stations the player owns.
+   */
+  public int getStationCount() {
+    int count = 0;
+    for (Property property : properties) {
+      if (property instanceof StationCard)
+        count++;
+    }
+    return count;
+  }
+
+  /**
+   * Get the number of services the player owns.
+   * 
+   * @return The number of services the player owns.
+   */
+  public int getServicesCount() {
+    int count = 0;
+    for (Property property : properties) {
+      if (property instanceof ServiceCard)
+        count++;
+    }
+    return count;
+  }
+
   @Override
   /**
    * Checks if the player is the same as another player.
@@ -58,6 +89,175 @@ public class Player implements Serializable {
   public boolean equals(Object player) {
     // If the player is the same object, return true
     return (player == this);
+  }
+
+  /**
+   * Pay an amount of money to another player.
+   * 
+   * @param amount The amount of money to pay.
+   * @param player The player to pay.
+   */
+  public void pay(int amount, Player player) {
+    // If the player has enough money
+    if (this.money >= amount) {
+      // Pay the player (if the player can afford the payment)
+      if (this.decreaseMoney(amount) != -1) {
+        player.increaseMoney(amount);
+      }
+      // If the player can't afford the payment, liquidate assets
+      else {
+        this.liquidateAssets(amount);
+      }
+    }
+  }
+
+  /**
+   * Buy a property.
+   * 
+   * @param property The property to buy.
+   */
+  public void buyProperty(Property property) {
+    // If the player can afford the payment
+    if (this.decreaseMoney(property.getPropertyPrice()) != -1) {
+      // Buy the property
+      this.properties.add(property);
+      property.setOwner(this);
+
+      return;
+    }
+    // If the player can't afford the payment, ask if he wants to liquidate assets
+    else {
+      // If the player wants to liquidate assets
+      if (IOManager.askYesNo("PLAYER_LIQUIDATE_ASSETS")) {
+        // Liquidate assets until the player can afford the payment
+        this.liquidateAssets(property.getPropertyPrice());
+        // Buy the property
+        this.properties.add(property);
+        property.setOwner(this);
+      }
+    }
+
+    IOManager.printlnMsg("PLAYER_DONT_BUY_PROPERTY");
+  }
+
+  /**
+   * Liquidate assets until the player can afford the specified amount.
+   * 
+   * @param amount The amount of money the player needs to afford.
+   * @return True if the player is broke, false otherwise.
+   */
+  public boolean liquidateAssets(int amount) {
+    // While the player can't afford the payment
+    while (this.money < amount) {
+      IOManager.printlnMsg("PLAYER_LIQUIDATE_ASSETS");
+      // If the player has no properties, he is broke
+      if (this.properties.size() == 0) {
+        this.broke = true;
+        return false;
+      }
+
+      // Otherwise, print the liquidation menu
+      liquidateMenu();
+    }
+
+    return true;
+  }
+
+  /**
+   * Print the liquidation menu.
+   */
+  public void liquidateMenu() {
+    // Print the liquidation menu
+    IOManager.printlnMsg("LIQUIDATE_MENU");
+    IOManager.print("\n");
+    IOManager.print("\t- [1] Sell a property");
+    IOManager.print("\t- [2] Mortgage a property");
+    IOManager.print("\n");
+
+    // Get the user's input
+    int opt = IOManager.readInt("PROMPT_OPTION", 1, 2);
+
+    // Sell a property
+    if (opt == 1) {
+      printPropertiesList();
+      int sellOpt = IOManager.readInt("PROMPT_OPTION", 1, this.properties.size()) - 1;
+
+      this.sell2Bank(sellOpt);
+    }
+    // Mortgage a property
+    else {
+      printPropertiesList();
+      int mortgageOpt = IOManager.readInt("PROMPT_OPTION", 1, this.properties.size()) - 1;
+
+      this.mortgage(mortgageOpt);
+    }
+  }
+
+  public void printPropertiesList() {
+    IOManager.printlnMsg("PLAYER_PROPERTIES_LIST");
+    for (int i = 0; i < this.properties.size(); i++) {
+      IOManager.print(String.format("\t-[%d] %s\n", i + 1, this.properties.get(i).toString()));
+    }
+    IOManager.print("\n");
+  }
+
+  /**
+   * Sell a property.
+   * 
+   * @param int The index of the property to sell in the player's properties list.
+   */
+  public void sell2Bank(int index) {
+    // Get the property to sell
+    Property property = this.properties.get(index);
+
+    // Sell the property
+    this.properties.remove(index);
+    this.increaseMoney(property.getPropertyPrice());
+    property.setOwner(null);
+  }
+
+  /**
+   * Mortgage a property.
+   * 
+   * @param int The index of the property to mortgage in the player's properties list.
+   */
+  public void mortgage(int index) {
+    // Get the property to mortgage
+    Property property = this.properties.get(index);
+
+    // Mortgage the property
+    property.setMortgaged(true);
+    this.increaseMoney(property.getMortgageValue());
+  }
+
+  /**
+   * Increase the player's money by an amount.
+   * 
+   * @param amount The amount of money to increase.
+   * @return The new amount of money the player has.
+   */
+  public int increaseMoney(int amount) {
+    this.money += amount;
+    return this.money;
+  }
+
+  /**
+   * Decrease the player's money by an amount.
+   * 
+   * @param amount The amount of money to decrease.
+   * @return (If the player could afford payment) -> The new amount of money the player has.
+   *        (If the player couldn't afford payment) -> -1 (operation failed, money not decreased)
+   */
+  public int decreaseMoney(int amount) {
+    // Try to decrease the money, if the player has enough money, return the new amount of money
+    if (this.money - amount > 0) {
+      this.money -= amount;
+      return this.money;
+    }
+    // If the player doesn't have enough money, return -1 (operation failed)
+    else {
+      return -1;
+    }
   }
 
   // ---------------------------------------- Getters and Setters ----------------------------------------

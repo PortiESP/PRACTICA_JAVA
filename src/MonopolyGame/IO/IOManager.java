@@ -90,6 +90,19 @@ public class IOManager implements Serializable {
   }
 
   /**
+    * Ask the user a yes/no question.
+    *
+    * @param prompt The message ID that will be printed before reading the input.
+    * @return True if the user typed 1 (yes), false otherwise (no).
+    */
+  public static boolean askYesNo(String prompt) {
+    print(String.format("%s (%s=1 / %n=0)? ", getMsg(prompt), getMsg("YES"), getMsg("NO")));
+    int option = readInt("PROMPT_OPTION", 0, 1);
+
+    return option == 1;
+  }
+
+  /**
    * Read an input (integer). This method is a wrapper for {@code readInt(prompt)}.
    * 
    * @return The number typed by the user.

@@ -1,6 +1,7 @@
 package src.MonopolyGame.MonopolyCodes;
 
 import src.MonopolyGame.Player;
+import src.MonopolyGame.IO.IOManager;
 
 public class ServiceCard extends Property {
   private int[] priceFactor;
@@ -16,8 +17,17 @@ public class ServiceCard extends Property {
   }
 
   @Override
-  public void doOperation(Player player) {
-    // TODO Auto-generated method stub
+  public int calculateAmountToPay() {
+
+    // If the property is mortgaged, no rent is paid
+    if (isMortgaged)
+      return 0;
+
+    // Ask the player to roll the dice
+    int dice = IOManager.readInt("PROMPT_ROLL_THE_DICE");
+
+    // Pay the rent based on the number of stations the owner has (at least 1 since we are paying rent)
+    return dice * priceFactor[owner.getServicesCount() - 1];
   }
 
 }

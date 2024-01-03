@@ -1,6 +1,7 @@
 package src.MonopolyGame.MonopolyCodes;
 
 import src.MonopolyGame.Player;
+import src.MonopolyGame.IO.IOManager;
 
 public class StationCard extends Property {
   // Attributes
@@ -18,8 +19,13 @@ public class StationCard extends Property {
   }
 
   @Override
-  public void doOperation(Player player) {
-    // TODO Auto-generated method stub
-  }
+  public int calculateAmountToPay() {
 
+    // If the property is mortgaged, no rent is paid
+    if (isMortgaged)
+      return 0;
+
+    // Pay the rent based on the number of stations the owner has (at least 1 since we are paying rent)
+    return rent[owner.getStationCount() - 1];
+  }
 }
