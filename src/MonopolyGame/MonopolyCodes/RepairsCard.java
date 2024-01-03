@@ -41,4 +41,28 @@ public class RepairsCard extends MonopolyCode {
       throw new IllegalArgumentException("Invalid description for repairs card: " + this.description);
   }
 
+  public String getDescription() {
+    return description;
+  }
+
+  public void setDescription(String description) {
+    this.description = description;
+  }
+
+  public int getPricePerHouse() {
+    return pricePerHouse;
+  }
+
+  public void setPricePerHouse(int pricePerHouse) {
+    this.pricePerHouse = pricePerHouse;
+  }
+
+  public int getPricePerHotel() {
+    return pricePerHotel;
+  }
+
+  public void setPricePerHotel(int pricePerHotel) {
+    this.pricePerHotel = pricePerHotel;
+  }
+
 }

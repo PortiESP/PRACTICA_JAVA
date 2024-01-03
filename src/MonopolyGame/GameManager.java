@@ -90,6 +90,7 @@ public class GameManager {
 
     IOManager.setLanguage("English");
     this.game.loadGame("default_game");
+    this.game.setAutosave(false);
 
     IOManager.log("[!!!] Playing the default game");
 

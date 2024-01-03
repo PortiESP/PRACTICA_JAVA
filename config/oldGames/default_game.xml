@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <java version="20.0.2" class="java.beans.XMLDecoder">
  <object class="src.MonopolyGame.Game">
+  <void property="autosave">
+   <boolean>false</boolean>
+  </void>
   <void property="gameFilename">
    <string>default_game</string>
   </void>
@@ -12,6 +15,9 @@
     <void method="put">
      <string>00</string>
      <object class="src.MonopolyGame.MonopolyCodes.PaymentCard">
+      <void property="amount">
+       <int>200</int>
+      </void>
       <void property="description">
        <string>PASAS POR LA SALIDA Y COBRAS 200€</string>
       </void>
@@ -19,9 +25,44 @@
     </void>
     <void method="put">
      <string>01</string>
-     <object class="src.MonopolyGame.MonopolyCodes.StreetCard">
+     <object class="src.MonopolyGame.MonopolyCodes.StreetCard" id="StreetCard0">
       <void property="description">
        <string>RONDA DE VALENCIA</string>
+      </void>
+      <void property="hotelPrice">
+       <int>50</int>
+      </void>
+      <void property="housePrice">
+       <int>50</int>
+      </void>
+      <void property="mortgageValue">
+       <int>30</int>
+      </void>
+      <void property="propertyPrice">
+       <int>60</int>
+      </void>
+      <void property="rent">
+       <int>2</int>
+      </void>
+      <void property="wHotelRent">
+       <int>250</int>
+      </void>
+      <void id="Integer0" property="houseCount"/>
+      <void property="wHousesRent">
+       <array class="int" length="4">
+        <void index="0">
+         <int>10</int>
+        </void>
+        <void index="1">
+         <int>30</int>
+        </void>
+        <void index="2">
+         <int>90</int>
+        </void>
+        <void index="3">
+         <int>160</int>
+        </void>
+       </array>
       </void>
      </object>
     </void>
@@ -31,11 +72,48 @@
       <void property="description">
        <string>PLAZA LAVAPIÉS</string>
       </void>
+      <void property="hotelPrice">
+       <int>50</int>
+      </void>
+      <void property="housePrice">
+       <int>50</int>
+      </void>
+      <void property="mortgageValue">
+       <int>30</int>
+      </void>
+      <void property="propertyPrice">
+       <int>60</int>
+      </void>
+      <void property="rent">
+       <int>4</int>
+      </void>
+      <void property="wHotelRent">
+       <int>450</int>
+      </void>
+      <void property="wHousesRent">
+       <array class="int" length="4">
+        <void index="0">
+         <int>20</int>
+        </void>
+        <void index="1">
+         <int>60</int>
+        </void>
+        <void index="2">
+         <int>180</int>
+        </void>
+        <void index="3">
+         <int>320</int>
+        </void>
+       </array>
+      </void>
      </object>
     </void>
     <void method="put">
      <string>04</string>
      <object class="src.MonopolyGame.MonopolyCodes.PaymentCard">
+      <void property="amount">
+       <int>-200</int>
+      </void>
       <void property="description">
        <string>IMPUESTO SOBRE REINTGROS -200€</string>
       </void>
@@ -47,6 +125,22 @@
       <void property="description">
        <string>ESTACIÓN DE GOYA</string>
       </void>
+      <void property="fare">
+       <array class="int" length="4">
+        <void index="0">
+         <int>25</int>
+        </void>
+        <void index="1">
+         <int>50</int>
+        </void>
+        <void index="2">
+         <int>75</int>
+        </void>
+        <void index="3">
+         <int>100</int>
+        </void>
+       </array>
+      </void>
      </object>
     </void>
     <void method="put">
@@ -54,6 +148,40 @@
      <object class="src.MonopolyGame.MonopolyCodes.StreetCard">
       <void property="description">
        <string>GLORIETA CUATRO CAMINOS</string>
+      </void>
+      <void property="hotelPrice">
+       <int>50</int>
+      </void>
+      <void property="housePrice">
+       <int>50</int>
+      </void>
+      <void property="mortgageValue">
+       <int>50</int>
+      </void>
+      <void property="propertyPrice">
+       <int>100</int>
+      </void>
+      <void property="rent">
+       <int>6</int>
+      </void>
+      <void property="wHotelRent">
+       <int>550</int>
+      </void>
+      <void property="wHousesRent">
+       <array class="int" length="4">
+        <void index="0">
+         <int>30</int>
+        </void>
+        <void index="1">
+         <int>90</int>
+        </void>
+        <void index="2">
+         <int>270</int>
+        </void>
+        <void index="3">
+         <int>400</int>
+        </void>
+       </array>
       </void>
      </object>
     </void>
@@ -63,6 +191,40 @@
       <void property="description">
        <string>AVENIDA REINA VICTORIA</string>
       </void>
+      <void property="hotelPrice">
+       <int>50</int>
+      </void>
+      <void property="housePrice">
+       <int>50</int>
+      </void>
+      <void property="mortgageValue">
+       <int>50</int>
+      </void>
+      <void property="propertyPrice">
+       <int>100</int>
+      </void>
+      <void property="rent">
+       <int>6</int>
+      </void>
+      <void property="wHotelRent">
+       <int>550</int>
+      </void>
+      <void property="wHousesRent">
+       <array class="int" length="4">
+        <void index="0">
+         <int>30</int>
+        </void>
+        <void index="1">
+         <int>90</int>
+        </void>
+        <void index="2">
+         <int>270</int>
+        </void>
+        <void index="3">
+         <int>400</int>
+        </void>
+       </array>
+      </void>
      </object>
     </void>
     <void method="put">
@@ -71,15 +233,59 @@
       <void property="description">
        <string>CALLE BRAVO MURILLO</string>
       </void>
+      <void property="hotelPrice">
+       <int>50</int>
+      </void>
+      <void property="housePrice">
+       <int>50</int>
+      </void>
+      <void property="mortgageValue">
+       <int>60</int>
+      </void>
+      <void property="propertyPrice">
+       <int>120</int>
+      </void>
+      <void property="rent">
+       <int>8</int>
+      </void>
+      <void property="wHotelRent">
+       <int>600</int>
+      </void>
+      <void property="wHousesRent">
+       <array class="int" length="4">
+        <void index="0">
+         <int>40</int>
+        </void>
+        <void index="1">
+         <int>100</int>
+        </void>
+        <void index="2">
+         <int>300</int>
+        </void>
+        <void index="3">
+         <int>450</int>
+        </void>
+       </array>
+      </void>
      </object>
     </void>
     <void method="put">
      <string>51</string>
-     <object class="src.MonopolyGame.MonopolyCodes.RepairsCard"/>
+     <object class="src.MonopolyGame.MonopolyCodes.RepairsCard">
+      <void property="description">
+       <string>HAZ REPARACIONES EN TODOS TUS EDIFICIOS PAGA POR CADA CASA 25€ PAGA POR CADA HOTEL 100€</string>
+      </void>
+      <void property="pricePerHouse">
+       <int>5</int>
+      </void>
+     </object>
     </void>
     <void method="put">
      <string>52</string>
      <object class="src.MonopolyGame.MonopolyCodes.PaymentCard">
+      <void property="amount">
+       <int>200</int>
+      </void>
       <void property="description">
        <string>COLÓCATE EN LA CASILLA DE SALIDA Y COBRA 200€</string>
       </void>
@@ -88,6 +294,9 @@
     <void method="put">
      <string>53</string>
      <object class="src.MonopolyGame.MonopolyCodes.PaymentCard">
+      <void property="amount">
+       <int>200</int>
+      </void>
       <void property="description">
        <string>VE A LA GLORIETA DE BILBAO SI PASAS POR LA CASILLA DE SALIDA COBRAS 200€</string>
       </void>
@@ -99,11 +308,48 @@
       <void property="description">
        <string>CALLE ALBERTO AGUILERA</string>
       </void>
+      <void property="hotelPrice">
+       <int>100</int>
+      </void>
+      <void property="housePrice">
+       <int>100</int>
+      </void>
+      <void property="mortgageValue">
+       <int>70</int>
+      </void>
+      <void property="propertyPrice">
+       <int>140</int>
+      </void>
+      <void property="rent">
+       <int>10</int>
+      </void>
+      <void property="wHotelRent">
+       <int>750</int>
+      </void>
+      <void property="wHousesRent">
+       <array class="int" length="4">
+        <void index="0">
+         <int>50</int>
+        </void>
+        <void index="1">
+         <int>150</int>
+        </void>
+        <void index="2">
+         <int>450</int>
+        </void>
+        <void index="3">
+         <int>625</int>
+        </void>
+       </array>
+      </void>
      </object>
     </void>
     <void method="put">
      <string>54</string>
      <object class="src.MonopolyGame.MonopolyCodes.PaymentCard">
+      <void property="amount">
+       <int>-150</int>
+      </void>
       <void property="description">
        <string>PAGA POR GASTOS ESCOLARES -150€</string>
       </void>
@@ -115,11 +361,48 @@
       <void property="description">
        <string>GLORIETA DE BILBAO</string>
       </void>
+      <void property="hotelPrice">
+       <int>100</int>
+      </void>
+      <void property="housePrice">
+       <int>100</int>
+      </void>
+      <void property="mortgageValue">
+       <int>70</int>
+      </void>
+      <void property="propertyPrice">
+       <int>140</int>
+      </void>
+      <void property="rent">
+       <int>10</int>
+      </void>
+      <void property="wHotelRent">
+       <int>750</int>
+      </void>
+      <void property="wHousesRent">
+       <array class="int" length="4">
+        <void index="0">
+         <int>50</int>
+        </void>
+        <void index="1">
+         <int>150</int>
+        </void>
+        <void index="2">
+         <int>450</int>
+        </void>
+        <void index="3">
+         <int>625</int>
+        </void>
+       </array>
+      </void>
      </object>
     </void>
     <void method="put">
      <string>55</string>
      <object class="src.MonopolyGame.MonopolyCodes.PaymentCard">
+      <void property="amount">
+       <int>200</int>
+      </void>
       <void property="description">
        <string>VE A LA CÁRCEL. VE DIRECTAMENTE SIN PASAR POR LA CASILLA DE SALIDA Y SIN COBRAR LOS 200€</string>
       </void>
@@ -131,11 +414,24 @@
       <void property="description">
        <string>COMPAÑÍA DE ELECTRICIDAD</string>
       </void>
+      <void property="priceFactor">
+       <array class="int" length="2">
+        <void index="0">
+         <int>4</int>
+        </void>
+        <void index="1">
+         <int>10</int>
+        </void>
+       </array>
+      </void>
      </object>
     </void>
     <void method="put">
      <string>56</string>
      <object class="src.MonopolyGame.MonopolyCodes.PaymentCard">
+      <void property="amount">
+       <int>50</int>
+      </void>
       <void property="description">
        <string>LA BANCA TE PAGA 50€ DE INTERESES</string>
       </void>
@@ -144,6 +440,9 @@
     <void method="put">
      <string>57</string>
      <object class="src.MonopolyGame.MonopolyCodes.PaymentCard">
+      <void property="amount">
+       <int>150</int>
+      </void>
       <void property="description">
        <string>RECIBES EL RESCATE POR EL SEGURO DE TUS EDIFICIOS. COBRA 150€</string>
       </void>
@@ -155,17 +454,74 @@
       <void property="description">
        <string>CALLE FUENCARRAL</string>
       </void>
+      <void property="hotelPrice">
+       <int>100</int>
+      </void>
+      <void property="housePrice">
+       <int>100</int>
+      </void>
+      <void property="mortgageValue">
+       <int>80</int>
+      </void>
+      <void property="propertyPrice">
+       <int>160</int>
+      </void>
+      <void property="rent">
+       <int>12</int>
+      </void>
+      <void property="wHotelRent">
+       <int>900</int>
+      </void>
+      <void property="wHousesRent">
+       <array class="int" length="4">
+        <void index="0">
+         <int>60</int>
+        </void>
+        <void index="1">
+         <int>180</int>
+        </void>
+        <void index="2">
+         <int>500</int>
+        </void>
+        <void index="3">
+         <int>700</int>
+        </void>
+       </array>
+      </void>
      </object>
     </void>
     <void method="put">
      <string>58</string>
-     <object class="src.MonopolyGame.MonopolyCodes.RepairsCard"/>
+     <object class="src.MonopolyGame.MonopolyCodes.RepairsCard">
+      <void property="description">
+       <string>LA INSPECCIÓN DE LA CALLE TE OBLIGA A REPARACIONES PAGA 40€ POR CASA PAGA 115€ POR HOTEL</string>
+      </void>
+      <void property="pricePerHotel">
+       <int>5</int>
+      </void>
+     </object>
     </void>
     <void method="put">
      <string>15</string>
      <object class="src.MonopolyGame.MonopolyCodes.StationCard">
       <void property="description">
        <string>ESTACIÓN DE LAS DELICIAS</string>
+      </void>
+      <void property="fare">
+       <array class="int" length="4">
+        <void index="0">
+         <int>25</int>
+        </void>
+        <void index="1">
+         <int>50</int>
+        </void>
+        <void index="2">
+         <int>75</int>
+        </void>
+        <void index="3">
+         <int>100</int>
+        </void>
+       </array>
       </void>
      </object>
     </void>
@@ -183,6 +539,40 @@
       <void property="description">
        <string>CALLE FELIPE II</string>
       </void>
+      <void property="hotelPrice">
+       <int>100</int>
+      </void>
+      <void property="housePrice">
+       <int>100</int>
+      </void>
+      <void property="mortgageValue">
+       <int>90</int>
+      </void>
+      <void property="propertyPrice">
+       <int>180</int>
+      </void>
+      <void property="rent">
+       <int>14</int>
+      </void>
+      <void property="wHotelRent">
+       <int>950</int>
+      </void>
+      <void property="wHousesRent">
+       <array class="int" length="4">
+        <void index="0">
+         <int>70</int>
+        </void>
+        <void index="1">
+         <int>200</int>
+        </void>
+        <void index="2">
+         <int>550</int>
+        </void>
+        <void index="3">
+         <int>750</int>
+        </void>
+       </array>
+      </void>
      </object>
     </void>
     <void method="put">
@@ -190,6 +580,40 @@
      <object class="src.MonopolyGame.MonopolyCodes.StreetCard">
       <void property="description">
        <string>CALLE VELÁZQUEZ</string>
+      </void>
+      <void property="hotelPrice">
+       <int>100</int>
+      </void>
+      <void property="housePrice">
+       <int>100</int>
+      </void>
+      <void property="mortgageValue">
+       <int>90</int>
+      </void>
+      <void property="propertyPrice">
+       <int>180</int>
+      </void>
+      <void property="rent">
+       <int>14</int>
+      </void>
+      <void property="wHotelRent">
+       <int>950</int>
+      </void>
+      <void property="wHousesRent">
+       <array class="int" length="4">
+        <void index="0">
+         <int>70</int>
+        </void>
+        <void index="1">
+         <int>200</int>
+        </void>
+        <void index="2">
+         <int>550</int>
+        </void>
+        <void index="3">
+         <int>750</int>
+        </void>
+       </array>
       </void>
      </object>
     </void>
@@ -199,11 +623,48 @@
       <void property="description">
        <string>CALLE SERRANO</string>
       </void>
+      <void property="hotelPrice">
+       <int>100</int>
+      </void>
+      <void property="housePrice">
+       <int>100</int>
+      </void>
+      <void property="mortgageValue">
+       <int>100</int>
+      </void>
+      <void property="propertyPrice">
+       <int>200</int>
+      </void>
+      <void property="rent">
+       <int>16</int>
+      </void>
+      <void property="wHotelRent">
+       <int>1000</int>
+      </void>
+      <void property="wHousesRent">
+       <array class="int" length="4">
+        <void index="0">
+         <int>80</int>
+        </void>
+        <void index="1">
+         <int>220</int>
+        </void>
+        <void index="2">
+         <int>600</int>
+        </void>
+        <void index="3">
+         <int>800</int>
+        </void>
+       </array>
+      </void>
      </object>
     </void>
     <void method="put">
      <string>60</string>
      <object class="src.MonopolyGame.MonopolyCodes.PaymentCard">
+      <void property="amount">
+       <int>100</int>
+      </void>
       <void property="description">
        <string>HAS GANADO EL CONCURSO DE CRUCIGRAMAS. COBRA 100€</string>
       </void>
@@ -220,6 +681,9 @@
     <void method="put">
      <string>62</string>
      <object class="src.MonopolyGame.MonopolyCodes.PaymentCard">
+      <void property="amount">
+       <int>-15</int>
+      </void>
       <void property="description">
        <string>MULTA POR EXCESO DE VELOCIDAD -15€</string>
       </void>
@@ -228,6 +692,9 @@
     <void method="put">
      <string>63</string>
      <object class="src.MonopolyGame.MonopolyCodes.PaymentCard">
+      <void property="amount">
+       <int>-20</int>
+      </void>
       <void property="description">
        <string>MULTA POR EMBRIAGUEZ -20€</string>
       </void>
@@ -246,6 +713,40 @@
      <object class="src.MonopolyGame.MonopolyCodes.StreetCard">
       <void property="description">
        <string>AVENIDA DE AMÉRICA</string>
+      </void>
+      <void property="hotelPrice">
+       <int>150</int>
+      </void>
+      <void property="housePrice">
+       <int>150</int>
+      </void>
+      <void property="mortgageValue">
+       <int>110</int>
+      </void>
+      <void property="propertyPrice">
+       <int>220</int>
+      </void>
+      <void property="rent">
+       <int>18</int>
+      </void>
+      <void property="wHotelRent">
+       <int>1050</int>
+      </void>
+      <void property="wHousesRent">
+       <array class="int" length="4">
+        <void index="0">
+         <int>90</int>
+        </void>
+        <void index="1">
+         <int>250</int>
+        </void>
+        <void index="2">
+         <int>700</int>
+        </void>
+        <void index="3">
+         <int>875</int>
+        </void>
+       </array>
       </void>
      </object>
     </void>
@@ -271,11 +772,48 @@
       <void property="description">
        <string>CALLE MARÍA DE MOLINA</string>
       </void>
+      <void property="hotelPrice">
+       <int>150</int>
+      </void>
+      <void property="housePrice">
+       <int>150</int>
+      </void>
+      <void property="mortgageValue">
+       <int>110</int>
+      </void>
+      <void property="propertyPrice">
+       <int>220</int>
+      </void>
+      <void property="rent">
+       <int>18</int>
+      </void>
+      <void property="wHotelRent">
+       <int>1050</int>
+      </void>
+      <void property="wHousesRent">
+       <array class="int" length="4">
+        <void index="0">
+         <int>90</int>
+        </void>
+        <void index="1">
+         <int>250</int>
+        </void>
+        <void index="2">
+         <int>700</int>
+        </void>
+        <void index="3">
+         <int>875</int>
+        </void>
+       </array>
+      </void>
      </object>
     </void>
     <void method="put">
      <string>67</string>
      <object class="src.MonopolyGame.MonopolyCodes.PaymentCard">
+      <void property="amount">
+       <int>50</int>
+      </void>
       <void property="description">
        <string>LA VENTA DE TUS ACCIONES TE PRODUCE 50€</string>
       </void>
@@ -287,11 +825,48 @@
       <void property="description">
        <string>CALLE CEA BERMÚDEZ</string>
       </void>
+      <void property="hotelPrice">
+       <int>150</int>
+      </void>
+      <void property="housePrice">
+       <int>150</int>
+      </void>
+      <void property="mortgageValue">
+       <int>120</int>
+      </void>
+      <void property="propertyPrice">
+       <int>240</int>
+      </void>
+      <void property="rent">
+       <int>20</int>
+      </void>
+      <void property="wHotelRent">
+       <int>1100</int>
+      </void>
+      <void property="wHousesRent">
+       <array class="int" length="4">
+        <void index="0">
+         <int>100</int>
+        </void>
+        <void index="1">
+         <int>300</int>
+        </void>
+        <void index="2">
+         <int>750</int>
+        </void>
+        <void index="3">
+         <int>925</int>
+        </void>
+       </array>
+      </void>
      </object>
     </void>
     <void method="put">
      <string>68</string>
      <object class="src.MonopolyGame.MonopolyCodes.PaymentCard">
+      <void property="amount">
+       <int>-100</int>
+      </void>
       <void property="description">
        <string>PAGA AL HOSPITAL -100€</string>
       </void>
@@ -303,11 +878,30 @@
       <void property="description">
        <string>ESTACIÓN DEL MEDIO DIA</string>
       </void>
+      <void property="fare">
+       <array class="int" length="4">
+        <void index="0">
+         <int>25</int>
+        </void>
+        <void index="1">
+         <int>50</int>
+        </void>
+        <void index="2">
+         <int>100</int>
+        </void>
+        <void index="3">
+         <int>200</int>
+        </void>
+       </array>
+      </void>
      </object>
     </void>
     <void method="put">
      <string>69</string>
      <object class="src.MonopolyGame.MonopolyCodes.PaymentCard">
+      <void property="amount">
+       <int>100</int>
+      </void>
       <void property="description">
        <string>COBRAS UNA HERENCIA 100€</string>
       </void>
@@ -319,6 +913,40 @@
       <void property="description">
        <string>AVENIDA DE LOS REYES CATÓLICOS</string>
       </void>
+      <void property="hotelPrice">
+       <int>150</int>
+      </void>
+      <void property="housePrice">
+       <int>150</int>
+      </void>
+      <void property="mortgageValue">
+       <int>130</int>
+      </void>
+      <void property="propertyPrice">
+       <int>260</int>
+      </void>
+      <void property="rent">
+       <int>22</int>
+      </void>
+      <void property="wHotelRent">
+       <int>1150</int>
+      </void>
+      <void property="wHousesRent">
+       <array class="int" length="4">
+        <void index="0">
+         <int>110</int>
+        </void>
+        <void index="1">
+         <int>330</int>
+        </void>
+        <void index="2">
+         <int>800</int>
+        </void>
+        <void index="3">
+         <int>975</int>
+        </void>
+       </array>
+      </void>
      </object>
     </void>
     <void method="put">
@@ -326,6 +954,40 @@
      <object class="src.MonopolyGame.MonopolyCodes.StreetCard">
       <void property="description">
        <string>CALLE BAILÉN</string>
+      </void>
+      <void property="hotelPrice">
+       <int>150</int>
+      </void>
+      <void property="housePrice">
+       <int>150</int>
+      </void>
+      <void property="mortgageValue">
+       <int>130</int>
+      </void>
+      <void property="propertyPrice">
+       <int>260</int>
+      </void>
+      <void property="rent">
+       <int>22</int>
+      </void>
+      <void property="wHotelRent">
+       <int>1150</int>
+      </void>
+      <void property="wHousesRent">
+       <array class="int" length="4">
+        <void index="0">
+         <int>110</int>
+        </void>
+        <void index="1">
+         <int>330</int>
+        </void>
+        <void index="2">
+         <int>800</int>
+        </void>
+        <void index="3">
+         <int>975</int>
+        </void>
+       </array>
       </void>
      </object>
     </void>
@@ -335,6 +997,16 @@
       <void property="description">
        <string>COMPAÑÍA DE AGUAS</string>
       </void>
+      <void property="priceFactor">
+       <array class="int" length="2">
+        <void index="0">
+         <int>4</int>
+        </void>
+        <void index="1">
+         <int>10</int>
+        </void>
+       </array>
+      </void>
      </object>
     </void>
     <void method="put">
@@ -343,11 +1015,48 @@
       <void property="description">
        <string>PLAZA DE ESPAÑA</string>
       </void>
+      <void property="hotelPrice">
+       <int>150</int>
+      </void>
+      <void property="housePrice">
+       <int>150</int>
+      </void>
+      <void property="mortgageValue">
+       <int>140</int>
+      </void>
+      <void property="propertyPrice">
+       <int>280</int>
+      </void>
+      <void property="rent">
+       <int>24</int>
+      </void>
+      <void property="wHotelRent">
+       <int>1200</int>
+      </void>
+      <void property="wHousesRent">
+       <array class="int" length="4">
+        <void index="0">
+         <int>120</int>
+        </void>
+        <void index="1">
+         <int>360</int>
+        </void>
+        <void index="2">
+         <int>850</int>
+        </void>
+        <void index="3">
+         <int>1025</int>
+        </void>
+       </array>
+      </void>
      </object>
     </void>
     <void method="put">
      <string>70</string>
      <object class="src.MonopolyGame.MonopolyCodes.PaymentCard">
+      <void property="amount">
+       <int>100</int>
+      </void>
       <void property="description">
        <string>RECIBE 100€ POR LOS INTERESES DE TU PLAZO FIJO</string>
       </void>
@@ -356,6 +1065,9 @@
     <void method="put">
      <string>71</string>
      <object class="src.MonopolyGame.MonopolyCodes.PaymentCard">
+      <void property="amount">
+       <int>20</int>
+      </void>
       <void property="description">
        <string>HACIENDA TE DEVUELVE 20€</string>
       </void>
@@ -364,6 +1076,9 @@
     <void method="put">
      <string>72</string>
      <object class="src.MonopolyGame.MonopolyCodes.PaymentCard">
+      <void property="amount">
+       <int>-50</int>
+      </void>
       <void property="description">
        <string>PAGA TU PÓLIZA DE SEGURO -50€</string>
       </void>
@@ -372,6 +1087,9 @@
     <void method="put">
      <string>73</string>
      <object class="src.MonopolyGame.MonopolyCodes.PaymentCard">
+      <void property="amount">
+       <int>200</int>
+      </void>
       <void property="description">
        <string>COLÓCATE EN LA CASILLA DE SALIDA Y POR TANTO COBRA 200€</string>
       </void>
@@ -380,6 +1098,9 @@
     <void method="put">
      <string>74</string>
      <object class="src.MonopolyGame.MonopolyCodes.PaymentCard">
+      <void property="amount">
+       <int>-10</int>
+      </void>
       <void property="description">
        <string>PAGA UNA MULTA DE -10€ O BIEN SACA UNA CARTA DE SUERTE</string>
       </void>
@@ -391,11 +1112,48 @@
       <void property="description">
        <string>PUERTA DEL SOL</string>
       </void>
+      <void property="hotelPrice">
+       <int>200</int>
+      </void>
+      <void property="housePrice">
+       <int>200</int>
+      </void>
+      <void property="mortgageValue">
+       <int>150</int>
+      </void>
+      <void property="propertyPrice">
+       <int>300</int>
+      </void>
+      <void property="rent">
+       <int>26</int>
+      </void>
+      <void property="wHotelRent">
+       <int>1275</int>
+      </void>
+      <void property="wHousesRent">
+       <array class="int" length="4">
+        <void index="0">
+         <int>130</int>
+        </void>
+        <void index="1">
+         <int>390</int>
+        </void>
+        <void index="2">
+         <int>900</int>
+        </void>
+        <void index="3">
+         <int>1100</int>
+        </void>
+       </array>
+      </void>
      </object>
     </void>
     <void method="put">
      <string>75</string>
      <object class="src.MonopolyGame.MonopolyCodes.PaymentCard">
+      <void property="amount">
+       <int>200</int>
+      </void>
       <void property="description">
        <string>ERROR DE LA BANCA A TU FAVOR. RECIBE 200€</string>
       </void>
@@ -407,11 +1165,48 @@
       <void property="description">
        <string>CALLE ALCALÁ</string>
       </void>
+      <void property="hotelPrice">
+       <int>200</int>
+      </void>
+      <void property="housePrice">
+       <int>200</int>
+      </void>
+      <void property="mortgageValue">
+       <int>150</int>
+      </void>
+      <void property="propertyPrice">
+       <int>300</int>
+      </void>
+      <void property="rent">
+       <int>26</int>
+      </void>
+      <void property="wHotelRent">
+       <int>1275</int>
+      </void>
+      <void property="wHousesRent">
+       <array class="int" length="4">
+        <void index="0">
+         <int>130</int>
+        </void>
+        <void index="1">
+         <int>390</int>
+        </void>
+        <void index="2">
+         <int>900</int>
+        </void>
+        <void index="3">
+         <int>1100</int>
+        </void>
+       </array>
+      </void>
      </object>
     </void>
     <void method="put">
      <string>76</string>
      <object class="src.MonopolyGame.MonopolyCodes.PaymentCard">
+      <void property="amount">
+       <int>25</int>
+      </void>
       <void property="description">
        <string>RECIBES 25€ COMO INTERESES DE TUS ACCIONES PREFERENCIALES</string>
       </void>
@@ -420,6 +1215,9 @@
     <void method="put">
      <string>77</string>
      <object class="src.MonopolyGame.MonopolyCodes.PaymentCard">
+      <void property="amount">
+       <int>-50</int>
+      </void>
       <void property="description">
        <string>PAGA LA FACTURA DEL MÉDICO -50€</string>
       </void>
@@ -430,6 +1228,40 @@
      <object class="src.MonopolyGame.MonopolyCodes.StreetCard">
       <void property="description">
        <string>GRAN VÍA</string>
+      </void>
+      <void property="hotelPrice">
+       <int>200</int>
+      </void>
+      <void property="housePrice">
+       <int>200</int>
+      </void>
+      <void property="mortgageValue">
+       <int>160</int>
+      </void>
+      <void property="propertyPrice">
+       <int>320</int>
+      </void>
+      <void property="rent">
+       <int>28</int>
+      </void>
+      <void property="wHotelRent">
+       <int>1400</int>
+      </void>
+      <void property="wHousesRent">
+       <array class="int" length="4">
+        <void index="0">
+         <int>150</int>
+        </void>
+        <void index="1">
+         <int>450</int>
+        </void>
+        <void index="2">
+         <int>1000</int>
+        </void>
+        <void index="3">
+         <int>1200</int>
+        </void>
+       </array>
       </void>
      </object>
     </void>
@@ -447,6 +1279,22 @@
       <void property="description">
        <string>V DEL NORTE</string>
       </void>
+      <void property="fare">
+       <array class="int" length="4">
+        <void index="0">
+         <int>25</int>
+        </void>
+        <void index="1">
+         <int>50</int>
+        </void>
+        <void index="2">
+         <int>75</int>
+        </void>
+        <void index="3">
+         <int>100</int>
+        </void>
+       </array>
+      </void>
      </object>
     </void>
     <void method="put">
@@ -462,6 +1310,40 @@
      <object class="src.MonopolyGame.MonopolyCodes.StreetCard">
       <void property="description">
        <string>PASEO DE LA CASTELLANA</string>
+      </void>
+      <void property="hotelPrice">
+       <int>200</int>
+      </void>
+      <void property="housePrice">
+       <int>200</int>
+      </void>
+      <void property="mortgageValue">
+       <int>175</int>
+      </void>
+      <void property="propertyPrice">
+       <int>350</int>
+      </void>
+      <void property="rent">
+       <int>35</int>
+      </void>
+      <void property="wHotelRent">
+       <int>1500</int>
+      </void>
+      <void property="wHousesRent">
+       <array class="int" length="4">
+        <void index="0">
+         <int>175</int>
+        </void>
+        <void index="1">
+         <int>500</int>
+        </void>
+        <void index="2">
+         <int>1100</int>
+        </void>
+        <void index="3">
+         <int>1300</int>
+        </void>
+       </array>
       </void>
      </object>
     </void>
@@ -479,11 +1361,48 @@
       <void property="description">
        <string>PASEO DEL PRADO</string>
       </void>
+      <void property="hotelPrice">
+       <int>200</int>
+      </void>
+      <void property="housePrice">
+       <int>200</int>
+      </void>
+      <void property="mortgageValue">
+       <int>200</int>
+      </void>
+      <void property="propertyPrice">
+       <int>400</int>
+      </void>
+      <void property="rent">
+       <int>50</int>
+      </void>
+      <void property="wHotelRent">
+       <int>2000</int>
+      </void>
+      <void property="wHousesRent">
+       <array class="int" length="4">
+        <void index="0">
+         <int>200</int>
+        </void>
+        <void index="1">
+         <int>600</int>
+        </void>
+        <void index="2">
+         <int>1400</int>
+        </void>
+        <void index="3">
+         <int>1700</int>
+        </void>
+       </array>
+      </void>
      </object>
     </void>
     <void method="put">
      <string>80</string>
      <object class="src.MonopolyGame.MonopolyCodes.PaymentCard">
+      <void property="amount">
+       <int>10</int>
+      </void>
       <void property="description">
        <string>HAS GANADO EL SEGUNDO PREMIO DE BELLEZA. RECIBE 10€</string>
       </void>

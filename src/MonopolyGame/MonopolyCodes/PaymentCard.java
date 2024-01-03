@@ -19,15 +19,28 @@ public class PaymentCard extends MonopolyCode {
 
   @Override
   public void doOperation(Player player) {
-    IOManager.printMsg("PAYMENT_CARD");
-    IOManager.print(String.format(": [%s]", this.description));
-    if (this.amount < 0)
+    IOManager.print("\n");
+    IOManager.print(String.format("%s: [%s]\n", IOManager.getMsg("PAYMENT_CARD"), this.description));
+
+    // The amount is negative (the player pays money)
+    if (this.amount < 0) {
       if (player.decreaseMoney(-this.amount) == -1) {
         if (!player.liquidateAssets(-this.amount)) {
           player.loser();
         }
-      } else {
-        player.increaseMoney(amount);
       }
+    }
+    // The amount is positive (the player receives money)
+    else {
+      player.increaseMoney(amount);
+    }
+  }
+
+  public int getAmount() {
+    return amount;
+  }
+
+  public void setAmount(int amount) {
+    this.amount = amount;
   }
 }

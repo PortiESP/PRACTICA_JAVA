@@ -372,4 +372,12 @@ public class Game implements Serializable {
     this.players = players;
   }
 
+  public boolean isAutosave() {
+    return autosave;
+  }
+
+  public void setAutosave(boolean autosave) {
+    this.autosave = autosave;
+  }
+
 }

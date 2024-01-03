@@ -29,4 +29,12 @@ public class ServiceCard extends Property {
     return dice * priceFactor[owner.getServicesCount() - 1];
   }
 
+  public int[] getPriceFactor() {
+    return priceFactor;
+  }
+
+  public void setPriceFactor(int[] priceFactor) {
+    this.priceFactor = priceFactor;
+  }
+
 }
