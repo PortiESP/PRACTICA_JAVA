@@ -96,7 +96,14 @@ public class IOManager implements Serializable {
     * @return True if the user typed 1 (yes), false otherwise (no).
     */
   public static boolean askYesNo(String prompt) {
-    print(String.format("%s (%s=1 / %n=0)? ", getMsg(prompt), getMsg("YES"), getMsg("NO")));
+    IOManager.print("\n");
+
+    try {
+      print(String.format("%s (%s=[1] / %s=[0])?\n", getMsg(prompt), getMsg("YES"), getMsg("NO")));
+    } catch (RuntimeException e) {
+      print(String.format("%s (%s=[1] / %s=[0])?\n", prompt, getMsg("YES"), getMsg("NO")));
+    }
+
     int option = readInt("PROMPT_OPTION", 0, 1);
 
     return option == 1;

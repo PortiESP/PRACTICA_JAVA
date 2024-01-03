@@ -203,7 +203,7 @@ public class Game implements Serializable {
     // Players
     IOManager.print(String.format("\t- %s:\n", IOManager.getMsg("GAME_STATUS_PLAYERS")));
     for (int i = 0; i < players.size(); i++)
-      IOManager.print(String.format("\t\t- %s\n", players.get(i).summary()));
+      IOManager.print(String.format("\t\t- %s\n", players.get(i).toString()));
 
     IOManager.print("\n");
     IOManager.print("\n");

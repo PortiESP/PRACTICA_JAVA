@@ -46,3 +46,4 @@ PROPERTY_NOT_MORTGAGED=La propiedad no esta hipotecada
 PROPERTY_CANT_SELL_MORTGAGED=La propiedad no se puede vender porque esta hipotecada
 PAYMENT_CARD=El jugador ha sacado la carta
 PLAYER_LOSER=El jugador [%s] ha perdido
+PROPERTY_ASK_BUY=¿Quieres comprar la propiedad [%s] por %d?

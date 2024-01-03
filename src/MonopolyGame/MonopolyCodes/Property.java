@@ -36,7 +36,8 @@ public abstract class Property extends MonopolyCode {
     else {
       // Ask the player if he wants to buy the property
       // If the player wants to buy the property
-      if (IOManager.askYesNo("PROPERTY_ASK_BUY")) {
+      String prompt = String.format(IOManager.getMsg("PROPERTY_ASK_BUY"), this.description, this.propertyPrice);
+      if (IOManager.askYesNo(prompt)) {
         // Buy the property
         player.buyProperty(this);
       }
