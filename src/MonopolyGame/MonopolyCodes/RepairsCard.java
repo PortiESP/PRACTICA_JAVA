@@ -23,7 +23,11 @@ public class RepairsCard extends MonopolyCode {
 
   @Override
   public void doOperation(Player player) {
-    // TODO Auto-generated method stub
+    int houses = player.getTotalHouses();
+    int hotels = player.getTotalHotels();
+    int total = houses * this.pricePerHouse + hotels * this.pricePerHotel;
+
+    player.pay(total);
   }
 
   public void parsePricePerHouse() {

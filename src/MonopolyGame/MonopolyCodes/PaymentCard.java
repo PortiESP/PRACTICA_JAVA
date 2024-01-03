@@ -1,6 +1,7 @@
 package src.MonopolyGame.MonopolyCodes;
 
 import src.MonopolyGame.Player;
+import src.MonopolyGame.IO.IOManager;
 
 public class PaymentCard extends MonopolyCode {
   // Attributes
@@ -18,6 +19,15 @@ public class PaymentCard extends MonopolyCode {
 
   @Override
   public void doOperation(Player player) {
-    // TODO Auto-generated method stub
+    IOManager.printMsg("PAYMENT_CARD");
+    IOManager.print(String.format(": [%s]", this.description));
+    if (this.amount < 0)
+      if (player.decreaseMoney(-this.amount) == -1) {
+        if (!player.liquidateAssets(-this.amount)) {
+          player.loser();
+        }
+      } else {
+        player.increaseMoney(amount);
+      }
   }
 }

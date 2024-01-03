@@ -7,6 +7,7 @@ import src.MonopolyGame.IO.IOManager;
 import src.MonopolyGame.MonopolyCodes.Property;
 import src.MonopolyGame.MonopolyCodes.ServiceCard;
 import src.MonopolyGame.MonopolyCodes.StationCard;
+import src.MonopolyGame.MonopolyCodes.StreetCard;
 
 /**
  * This class represents a player in the game. It contains the player's name, money, properties and if he is broke. 
@@ -112,6 +113,53 @@ public class Player implements Serializable {
   }
 
   /**
+   * Pay an amount of money to the bank.
+   * 
+   * @param amount The amount of money to pay.
+   */
+  public void pay(int amount) {
+    // If the player has enough money
+    if (this.money >= amount) {
+      // Pay the bank (if the player can afford the payment)
+      if (this.decreaseMoney(amount) != -1) {
+        return;
+      }
+      // If the player can't afford the payment, liquidate assets
+      else {
+        this.liquidateAssets(amount);
+      }
+    }
+  }
+
+  /**
+   * Get the total number of houses the player owns (in all properties).
+   * 
+   * @return The total number of houses the player owns.
+   */
+  public int getTotalHouses() {
+    int count = 0;
+    for (Property property : properties) {
+      if (property instanceof StreetCard)
+        count += ((StreetCard) property).getHouseCount();
+    }
+    return count;
+  }
+
+  /**
+   * Get the total number of hotels the player owns (in all properties).
+   * 
+   * @return The total number of hotels the player owns.
+   */
+  public int getTotalHotels() {
+    int count = 0;
+    for (Property property : properties) {
+      if (property instanceof StreetCard && ((StreetCard) property).isHotel())
+        count += 1;
+    }
+    return count;
+  }
+
+  /**
    * Buy a property.
    * 
    * @param property The property to buy.
@@ -152,7 +200,6 @@ public class Player implements Serializable {
       IOManager.printlnMsg("PLAYER_LIQUIDATE_ASSETS");
       // If the player has no properties, he is broke
       if (this.properties.size() == 0) {
-        this.broke = true;
         return false;
       }
 
@@ -161,6 +208,11 @@ public class Player implements Serializable {
     }
 
     return true;
+  }
+
+  public void loser() {
+    this.broke = true;
+    IOManager.printlnMsg("PLAYER_LOSER");
   }
 
   /**

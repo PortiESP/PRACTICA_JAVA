@@ -44,3 +44,5 @@ PROPERTY_ALREADY_MORTGAGED=La propiedad ya esta hipotecada
 PROPERTY_CANT_MORTGAGE=La propiedad no se puede hipotecar, asegurate de que no tiene casas ni hoteles antes de deshipotecarla
 PROPERTY_NOT_MORTGAGED=La propiedad no esta hipotecada
 PROPERTY_CANT_SELL_MORTGAGED=La propiedad no se puede vender porque esta hipotecada
+PAYMENT_CARD=El jugador ha sacado la carta
+PLAYER_LOSER=El jugador [%s] ha perdido

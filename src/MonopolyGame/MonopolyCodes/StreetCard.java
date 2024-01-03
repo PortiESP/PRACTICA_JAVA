@@ -10,7 +10,7 @@ public class StreetCard extends Property {
   private int housePrice;
   private int hotelPrice;
   private int houseCount;
-  private boolean hasHotel;
+  private boolean hotel;
 
   // Constructors (for serialization)
   public StreetCard() {
@@ -31,7 +31,7 @@ public class StreetCard extends Property {
     this.mortgageValue = Integer.parseInt(mortgageValue);
     this.propertyPrice = Integer.parseInt(mortgageValue) * 2;
     this.houseCount = 0;
-    this.hasHotel = false;
+    this.hotel = false;
   }
 
   @Override
@@ -45,7 +45,7 @@ public class StreetCard extends Property {
     if (houseCount > 0)
       return wHousesRent[houseCount - 1];
     // Pay the hotel rent
-    else if (hasHotel)
+    else if (hotel)
       return wHotelRent;
 
     // Pay the minimum rent
@@ -127,11 +127,11 @@ public class StreetCard extends Property {
 
   public void buyHotel(Player player) {
     // If the property already has a hotel
-    if (this.hasHotel)
+    if (this.hotel)
       IOManager.printlnMsg("PROPERTY_ALREADY_HAS_HOTEL");
     // If the player has enough money to buy a hotel
     else if (player.decreaseMoney(this.hotelPrice) != -1)
-      this.hasHotel = true;
+      this.hotel = true;
     // If the player doesn't have enough money to buy a hotel
     else
       IOManager.printlnMsg("PLAYER_CANT_AFFORD");
@@ -139,11 +139,11 @@ public class StreetCard extends Property {
 
   public void sellHotel(Player player) {
     // If the property doesn't have a hotel
-    if (!this.hasHotel)
+    if (!this.hotel)
       IOManager.printlnMsg("PROPERTY_CANT_SELL_HOTEL");
     // If the player has enough money to sell the hotel
     else if (player.increaseMoney(this.hotelPrice) != -1)
-      this.hasHotel = false;
+      this.hotel = false;
     // If the player doesn't have enough money to sell the hotel
     else
       IOManager.printlnMsg("PLAYER_CANT_AFFORD");
@@ -157,7 +157,7 @@ public class StreetCard extends Property {
       return;
     }
     // If the property has houses or a hotel
-    else if (this.houseCount > 0 || this.hasHotel) {
+    else if (this.houseCount > 0 || this.hotel) {
       IOManager.printlnMsg("PROPERTY_CANT_MORTGAGE");
       return;
     }
@@ -165,6 +165,56 @@ public class StreetCard extends Property {
     // Mortgage the property
     player.increaseMoney(this.mortgageValue);
     this.isMortgaged = true;
+  }
+
+  // --------------------------------------------- Getters & Setters ---------------------------------------------
+
+  public int[] getwHousesRent() {
+    return wHousesRent;
+  }
+
+  public void setwHousesRent(int[] wHousesRent) {
+    this.wHousesRent = wHousesRent;
+  }
+
+  public int getwHotelRent() {
+    return wHotelRent;
+  }
+
+  public void setwHotelRent(int wHotelRent) {
+    this.wHotelRent = wHotelRent;
+  }
+
+  public int getHousePrice() {
+    return housePrice;
+  }
+
+  public void setHousePrice(int housePrice) {
+    this.housePrice = housePrice;
+  }
+
+  public int getHotelPrice() {
+    return hotelPrice;
+  }
+
+  public void setHotelPrice(int hotelPrice) {
+    this.hotelPrice = hotelPrice;
+  }
+
+  public int getHouseCount() {
+    return houseCount;
+  }
+
+  public void setHouseCount(int houseCount) {
+    this.houseCount = houseCount;
+  }
+
+  public boolean isHotel() {
+    return hotel;
+  }
+
+  public void setHotel(boolean hotel) {
+    this.hotel = hotel;
   }
 
 }

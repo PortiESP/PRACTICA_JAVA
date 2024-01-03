@@ -43,4 +43,6 @@ PROPERTY_CANT_SELL_HOTEL=The property don't have a hotel to sell
 PROPERTY_ALREADY_MORTGAGED=The property is already mortgaged
 PROPERTY_CANT_MORTGAGE=The property can't be mortgaged, make sure to sell all the houses and hotels before mortgaging it
 PROPERTY_NOT_MORTGAGED=The property is not mortgaged
-PROPERTY_CANT_SELL_MORTGAGED=THe property can't be sold because it is mortgaged
+PROPERTY_CANT_SELL_MORTGAGED=The property can't be sold because it is mortgaged
+PAYMENT_CARD=The player has drawn the card
+PLAYER_LOSER=The player [%s] has lost the game
