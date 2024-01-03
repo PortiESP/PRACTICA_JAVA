@@ -39,6 +39,7 @@ public class GameManager {
   public void start() {
     // Instantiate the game or reset it
     this.game = new Game();
+
     // Load default language
     io.setLanguage(Const.DEFAULT_LANG);
 
@@ -82,7 +83,19 @@ public class GameManager {
     this.game.play();
 
   }
+
   // ========================================================================================================
+  // THIS IS FOR DEBUGGING PURPOSES ONLY
+  public void startDebug() {
+    this.game = new Game();
+
+    io.setLanguage("English");
+    this.game.loadGame("default_game");
+
+    IOManager.log("[!!!] Playing the default game");
+
+    this.game.play(); // Default game
+  }
 
   /**
    * This method prints the language selection menu, the options are based on the files available at the {@code /config/languages} directory.

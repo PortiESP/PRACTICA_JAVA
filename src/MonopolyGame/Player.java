@@ -56,7 +56,8 @@ public class Player implements Serializable {
    * @return True if the players are the same, false otherwise.
    */
   public boolean equals(Object player) {
-    return this.name.equals(((Player) player).name);
+    // If the player is the same object, return true
+    return (player == this);
   }
 
   // ---------------------------------------- Getters and Setters ----------------------------------------

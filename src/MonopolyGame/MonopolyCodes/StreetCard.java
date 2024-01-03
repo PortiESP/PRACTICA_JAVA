@@ -34,10 +34,9 @@ public class StreetCard extends Property {
     this.hotelCount = 0;
   }
 
-  @Override
-  public String doOperation(Player player) {
-    // TODO Auto-generated method stub
-    return null;
-  }
+  // @Override
+  // public void doOperation(Player player) {
+
+  // }
 
 }

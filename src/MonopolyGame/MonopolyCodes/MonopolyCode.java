@@ -13,7 +13,7 @@ public abstract class MonopolyCode implements Serializable {
   protected String description; // Card description
 
   // Methods
-  public abstract String doOperation(Player player);
+  public abstract void doOperation(Player player);
 
   public String toString() {
     return this.description;

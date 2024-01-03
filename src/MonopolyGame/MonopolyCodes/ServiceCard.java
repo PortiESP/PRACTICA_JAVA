@@ -16,9 +16,8 @@ public class ServiceCard extends Property {
   }
 
   @Override
-  public String doOperation(Player player) {
+  public void doOperation(Player player) {
     // TODO Auto-generated method stub
-    return null;
   }
 
 }

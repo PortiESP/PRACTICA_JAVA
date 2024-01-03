@@ -23,3 +23,6 @@ GAME_SAVED=The game has been saved successfully
 GAME_STATUS=Current game status
 GAME_STATUS_FILENAME=Game name
 GAME_STATUS_PLAYERS=Players summary
+INVALID_CODE=This code entered doesn't exist
+PLAYER_TURN=Who is playing this turn?
+PROMPT_PLAYER_LIST=Enter the number of the player

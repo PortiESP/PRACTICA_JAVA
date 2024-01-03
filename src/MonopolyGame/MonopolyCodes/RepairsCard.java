@@ -22,9 +22,8 @@ public class RepairsCard extends MonopolyCode {
   }
 
   @Override
-  public String doOperation(Player player) {
+  public void doOperation(Player player) {
     // TODO Auto-generated method stub
-    return null;
   }
 
   public void parsePricePerHouse() {

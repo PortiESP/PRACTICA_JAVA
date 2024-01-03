@@ -74,11 +74,15 @@ public class Game implements Serializable {
       IOManager.log("Option: " + option); // DEBUG
 
       // Execute the selected option
-      if (option == 1) { // Cod Op
-        // TODO
+      if (option == 1) { // Operation code
+        String opCode = operationCodeMenu();
+        Player player = askCurrentPlayer();
+        IOManager.log("Running OpCode: " + opCode + " for player " + player.getName()
+            + " -> " + this.monopolyCodes.get(opCode).toString());
+        this.monopolyCodes.get(opCode).doOperation(player);
       } else if (option == 2) { // Game status
         gameStatus();
-      } else if (option == 3) { // Exit
+      } else if (option == 3) { // Save & Exit
         saveGame();
         IOManager.log("Saving and returning to the main menu...");
         break;
@@ -90,6 +94,7 @@ public class Game implements Serializable {
   }
   // -----------------------------------------------------------------------------------------------------------
 
+  // ---------------------------------------------- Game creation and loading ----------------------------------------------
   /**
    * Creates a new game with with the <strong>default values</strong>.
    * 
@@ -286,6 +291,50 @@ public class Game implements Serializable {
     IOManager.log("Created all players");
     for (Player player : players)
       IOManager.log(player);
+  }
+
+  // ---------------------------------------------- Game operations ----------------------------------------------
+  /**
+   * Prints the operations menu and returns the operation code types by the user.
+   * 
+   * @return The typed operation code (string)
+   */
+  public String operationCodeMenu() {
+    io.print("\n");
+
+    // Ask a valid code
+    String opCode = null;
+    while (opCode == null) {
+      opCode = io.readString("PROMPT_OP_CODE");
+      // Check if the code is valid
+      if (!monopolyCodes.containsKey(opCode)) {
+        io.printlnMsg("INVALID_CODE");
+        opCode = null;
+      }
+    }
+
+    IOManager.log("Running OpCode: " + opCode);
+    return opCode;
+  }
+
+  /**
+   * Asks the user to select a player from the list of players.
+   * 
+   * @return The selected player
+   */
+  public Player askCurrentPlayer() {
+    io.print("\n");
+
+    // Ask a valid player
+    io.printlnMsg("PLAYER_TURN");
+    // Print all the players
+    for (int i = 0; i < players.size(); i++)
+      io.print(String.format("\t - [%d] %s\n", i + 1, players.get(i).getName()));
+
+    io.print("\n");
+    int opt = io.readInt("PROMPT_PLAYER_LIST", 1, players.size());
+
+    return this.players.get(opt - 1);
   }
 
   // ---------------------------------------------- Getters and setters ----------------------------------------------

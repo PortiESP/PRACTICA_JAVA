@@ -23,3 +23,6 @@ GAME_SAVED=La partida ha sido guardada correctamente
 GAME_STATUS=Estado actual de la partida
 GAME_STATUS_FILENAME=Nombre de la partida
 GAME_STATUS_PLAYERS=Resumen de los jugadores
+INVALID_CODE=El código introducido no existe
+PLAYER_TURN=Quien esta jugando el turno actual?
+PROMPT_PLAYER_LIST=Introduzca el numero del jugador
