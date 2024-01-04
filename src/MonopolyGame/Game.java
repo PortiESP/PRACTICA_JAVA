@@ -80,6 +80,7 @@ public class Game implements Serializable {
         Player player = askCurrentPlayer();
         IOManager.log("Running OpCode: " + opCode + " for player " + player.getName()
             + " -> " + this.monopolyCodes.get(opCode).toString());
+        IOManager.print("\n");
         this.monopolyCodes.get(opCode).doOperation(player);
       } else if (option == 2) { // Game status
         gameStatus();

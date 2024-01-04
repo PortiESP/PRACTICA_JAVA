@@ -49,3 +49,4 @@ PLAYER_LOSER=El jugador [%s] ha perdido
 PROPERTY_ASK_BUY=¿Quieres comprar la propiedad [%s] por %d?
 PROMPT_AMOUNT=Introduzca la cantidad
 PROPERTY_SUMMARY=Casas=%d ~ Hotel=%s ~ Hipotecada=%s ~ Ingresos=%d
+PROPERTY_CANT_BUY_HOTEL=La propiedad no se puede comprar un hotel, asegurate de que tiene 4 casas antes de comprar un hotel

@@ -97,7 +97,7 @@ public class StreetCard extends Property {
       return 6;
     } else if (opt == 7) {
       sellProperty(player);
-      return 7;
+      return 0;
     } else if (opt == 0) {
       return 0;
     }
@@ -133,12 +133,17 @@ public class StreetCard extends Property {
     // If the property already has a hotel
     if (this.hotel)
       IOManager.printlnMsg("PROPERTY_ALREADY_HAS_HOTEL");
-    // If the player has enough money to buy a hotel
-    else if (player.decreaseMoney(this.hotelPrice) != -1)
-      this.hotel = true;
-    // If the player doesn't have enough money to buy a hotel
-    else
-      IOManager.printlnMsg("PLAYER_CANT_AFFORD");
+    // If the property has less than 4 houses
+    else if (this.houseCount < 4)
+      IOManager.printlnMsg("PROPERTY_CANT_BUY_HOTEL");
+    else {
+      // If the player has enough money to buy a hotel
+      if (player.decreaseMoney(this.hotelPrice) != -1)
+        this.hotel = true;
+      // If the player doesn't have enough money to buy a hotel
+      else
+        IOManager.printlnMsg("PLAYER_CANT_AFFORD");
+    }
   }
 
   public void sellHotel(Player player) {

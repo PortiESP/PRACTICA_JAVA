@@ -49,3 +49,4 @@ PLAYER_LOSER=The player [%s] has lost the game
 PROPERTY_ASK_BUY=Do you want to buy the property [%s] for %d?
 PROMPT_AMOUNT=Enter the amount
 PROPERTY_SUMMARY=Houses=%d ~ Hotel=%s ~ Mortgaged=%s ~ Income=%d
+PROPERTY_CANT_BUY_HOTEL=The property must have 4 houses before buying a hotel
