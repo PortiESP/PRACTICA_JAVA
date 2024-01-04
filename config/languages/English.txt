@@ -33,7 +33,7 @@ LIQUIDATE_MENU=Liquidation menu
 PLAYER_PROPERTIES_LIST=Player's properties list
 YES=Yes
 NO=No
-PLAYER_DONT_BUY_PROPERTY=The player haven't bought the property
+PLAYER_DONT_BUY_PROPERTY=The player have not bought the property
 ASK_MANAGE_PROPERTY=Do you want to enter the property management menu
 PROPERTY_MANAGEMENT_MENU=Property management menu of [%s]
 PLAYER_CANT_AFFORD=The player cant afford the payment
@@ -50,3 +50,5 @@ PROPERTY_ASK_BUY=Do you want to buy the property [%s] for %d?
 PROMPT_AMOUNT=Enter the amount
 PROPERTY_SUMMARY=Houses=%d ~ Hotel=%s ~ Mortgaged=%s ~ Income=%d
 PROPERTY_CANT_BUY_HOTEL=The property must have 4 houses before buying a hotel
+SUMMARY_PLAYER_PAY_RENT=The player [%s] will pay (%d) to the player [%s] for using the property [%s]
+PROMPT_OP_CODE =Enter the operation code

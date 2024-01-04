@@ -39,9 +39,9 @@ public class LanguageManager {
       while (line != null) {
         // Parse the line
         String[] parts = line.split("=", 2); // Split the line in ID and STRING (values can contain the character `=` since the splitter limits the split to 2 parts)
-        gameStrings.put(parts[0], parts[1]); // Add key-value pair to the map
+        gameStrings.put(parts[0].trim(), parts[1].trim()); // Add key-value pair to the map
 
-        IOManager.log("Added string  [" + parts[0] + "] with value [" + parts[1] + "]"); // DEBUG
+        IOManager.log("Added string  [" + parts[0].trim() + "] with value [" + parts[1].trim() + "]"); // DEBUG
 
         // Read the next line
         line = reader.readLine();

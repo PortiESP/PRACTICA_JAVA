@@ -19,9 +19,11 @@ public abstract class Property extends MonopolyCode {
         // Pay rent
         int payAmount = calculateAmountToPay();
         // Pay the owner
-        if (payAmount > 0)
+        if (payAmount > 0) {
+          IOManager.printlnMsg("SUMMARY_PLAYER_PAY_RENT", player.getName(), payAmount, owner.getName(),
+              this.description);
           player.pay(payAmount, owner);
-        else
+        } else
           IOManager.printlnMsg("PROPERTY_IS_MORTGAGED");
       }
       // If the owner is the player
