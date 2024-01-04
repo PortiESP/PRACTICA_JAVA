@@ -1,6 +1,5 @@
 package src.MonopolyGame.MonopolyCodes;
 
-import src.MonopolyGame.Player;
 import src.MonopolyGame.IO.IOManager;
 
 public class StreetCard extends Property {
@@ -35,6 +34,11 @@ public class StreetCard extends Property {
   }
 
   @Override
+  /**
+   * Calculates the amount of money the player has to pay to the owner of the property when he lands on it
+   * 
+   * @return The amount of money the player has to pay
+   */
   public int calculateAmountToPay() {
 
     // If the property is mortgaged, no rent is paid
@@ -53,7 +57,16 @@ public class StreetCard extends Property {
 
   }
 
-  public int propertyManagementMenu(Player player) {
+  @Override
+  /**
+   * Prints the property's information and a menu with the available operations.
+   * 
+   * The option chosen by the player is returned, but the operations is handled here, we just return the option to know if we need to print the menu again or not.
+   * 
+   * @param player The player that landed on the property
+   * @return The option the player chose
+   */
+  public int propertyManagementMenu() {
     String y = IOManager.getMsg("YES");
     String n = IOManager.getMsg("NO");
     // Ask the player what he wants to do with the property
@@ -90,25 +103,25 @@ public class StreetCard extends Property {
 
     // Do the chosen operation
     if (opt == 1) {
-      buyHouses(player);
+      buyHouses();
       return 1;
     } else if (opt == 2) {
-      sellHouses(player);
+      sellHouses();
       return 2;
     } else if (opt == 3) {
-      buyHotel(player);
+      buyHotel();
       return 3;
     } else if (opt == 4) {
-      sellHotel(player);
+      sellHotel();
       return 4;
     } else if (opt == 5) {
-      mortgageProperty(player);
+      mortgageProperty();
       return 5;
     } else if (opt == 6) {
-      payOffMortgage(player);
+      payOffMortgage();
       return 6;
     } else if (opt == 7) {
-      sellProperty(player);
+      sellProperty();
       return 0;
     } else if (opt == 0) {
       return 0;
@@ -117,21 +130,31 @@ public class StreetCard extends Property {
     return -1; // Should never happen
   }
 
-  public void buyHouses(Player player) {
+  /**
+   * Buys houses for the property
+   * 
+   * @param player
+   */
+  public void buyHouses() {
     int amount = IOManager.readInt("PROMPT_AMOUNT", 1, 4);
-    if (player.decreaseMoney(amount * this.housePrice) != -1) {
+    if (owner.decreaseMoney(amount * this.housePrice) != -1) {
       this.houseCount += amount;
     } else {
       IOManager.printlnMsg("PLAYER_CANT_AFFORD");
     }
   }
 
-  public void sellHouses(Player player) {
+  /**
+   * Sells houses for the property
+   * 
+   * @param player The player that owns the property
+   */
+  public void sellHouses() {
     int amount = IOManager.readInt("PROMPT_AMOUNT", 1, 4);
     // If the player has enough houses to sell
     if (this.houseCount >= amount) {
       // Increase the player's money
-      player.increaseMoney(amount * this.housePrice);
+      owner.increaseMoney(amount * this.housePrice);
       // Decrease the house count
       this.houseCount -= amount;
     }
@@ -141,7 +164,12 @@ public class StreetCard extends Property {
     }
   }
 
-  public void buyHotel(Player player) {
+  /**
+   * Buys a hotel for the property
+   * 
+   * @param player The player that owns the property
+   */
+  public void buyHotel() {
     // If the property already has a hotel
     if (this.hotel)
       IOManager.printlnMsg("PROPERTY_ALREADY_HAS_HOTEL");
@@ -150,7 +178,7 @@ public class StreetCard extends Property {
       IOManager.printlnMsg("PROPERTY_CANT_BUY_HOTEL");
     else {
       // If the player has enough money to buy a hotel
-      if (player.decreaseMoney(this.hotelPrice) != -1)
+      if (owner.decreaseMoney(this.hotelPrice) != -1)
         this.hotel = true;
       // If the player doesn't have enough money to buy a hotel
       else
@@ -158,12 +186,12 @@ public class StreetCard extends Property {
     }
   }
 
-  public void sellHotel(Player player) {
+  public void sellHotel() {
     // If the property doesn't have a hotel
     if (!this.hotel)
       IOManager.printlnMsg("PROPERTY_CANT_SELL_HOTEL");
     // If the player has enough money to sell the hotel
-    else if (player.increaseMoney(this.hotelPrice) != -1)
+    else if (owner.increaseMoney(this.hotelPrice) != -1)
       this.hotel = false;
     // If the player doesn't have enough money to sell the hotel
     else
@@ -171,7 +199,7 @@ public class StreetCard extends Property {
   }
 
   @Override
-  public void mortgageProperty(Player player) {
+  public void mortgageProperty() {
     // If the property is already mortgaged
     if (this.isMortgaged) {
       IOManager.printlnMsg("PROPERTY_ALREADY_MORTGAGED");
@@ -184,7 +212,7 @@ public class StreetCard extends Property {
     }
 
     // Mortgage the property
-    player.increaseMoney(this.mortgageValue);
+    owner.increaseMoney(this.mortgageValue);
     this.isMortgaged = true;
   }
 

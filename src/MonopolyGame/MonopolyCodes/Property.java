@@ -11,6 +11,21 @@ public abstract class Property extends MonopolyCode {
   protected int propertyPrice;
 
   @Override
+  /**
+   * Do the corresponding operation for this property
+   * 
+   * <p>
+   * <ul>
+   * <li>If the property is owned by someone</li>
+   *    <ul>
+   *    <li>If the owner is not the player -> Pay the rent</li>
+  *     <li>If the owner is the player -> Ask if he wants to manage the property</li>
+   *    </ul>
+   * <li>If the property is not owned by anyone -> Ask if the player wants to buy the property</li>
+   * </ul>
+   * 
+   * @param player The player who landed on this property
+   */
   public void doOperation(Player player) {
     // This property is owned by a player (current player or other player)
     if (isOwned()) {
@@ -29,7 +44,7 @@ public abstract class Property extends MonopolyCode {
       // If the owner is the player
       else {
         if (IOManager.askYesNo("ASK_MANAGE_PROPERTY")) {
-          while (propertyManagementMenu(player) != 0)
+          while (propertyManagementMenu() != 0)
             ;
         }
       }
@@ -50,7 +65,16 @@ public abstract class Property extends MonopolyCode {
     }
   }
 
-  public int propertyManagementMenu(Player player) {
+  /**
+   * Show the property management menu and do the corresponding operation.
+   * 
+   * <p>
+   * The option is returned back to know if the player wants to exit the menu or not.
+   * </p>
+   * 
+   * @return The option chosen by the player
+   */
+  public int propertyManagementMenu() {
     // Ask the player what he wants to do with the property
     IOManager.print("\n");
     IOManager.printlnMsg("PROPERTY_MANAGEMENT_MENU", this.description);
@@ -75,24 +99,32 @@ public abstract class Property extends MonopolyCode {
 
     // Do the chosen operation
     if (opt == 1) {
-      mortgageProperty(player);
+      mortgageProperty();
       return 1;
     } else if (opt == 2) {
-      payOffMortgage(player);
+      payOffMortgage();
       return 2;
     } else if (opt == 3) {
-      sellProperty(player);
+      sellProperty();
       return 3;
-    } else if (opt == 4) {
+    } else if (opt == 0) {
       return 0;
     }
 
     return -1; // Should never happen
   }
 
+  /**
+   * Calculate the amount to pay for the rent/fare of this property.
+   * 
+   * @return The amount to pay for the rent/fare of this property
+   */
   public abstract int calculateAmountToPay();
 
-  public void mortgageProperty(Player player) {
+  /**
+   * Mortgage this property, the player receives the mortgage value.
+   */
+  public void mortgageProperty() {
     // If the property is already mortgaged
     if (this.isMortgaged) {
       IOManager.printlnMsg("PROPERTY_ALREADY_MORTGAGED");
@@ -100,11 +132,14 @@ public abstract class Property extends MonopolyCode {
     }
 
     // Mortgage the property
-    player.increaseMoney(this.mortgageValue);
+    owner.increaseMoney(this.mortgageValue);
     this.isMortgaged = true;
   }
 
-  public void payOffMortgage(Player player) {
+  /**
+   * Pay off the mortgage of this property, the player pays the mortgage value.
+   */
+  public void payOffMortgage() {
     // If the property is not mortgaged
     if (!this.isMortgaged) {
       IOManager.printlnMsg("PROPERTY_NOT_MORTGAGED");
@@ -112,7 +147,7 @@ public abstract class Property extends MonopolyCode {
     }
 
     // If the player has enough money to pay off the mortgage
-    if (player.decreaseMoney(this.mortgageValue) != -1) {
+    if (owner.decreaseMoney(this.mortgageValue) != -1) {
       // Pay off the mortgage
       this.isMortgaged = false;
     }
@@ -122,7 +157,10 @@ public abstract class Property extends MonopolyCode {
     }
   }
 
-  public void sellProperty(Player player) {
+  /**
+   * Sell this property, the player receives the property price.
+   */
+  public void sellProperty() {
     // If the property is mortgaged
     if (this.isMortgaged) {
       IOManager.printlnMsg("PROPERTY_CANT_SELL_MORTGAGED");
@@ -130,18 +168,34 @@ public abstract class Property extends MonopolyCode {
     }
 
     // Sell the property
-    player.increaseMoney(this.propertyPrice);
+    owner.increaseMoney(this.propertyPrice);
     this.owner = null;
   }
 
+  /**
+   * Check if this property is owned by someone.
+   * 
+   * @return True if this property is owned by someone, false otherwise
+   */
   public boolean isOwned() {
     return owner != null;
   }
 
+  /**
+   * Check if this property is owned by the given player.
+   * 
+   * @param player The player to check if he owns this property
+   * @return True if this property is owned by the given player, false otherwise
+   */
   public boolean isOwnedBy(Player player) {
     return owner.equals(player);
   }
 
+  /**
+   * Check if this property is mortgaged.
+   * 
+   * @return True if this property is mortgaged, false otherwise
+   */
   public boolean isMortgaged() {
     return isMortgaged;
   }

@@ -54,7 +54,7 @@
       <void property="owner">
        <object class="src.MonopolyGame.Player" id="Player0">
         <void property="money">
-         <int>1440</int>
+         <int>1448</int>
         </void>
         <void property="name">
          <string>Player 1</string>
@@ -62,6 +62,26 @@
         <void property="properties">
          <void method="add">
           <object idref="StreetCard0"/>
+         </void>
+         <void method="add">
+          <object class="src.MonopolyGame.MonopolyCodes.ServiceCard" id="ServiceCard0">
+           <void property="description">
+            <string>COMPAÑÍA DE ELECTRICIDAD</string>
+           </void>
+           <void property="owner">
+            <object idref="Player0"/>
+           </void>
+           <void property="priceFactor">
+            <array class="int" length="2">
+             <void index="0">
+              <int>4</int>
+             </void>
+             <void index="1">
+              <int>10</int>
+             </void>
+            </array>
+           </void>
+          </object>
          </void>
         </void>
        </object>
@@ -418,21 +438,7 @@
     </void>
     <void method="put">
      <string>12</string>
-     <object class="src.MonopolyGame.MonopolyCodes.ServiceCard">
-      <void property="description">
-       <string>COMPAÑÍA DE ELECTRICIDAD</string>
-      </void>
-      <void property="priceFactor">
-       <array class="int" length="2">
-        <void index="0">
-         <int>4</int>
-        </void>
-        <void index="1">
-         <int>10</int>
-        </void>
-       </array>
-      </void>
-     </object>
+     <object idref="ServiceCard0"/>
     </void>
     <void method="put">
      <string>56</string>
@@ -1429,7 +1435,7 @@
     <void method="add">
      <object class="src.MonopolyGame.Player">
       <void property="money">
-       <int>1500</int>
+       <int>1492</int>
       </void>
       <void property="name">
        <string>Player 2</string>

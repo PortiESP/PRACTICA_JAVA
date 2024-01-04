@@ -37,8 +37,8 @@ import src.MonopolyGame.MonopolyCodes.StreetCard;
 public class Game implements Serializable {
   // Attributes
   private String gameFilename; // Save game filename
-  private Map<String, MonopolyCode> monopolyCodes; // Monopoly codes map (key: code, value: MonopolyCode 'or child class instance')
   private ArrayList<Player> players; // Players list
+  private Map<String, MonopolyCode> monopolyCodes; // Monopoly codes map (key: code, value: MonopolyCode 'or child class instance')
   private boolean autosave = true; // Autosave flag
   private boolean exit = false; // Exit flag
 
