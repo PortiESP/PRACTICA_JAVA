@@ -53,14 +53,23 @@ public abstract class Property extends MonopolyCode {
     IOManager.print("\n");
     IOManager.printlnMsg("PROPERTY_MANAGEMENT_MENU", this.description);
     IOManager.print("\n");
-    IOManager.print("\t- [1] Mortgage property\n");
+    IOManager.print(
+        String.format("\t- [%s] %s\n", (isMortgaged ? "#" : "1"),
+            (isMortgaged ? "-- MORTGAGED --" : "Mortgage property")));
     IOManager.print("\t- [2] Pay off property mortgage\n");
-    IOManager.print("\t- [3] Sell property\n");
+    IOManager.print(
+        String.format("\t- [%s] %s\n", (isMortgaged ? "#" : "3"), (isMortgaged ? "-- MORTGAGED --" : "Sell property")));
     IOManager.print("\t- [0] Exit\n");
     IOManager.print("\n");
 
     // Get the player's choice
     int opt = IOManager.readInt("PROMPT_OPTION", 0, 3);
+
+    // If the property is mortgaged
+    if (isMortgaged && opt != 2 && opt != 0) {
+      IOManager.printlnMsg("PROPERTY_IS_MORTGAGED");
+      return -1;
+    }
 
     // Do the chosen operation
     if (opt == 1) {

@@ -63,18 +63,30 @@ public class StreetCard extends Property {
     IOManager.printlnMsg("PROPERTY_SUMMARY", houseCount, (hotel ? y : n), (isMortgaged ? y : n),
         calculateAmountToPay());
     IOManager.print("\n");
-    IOManager.print("\t- [1] Buy houses\n");
-    IOManager.print("\t- [2] Sell houses\n");
-    IOManager.print("\t- [3] Buy hotel\n");
-    IOManager.print("\t- [4] Sell hotel\n");
-    IOManager.print("\t- [5] Mortgage property\n");
+    IOManager.print(
+        String.format("\t- [%s] %s\n", (isMortgaged ? "#" : "1"), (isMortgaged ? "-- MORTGAGED --" : "Buy houses")));
+    IOManager.print(
+        String.format("\t- [%s] %s\n", (isMortgaged ? "#" : "2"), (isMortgaged ? "-- MORTGAGED --" : "Sell houses")));
+    IOManager.print(
+        String.format("\t- [%s] %s\n", (isMortgaged ? "#" : "3"), (isMortgaged ? "-- MORTGAGED --" : "Buy hotel")));
+    IOManager.print(
+        String.format("\t- [%s] %s\n", (isMortgaged ? "#" : "4"), (isMortgaged ? "-- MORTGAGED --" : "Sell hotel")));
+    IOManager.print(
+        String.format("\t- [%s] %s\n", (isMortgaged ? "#" : "5"),
+            (isMortgaged ? "-- MORTGAGED --" : "Mortgage property")));
     IOManager.print("\t- [6] Pay off property mortgage\n");
-    IOManager.print("\t- [7] Sell property\n");
+    IOManager.print(
+        String.format("\t- [%s] %s\n", (isMortgaged ? "#" : "7"), (isMortgaged ? "-- MORTGAGED --" : "Sell property")));
     IOManager.print("\t- [0] Exit\n");
     IOManager.print("\n");
 
     // Get the player's choice
     int opt = IOManager.readInt("PROMPT_OPTION", 0, 7);
+
+    if (isMortgaged && (opt != 6 && opt != 0)) {
+      IOManager.printlnMsg("INVALID_OPTION");
+      return -1;
+    }
 
     // Do the chosen operation
     if (opt == 1) {
