@@ -51,12 +51,6 @@ public class GameManager {
     // Load the language from the file
     IOManager.setLanguage(langFileName);
 
-    // Print the welcome message
-    IOManager.print("\n");
-    IOManager.print("\n");
-    IOManager.printlnMsg("WELCOME");
-    IOManager.print("\n");
-
     // Game configuration ========================
     // Print the main menu (load game, new game, exit)
     int option = mainMenu();
@@ -93,8 +87,9 @@ public class GameManager {
     IOManager.setLanguage("English");
 
     // TEST
-    int option = MenuBuilder.menu("Test title", new String[] { "Start", "Debug", "Exit" });
-    IOManager.log(option);
+    String[] option = MenuBuilder.form("Test title", new String[] { "Start", "Debug", "Exit" });
+    for (String s : option)
+      IOManager.log(s);
 
     // Load the default game
     // this.game.loadGame("winner"); // Bankrupt test game
@@ -118,23 +113,13 @@ public class GameManager {
     this.game.play(); // Default game
   }
 
-  /**
-   * This method prints the language selection menu, the options are based on the files available at the {@code /config/languages} directory.
-   * 
-   * @return The selected language. E.G.: "English" for English, "Spanish" for Spanish, etc.
-   */
   public String languageSelectionMenu() {
-    ArrayList<String> languages = getSavedGamesFilesList(Const.LANGUAGES_PATH);
-
     // Language selection menu
-    IOManager.print("[i] Language selection:\n");
-    IOManager.print("\n");
-    for (int i = 0; i < languages.size(); i++)
-      IOManager.print(String.format("\t- [%d] %s\n", i + 1, languages.get(i)));
-    IOManager.print("\n");
-    int option = IOManager.readInt("PROMPT_OPTION", 1, languages.size());
-
-    return languages.get(option - 1);
+    String title = IOManager.getMsg("LANGUAGE_SELECTION_TITLE");
+    String[] languages = getSavedGamesFilesList(Const.LANGUAGES_PATH).toArray(String[]::new);
+    int opt = MenuBuilder.menu(title, languages);
+    // Return the selected language
+    return languages[opt - 1];
   }
 
   /**
@@ -170,15 +155,15 @@ public class GameManager {
    * @return The selected option.
    */
   public int mainMenu() {
-    // Main menu
-    IOManager.print(String.format("[i] %s:\n", IOManager.getMsg("MAIN_MENU")));
-    IOManager.print("\n");
-    IOManager.print("\t- [1] " + IOManager.getMsg("NEW_GAME") + "\n");
-    IOManager.print("\t- [2] " + IOManager.getMsg("LOAD_GAME") + "\n");
-    IOManager.print("\t- [3] " + IOManager.getMsg("CHANGE_LANGUAGE") + "\n");
-    IOManager.print("\t- [4] " + IOManager.getMsg("EXIT") + "\n");
-    IOManager.print("\n");
-    return IOManager.readInt("PROMPT_OPTION", 1, 4);
+    String title = IOManager.getMsg("MAIN_MENU_TITLE");
+    String[] options = {
+        IOManager.getMsg("NEW_GAME"),
+        IOManager.getMsg("LOAD_GAME"),
+        IOManager.getMsg("CHANGE_LANGUAGE"),
+        IOManager.getMsg("EXIT")
+    };
+
+    return MenuBuilder.menu(title, options);
   }
 
   /**
@@ -187,7 +172,7 @@ public class GameManager {
    * @return The name typed by the user.
    */
   public String askNewFileName() {
-    String filename = IOManager.readString("PROMPT_GAME_NAME"); // Ask the user for a file name
+    String filename = MenuBuilder.readString(IOManager.getMsg("PROMPT_GAME_NAME")); // Ask the user for a file name
     while (savedGameExists(filename)) {
       IOManager.printlnMsg("FILE_EXISTS");
       filename = IOManager.readString("PROMPT_GAME_NAME"); // Ask the user for a file name

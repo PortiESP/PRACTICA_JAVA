@@ -110,6 +110,22 @@ public class IOManager implements Serializable {
   }
 
   /**
+   * Move the cursot up {@code lines} lines.
+   * @param lines
+   */
+  public static void moveCursorUp(int lines) {
+    System.out.print("\033[" + lines + "A");
+  }
+
+  /**
+   * Move the cursot down {@code lines} lines.
+   * @param lines The number of lines to move the cursor down.
+   */
+  public static void moveCursorDown(int lines) {
+    System.out.print("\033[" + lines + "B");
+  }
+
+  /**
     * Ask the user a yes/no question.
     *
     * @param prompt The message ID that will be printed before reading the input.
@@ -160,7 +176,6 @@ public class IOManager implements Serializable {
       try {
         value = Integer.parseInt(input);
       } catch (NumberFormatException e) {
-        printlnMsg("INVALID_OPTION");
         value = -1;
       }
     }
@@ -213,14 +228,8 @@ public class IOManager implements Serializable {
 
     // Read the input
     do {
-      try {
-        print("[>] " + getMsg(prompt) + " >>> ");
-      } catch (RuntimeException e) {
-        print("[>] " + prompt + " >>> ");
-      }
-
+      print(prompt);
       input = IOManager.scanner.nextLine();
-
     } while (input.length() == 0);
 
     return input;

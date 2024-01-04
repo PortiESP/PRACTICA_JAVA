@@ -14,6 +14,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 
 import src.MonopolyGame.IO.IOManager;
+import src.MonopolyGame.IO.MenuBuilder;
 import src.MonopolyGame.MonopolyCodes.MonopolyCode;
 import src.MonopolyGame.MonopolyCodes.PaymentCard;
 import src.MonopolyGame.MonopolyCodes.RepairsCard;
@@ -278,25 +279,19 @@ public class Game implements Serializable {
    * Creates the players of the game. It will ask the number of players and the name of each player, the names will be used to uniquely identify the players.
    */
   public void createPlayers() {
-    IOManager.print("\n");
-
     // Ask the number of players
-    int numPlayers = IOManager.readInt("PROMPT_NUM_PLAYERS");
+    int numPlayers = MenuBuilder.readInt(IOManager.getMsg("PROMPT_NUM_PLAYERS"));
     IOManager.print("\n");
 
     // Ask the name of each player
-    for (int i = 0; i < numPlayers; i++) {
-      // Read the name
-      String name = IOManager.readString("PROMPT_PLAYER_NAME", i + 1);
-      // Check if the name is already taken
-      while (players.contains(new Player(name))) {
-        IOManager.printlnMsg("NAME_ALREADY_TAKEN");
-        name = IOManager.readString("PROMPT_PLAYER_NAME", i + 1);
-      }
+    String[] labels = new String[numPlayers];
+    for (int i = 0; i < numPlayers; i++)
+      labels[i] = String.format(IOManager.getMsg("PROMPT_PLAYER_NAME"), (i + 1));
+    String[] playerNames = MenuBuilder.form("Name of the players", labels);
 
-      // Add the player to the list
+    // Create players
+    for (String name : playerNames)
       players.add(new Player(name));
-    }
 
     // DEBUG: Print all the players
     IOManager.log("Created all players");
