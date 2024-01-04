@@ -61,3 +61,4 @@ MENU_HINT=Type a number from the list below and press <ENTER>
 WARN=Warning
 MUST_BE_POSITIVE=The entered value must be positive
 MUST_BE_NUMBER=The entered value must be a number
+MUST_NOT_BE_EMPTY=The input value must not be empty

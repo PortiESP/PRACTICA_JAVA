@@ -86,11 +86,6 @@ public class GameManager {
 
     IOManager.setLanguage("English");
 
-    // TEST
-    String[] option = MenuBuilder.form("Test title", new String[] { "Start", "Debug", "Exit" });
-    for (String s : option)
-      IOManager.log(s);
-
     // Load the default game
     // this.game.loadGame("winner"); // Bankrupt test game
     // this.game.loadGame("bankrupt"); // Bankrupt test game

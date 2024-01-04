@@ -184,19 +184,10 @@ public class Game implements Serializable {
    * @return The selected option
    */
   public int operationsMenu() {
-    /*
-     * Options can be modified by changing the print statements with the new option, also update the maximum value of 
-     * the `io.readInt()` method and handle the behavior of the new option in the if else statement in the `play()` method.
-     */
-    IOManager.print("\n");
-    IOManager.printlnMsg("OPERATIONS_MENU");
-    IOManager.print("\n");
-    IOManager.print(String.format("\t[1] %s\n", IOManager.getMsg("OPERATIONS_MENU_OPTION_COD_OP")));
-    IOManager.print(String.format("\t[2] %s\n", IOManager.getMsg("OPERATIONS_MENU_OPTION_GAME_STATUS")));
-    IOManager.print(String.format("\t[3] %s\n", IOManager.getMsg("OPERATIONS_MENU_OPTION_SAVE_EXIT")));
-    IOManager.print("\n");
+    int opt = MenuBuilder.menu("OPERATIONS_MENU", new String[] { "OPERATIONS_MENU_OPTION_COD_OP",
+        "OPERATIONS_MENU_OPTION_GAME_STATUS", "OPERATIONS_MENU_OPTION_SAVE_EXIT" });
 
-    return IOManager.readInt("PROMPT_OPTION", 1, 3);
+    return opt;
   }
 
   /**

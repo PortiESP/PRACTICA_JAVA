@@ -85,12 +85,13 @@ public class IOManager implements Serializable {
    * 
    * @param id The message id. Example: {@code "NEW_GAME"}
    * @return The message in the current language.
-   * @throws RuntimeException If the message id is not found in the messages map.
    */
   public static String getMsg(String id) throws RuntimeException {
     String msg = IOManager.languageManager.get(id);
+
     if (msg == null)
-      throw new RuntimeException("Message not found for Id '" + id + "'\n");
+      return id;
+
     return msg;
   }
 
@@ -134,11 +135,7 @@ public class IOManager implements Serializable {
   public static boolean askYesNo(String prompt) {
     IOManager.print("\n");
 
-    try {
-      print(String.format("%s (%s=[1] / %s=[0])?\n", getMsg(prompt), getMsg("YES"), getMsg("NO")));
-    } catch (RuntimeException e) {
-      print(String.format("%s (%s=[1] / %s=[0])?\n", prompt, getMsg("YES"), getMsg("NO")));
-    }
+    print(String.format("%s (%s=[1] / %s=[0])?\n", getMsg(prompt), getMsg("YES"), getMsg("NO")));
 
     int option = readInt("PROMPT_OPTION", 0, 1);
 
@@ -169,16 +166,8 @@ public class IOManager implements Serializable {
    * @return The number typed by the user.
    */
   public static int readInt(String prompt) {
-    // Check if the input is an integer
-    int value = -1;
-    while (value == -1) {
-      String input = readString(prompt);
-      try {
-        value = Integer.parseInt(input);
-      } catch (NumberFormatException e) {
-        value = -1;
-      }
-    }
+    String input = readString(prompt);
+    int value = Integer.parseInt(input);
 
     return value;
   }
@@ -226,11 +215,12 @@ public class IOManager implements Serializable {
   public static String readString(String prompt) {
     String input = "";
 
-    // Read the input
-    do {
-      print(prompt);
-      input = IOManager.scanner.nextLine();
-    } while (input.length() == 0);
+    prompt = getMsg(prompt);
+
+    // Print the prompt
+    print(prompt);
+
+    input = IOManager.scanner.nextLine();
 
     return input;
   }

@@ -60,3 +60,4 @@ MENU_HINT=Escribe un numero de la lista y presiona <ENTER>
 WARN=Advertencia
 MUST_BE_POSITIVE=El valor introducido debe ser positivo
 MUST_BE_NUMBER=El valor introducido debe ser un numero
+MUST_NOT_BE_EMPTY=El valor introducido no puede estar vacio

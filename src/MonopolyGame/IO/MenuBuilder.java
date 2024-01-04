@@ -6,6 +6,7 @@ package src.MonopolyGame.IO;
 public class MenuBuilder {
   private final static int MENU_WIDTH = 80;
   private static boolean clean = true;
+  private static String[] formValues;
 
   public static int menu(String title, String[] options) {
     int numOptions = options.length;
@@ -13,6 +14,11 @@ public class MenuBuilder {
     // Clear the screen
     if (clean)
       IOManager.cls();
+
+    title = IOManager.getMsg(title);
+
+    for (int i = 0; i < options.length; i++)
+      options[i] = IOManager.getMsg(options[i]);
 
     // Print the top
     IOManager.print("\n");
@@ -43,13 +49,22 @@ public class MenuBuilder {
     IOManager.moveCursorUp(2);
 
     // Ask for the option
-    IOManager
-        .print(String.format("║    %s (%d-%d) >>> ", IOManager.getMsg("PROMPT_OPTION"), 1, numOptions));
+    try {
+      int option = IOManager
+          .readInt(String.format("║    %s (%d-%d) >>> ", IOManager.getMsg("PROMPT_OPTION"), 1, numOptions));
 
-    // Read the option
-    int option = IOManager.readInt(1, numOptions);
+      if (option < 1 || option > numOptions) {
+        alert("WARN", "INVALID_OPTION");
+        return menu(title, options);
+      }
 
-    return option;
+      return option;
+
+    } catch (NumberFormatException e) {
+      alert("WARN", "MUST_BE_NUMBER");
+      return menu(title, options);
+    }
+
   }
 
   public static String readString(String prompt) {
@@ -68,7 +83,16 @@ public class MenuBuilder {
     // Move up 2 lines
     IOManager.moveCursorUp(2);
     // Ask the option
-    return IOManager.readString(String.format("║ > "));
+    String input = IOManager.readString(String.format("║ > "));
+    // Try again if the input is empty
+    if (input == null || input.length() == 0) {
+      alert("WARN", "MUST_NOT_BE_EMPTY");
+      return readString(prompt);
+    }
+    // Valid the input
+    else {
+      return input;
+    }
   }
 
   public static int readInt(String prompt) {
@@ -111,18 +135,9 @@ public class MenuBuilder {
       IOManager.cls();
 
     // Translate the title if possible
-    try {
-      title = IOManager.getMsg(title);
-    } catch (Exception e) {
-      // Do nothing
-    }
-
+    title = IOManager.getMsg(title);
     // Translate the message if possible
-    try {
-      msg = IOManager.getMsg(msg);
-    } catch (Exception e) {
-      // Do nothing
-    }
+    msg = IOManager.getMsg(msg);
 
     IOManager.print("\n");
     IOManager.print("\n");
@@ -154,12 +169,36 @@ public class MenuBuilder {
     IOManager.moveCursorUp(labels.length + 2);
 
     // Create an array to store the values
-    String[] values = new String[labels.length];
+    if (MenuBuilder.formValues == null)
+      MenuBuilder.formValues = new String[labels.length];
 
     // Ask for each field
-    for (int i = 0; i < labels.length; i++)
-      values[i] = IOManager.readString(String.format("║     %s: ", labels[i]));
+    for (int i = 0; i < labels.length; i++) {
 
+      // Skip if the value is already set (previously asked, but the form was not completed)
+      if (MenuBuilder.formValues[i] != null) {
+        IOManager.print(String.format("║     %s: %s\n", labels[i], MenuBuilder.formValues[i]));
+        continue;
+      }
+
+      // Ask for the value  
+      String name = IOManager.readString(String.format("║     %s: ", labels[i]));
+
+      if (name == null || name.length() == 0) {
+        alert("WARN", "MUST_NOT_BE_EMPTY");
+        return form(title, labels);
+      } else {
+        MenuBuilder.formValues[i] = name;
+      }
+
+    }
+
+    // Copy the values
+    String[] values = MenuBuilder.formValues.clone();
+    // Reset the form values
+    MenuBuilder.formValues = null;
+
+    // Return the values
     return values;
 
   }
