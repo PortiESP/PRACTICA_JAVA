@@ -11,7 +11,7 @@ TO-DO
 - Repairs card
 - Payment card
 - Check broke
-- Keep local language (do not serialize selected language)
+- Clean the code
 
 # Aspectos a tener en cuenta antes de entregar el proyecto
 
@@ -25,5 +25,6 @@ TO-DO
 
 - [ ] Mapa de `monopolyCodes` en vez de array
 - [ ] Clase estática para el LanguageManager y IOManager
+- [ ] El diccionario de idiomas no se serializa
 - [ ] Por qué no he usado colores para identificar a los jugadores
 - [ ] Por qué los newGame y loadGame están en Game

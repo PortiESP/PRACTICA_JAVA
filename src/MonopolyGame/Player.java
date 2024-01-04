@@ -40,7 +40,7 @@ public class Player implements Serializable {
 
   // Methods
   public String toString() {
-    return String.format("Player %s [$%d] - %s", this.name, this.money, this.properties.toString());
+    return String.format("%s [$%d] - %s", this.name, this.money, this.properties.toString());
   }
 
   /**
@@ -99,16 +99,18 @@ public class Player implements Serializable {
    * @param player The player to pay.
    */
   public void pay(int amount, Player player) {
-    // If the player has enough money
-    if (this.money >= amount) {
-      // Pay the player (if the player can afford the payment)
-      if (this.decreaseMoney(amount) != -1) {
-        player.increaseMoney(amount);
+    // Pay the player (if the player can afford the payment)
+    if (this.decreaseMoney(amount) != -1) {
+      player.increaseMoney(amount);
+      return;
+    }
+    // If the player can't afford the payment, liquidate assets
+    else {
+      if (this.liquidateAssets(amount) == false) {
+        this.loser();
+        this.pay(this.money, player);
       }
-      // If the player can't afford the payment, liquidate assets
-      else {
-        this.liquidateAssets(amount);
-      }
+      return;
     }
   }
 
@@ -212,7 +214,7 @@ public class Player implements Serializable {
 
   public void loser() {
     this.broke = true;
-    IOManager.printlnMsg("PLAYER_LOSER");
+    IOManager.printlnMsg("PLAYER_LOSER", this.name);
   }
 
   /**

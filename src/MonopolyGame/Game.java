@@ -36,7 +36,6 @@ import src.MonopolyGame.MonopolyCodes.StreetCard;
  */
 public class Game implements Serializable {
   // Attributes
-  private IOManager io; // IO Manager (print, read inputs, etc.)
   private String gameFilename; // Save game filename
   private Map<String, MonopolyCode> monopolyCodes; // Monopoly codes map (key: code, value: MonopolyCode 'or child class instance')
   private ArrayList<Player> players; // Players list
@@ -90,6 +89,10 @@ public class Game implements Serializable {
         break;
       }
 
+      // Eliminate players that are broke
+      eliminatePlayers();
+
+      // Autosave
       if (autosave)
         saveGame();
     }
@@ -105,7 +108,6 @@ public class Game implements Serializable {
    */
   public void newGame(String filename) {
     this.gameFilename = filename;
-    this.io = new IOManager();
     this.monopolyCodes = new HashMap<>();
     this.players = new ArrayList<>();
 
@@ -134,7 +136,6 @@ public class Game implements Serializable {
       xmlFile.close();
 
       // Overwrite the current game with the loaded game data
-      this.io = auxGame.getIo();
       this.monopolyCodes = auxGame.getMonopolyCodes();
       this.players = auxGame.getPlayers();
 
@@ -340,14 +341,43 @@ public class Game implements Serializable {
     return this.players.get(opt - 1);
   }
 
-  // ---------------------------------------------- Getters and setters ----------------------------------------------
-  public IOManager getIo() {
-    return io;
+  /**
+   * Eliminates a player from the game.
+   * 
+   * This method will iterate over the players list, if a player is broke it will save the player in a variable, exit the loop, and remove the player from the list. Then it will repeat the process until there are no broke players.
+   * 
+   * We need to do it this way to avoid the {@code ConcurrentModificationException} when removing an element from a list while iterating over it.
+   * 
+   * @param player The player to eliminate
+   */
+  public void eliminatePlayers() {
+    // Store if there was a player eliminated in the previous loop
+    boolean hadLoser = false;
+    // Loop until any broke player had been eliminated in the previous loop
+    do {
+      // Reset the flag
+      Player loser = null; // No loser yet
+      hadLoser = false; // No loser in this loop yet
+
+      // Iterate over the players list in order to find a broke player
+      for (Player p : players) {
+        // If the player is broke, save it and exit the loop
+        if (p.isBroke()) {
+          loser = p;
+          break;
+        }
+      }
+
+      // If there was a loser, remove it from the list
+      if (loser != null) {
+        this.players.remove(loser);
+        hadLoser = true;
+      }
+
+    } while (hadLoser); // Repeat until there are no broke players detected
   }
 
-  public void setIo(IOManager io) {
-    this.io = io;
-  }
+  // ---------------------------------------------- Getters and setters ----------------------------------------------
 
   public String getGameFilename() {
     return gameFilename;

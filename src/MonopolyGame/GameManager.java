@@ -91,7 +91,8 @@ public class GameManager {
     IOManager.setLanguage("English");
 
     // Load the default game
-    this.game.loadGame("default_game");
+    this.game.loadGame("bankrupt"); // Bankrupt test game
+    // this.game.loadGame("default_game"); // Default test game
     // Reset the cards
     // this.game.resetCards();
     // Reset the players (template players)
@@ -105,7 +106,7 @@ public class GameManager {
     // Disable autosave
     this.game.setAutosave(false);
 
-    IOManager.log("[!!!] Playing the default game");
+    IOManager.log("[!!!] Playing a test game");
 
     this.game.play(); // Default game
   }

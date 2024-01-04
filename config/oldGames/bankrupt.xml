@@ -1429,7 +1429,7 @@
     <void method="add">
      <object class="src.MonopolyGame.Player">
       <void property="money">
-       <int>1500</int>
+       <int>1</int>
       </void>
       <void property="name">
        <string>Player 2</string>
