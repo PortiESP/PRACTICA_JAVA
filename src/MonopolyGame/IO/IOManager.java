@@ -1,5 +1,6 @@
 package src.MonopolyGame.IO;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.Scanner;
 
@@ -94,6 +95,21 @@ public class IOManager implements Serializable {
   }
 
   /**
+    * Clear the screen
+    */
+  public static void cls() {
+    try {
+      if (System.getProperty("os.name").contains("Windows")) {
+        new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+      } else {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+      }
+    } catch (IOException | InterruptedException ex) {
+    }
+  }
+
+  /**
     * Ask the user a yes/no question.
     *
     * @param prompt The message ID that will be printed before reading the input.
@@ -111,6 +127,14 @@ public class IOManager implements Serializable {
     int option = readInt("PROMPT_OPTION", 0, 1);
 
     return option == 1;
+  }
+
+  /**
+   * Pause the program until the user presses the enter key.
+   */
+  public static void pause() {
+    printMsg("PRESS_ENTER");
+    scanner.nextLine();
   }
 
   /**
@@ -159,6 +183,23 @@ public class IOManager implements Serializable {
       option = readInt(prompt);
     }
     return option;
+  }
+
+  /**
+   * Read an input (integer) within a range. (unformatted prompt)
+   * @param min
+   * @param max
+   * @return
+   */
+  public static int readInt(int min, int max) {
+    String input = "";
+
+    // Read the input
+    do {
+      input = IOManager.scanner.nextLine();
+    } while (input.length() == 0);
+
+    return Integer.parseInt(input);
   }
 
   /**

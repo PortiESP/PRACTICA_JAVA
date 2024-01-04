@@ -1,6 +1,8 @@
 package src.MonopolyGame;
 
 import src.MonopolyGame.IO.IOManager;
+import src.MonopolyGame.IO.MenuBuilder;
+
 import java.io.File;
 import java.util.ArrayList;
 
@@ -89,6 +91,10 @@ public class GameManager {
     this.game = new Game();
 
     IOManager.setLanguage("English");
+
+    // TEST
+    int option = MenuBuilder.menu("Test title", new String[] { "Start", "Debug", "Exit" });
+    IOManager.log(option);
 
     // Load the default game
     // this.game.loadGame("winner"); // Bankrupt test game
