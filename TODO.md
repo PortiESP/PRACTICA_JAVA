@@ -10,6 +10,7 @@ TO-DO
 - JavaDocs
 - Clean the code
 - Librería menu de opciones
+- Presione ENTER para continuar
 
 # Aspectos a tener en cuenta antes de entregar el proyecto
 
