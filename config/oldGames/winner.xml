@@ -1439,26 +1439,6 @@
       </void>
      </object>
     </void>
-    <void method="add">
-     <object class="src.MonopolyGame.Player">
-      <void property="money">
-       <int>1500</int>
-      </void>
-      <void property="name">
-       <string>Player 3</string>
-      </void>
-     </object>
-    </void>
-    <void method="add">
-     <object class="src.MonopolyGame.Player">
-      <void property="money">
-       <int>1500</int>
-      </void>
-      <void property="name">
-       <string>Player 4</string>
-      </void>
-     </object>
-    </void>
    </object>
   </void>
  </object>

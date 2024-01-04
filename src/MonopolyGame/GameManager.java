@@ -91,7 +91,8 @@ public class GameManager {
     IOManager.setLanguage("English");
 
     // Load the default game
-    this.game.loadGame("bankrupt"); // Bankrupt test game
+    this.game.loadGame("winner"); // Bankrupt test game
+    // this.game.loadGame("bankrupt"); // Bankrupt test game
     // this.game.loadGame("default_game"); // Default test game
     // Reset the cards
     // this.game.resetCards();

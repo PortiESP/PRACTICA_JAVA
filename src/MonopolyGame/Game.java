@@ -40,6 +40,7 @@ public class Game implements Serializable {
   private Map<String, MonopolyCode> monopolyCodes; // Monopoly codes map (key: code, value: MonopolyCode 'or child class instance')
   private ArrayList<Player> players; // Players list
   private boolean autosave = true; // Autosave flag
+  private boolean exit = false; // Exit flag
 
   // Methods
   // ---------------------------------------------- Game main loop ----------------------------------------------
@@ -68,7 +69,8 @@ public class Game implements Serializable {
     }
 
     // ======================= Main loop ========================
-    while (true) {
+    this.exit = false;
+    while (this.exit == false) {
       // Print the operations menu
       int option = operationsMenu();
       IOManager.log("Option: " + option); // DEBUG
@@ -86,11 +88,15 @@ public class Game implements Serializable {
       } else if (option == 3) { // Save & Exit
         saveGame();
         IOManager.log("Saving and returning to the main menu...");
+        this.exit = true;
         break;
       }
 
       // Eliminate players that are broke
       eliminatePlayers();
+
+      // Check if there is only one player left (winner)
+      checkWinner();
 
       // Autosave
       if (autosave)
@@ -138,6 +144,7 @@ public class Game implements Serializable {
       // Overwrite the current game with the loaded game data
       this.monopolyCodes = auxGame.getMonopolyCodes();
       this.players = auxGame.getPlayers();
+      this.autosave = auxGame.isAutosave();
 
     } catch (Exception e) {
       IOManager.log("Unable to load the game");
@@ -375,6 +382,19 @@ public class Game implements Serializable {
       }
 
     } while (hadLoser); // Repeat until there are no broke players detected
+  }
+
+  /**
+   * Checks if there is only one player left in the game, if so, it will print a message and exit the game.
+   */
+  public void checkWinner() {
+    // If there is only one player left, print a message and exit the game
+    if (players.size() == 1) {
+      IOManager.print("\n");
+      IOManager.printlnMsg("PLAYER_WINNER", players.get(0).getName());
+      IOManager.print("\n");
+      this.exit = true;
+    }
   }
 
   // ---------------------------------------------- Getters and setters ----------------------------------------------

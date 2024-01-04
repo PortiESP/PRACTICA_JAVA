@@ -52,3 +52,4 @@ PROPERTY_SUMMARY=Houses=%d ~ Hotel=%s ~ Mortgaged=%s ~ Income=%d
 PROPERTY_CANT_BUY_HOTEL=The property must have 4 houses before buying a hotel
 SUMMARY_PLAYER_PAY_RENT=The player [%s] will pay (%d) to the player [%s] for using the property [%s]
 PROMPT_OP_CODE =Enter the operation code
+PLAYER_WINNER=The player [%s] has won the game

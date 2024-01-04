@@ -52,3 +52,4 @@ PROPERTY_SUMMARY=Casas=%d ~ Hotel=%s ~ Hipotecada=%s ~ Ingresos=%d
 PROPERTY_CANT_BUY_HOTEL=La propiedad no se puede comprar un hotel, asegurate de que tiene 4 casas antes de comprar un hotel
 SUMMARY_PLAYER_PAY_RENT=El jugador [%s] paga (%d) de alquiler al jugador [%s] por usar la propiedad [%s]
 PROMPT_OP_CODE=Introduzca el codigo de operacion
+PLAYER_WINNER=El jugador [%s] ha ganado

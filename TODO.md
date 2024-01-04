@@ -8,10 +8,8 @@ TO-DO
 - Mejorar el estilos de los menus
 - Tests unitarios
 - JavaDocs
-- Repairs card
-- Payment card
-- Check broke
 - Clean the code
+- Librería menu de opciones
 
 # Aspectos a tener en cuenta antes de entregar el proyecto
 
