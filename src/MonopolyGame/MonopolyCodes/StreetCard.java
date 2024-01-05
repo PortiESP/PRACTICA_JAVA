@@ -1,6 +1,7 @@
 package src.MonopolyGame.MonopolyCodes;
 
 import src.MonopolyGame.IO.IOManager;
+import src.MonopolyGame.IO.MenuBuilder;
 
 public class StreetCard extends Property {
   // Attributes
@@ -70,36 +71,48 @@ public class StreetCard extends Property {
     String y = IOManager.getMsg("YES");
     String n = IOManager.getMsg("NO");
     // Ask the player what he wants to do with the property
-    IOManager.print("\n");
-    IOManager.printlnMsg("PROPERTY_MANAGEMENT_MENU", this.description);
-    IOManager.print("\n");
-    IOManager.printlnMsg("PROPERTY_SUMMARY", houseCount, (hotel ? y : n), (isMortgaged ? y : n),
-        calculateAmountToPay());
-    IOManager.print("\n");
-    IOManager.print(
-        String.format("\t- [%s] %s\n", (isMortgaged ? "#" : "1"), (isMortgaged ? "-- MORTGAGED --" : "Buy houses")));
-    IOManager.print(
-        String.format("\t- [%s] %s\n", (isMortgaged ? "#" : "2"), (isMortgaged ? "-- MORTGAGED --" : "Sell houses")));
-    IOManager.print(
-        String.format("\t- [%s] %s\n", (isMortgaged ? "#" : "3"), (isMortgaged ? "-- MORTGAGED --" : "Buy hotel")));
-    IOManager.print(
-        String.format("\t- [%s] %s\n", (isMortgaged ? "#" : "4"), (isMortgaged ? "-- MORTGAGED --" : "Sell hotel")));
-    IOManager.print(
-        String.format("\t- [%s] %s\n", (isMortgaged ? "#" : "5"),
-            (isMortgaged ? "-- MORTGAGED --" : "Mortgage property")));
-    IOManager.print("\t- [6] Pay off property mortgage\n");
-    IOManager.print(
-        String.format("\t- [%s] %s\n", (isMortgaged ? "#" : "7"), (isMortgaged ? "-- MORTGAGED --" : "Sell property")));
-    IOManager.print("\t- [0] Exit\n");
-    IOManager.print("\n");
+    String title = String.format(IOManager.getMsg("PROPERTY_MANAGEMENT_MENU"), this.description);
+    String[] options = {
+        "PROPERTY_MANAGEMENT_BUY_HOUSES",
+        "PROPERTY_MANAGEMENT_SELL_HOUSES",
+        "PROPERTY_MANAGEMENT_BUY_HOTEL",
+        "PROPERTY_MANAGEMENT_SELL_HOTEL",
+        "PROPERTY_MANAGEMENT_MORTGAGE",
+        "PROPERTY_MANAGEMENT_PAY_OFF_MORTGAGE",
+        "PROPERTY_MANAGEMENT_SELL",
+        "EXIT"
+    };
 
-    // Get the player's choice
-    int opt = IOManager.readInt("PROMPT_OPTION", 0, 7);
-
-    if (isMortgaged && (opt != 6 && opt != 0)) {
-      IOManager.printlnMsg("INVALID_OPTION");
-      return -1;
+    if (isMortgaged) {
+      options[0] = String.format("%s", "-- MORTGAGED --");
+      options[1] = String.format("%s", "-- MORTGAGED --");
+      options[2] = String.format("%s", "-- MORTGAGED --");
+      options[3] = String.format("%s", "-- MORTGAGED --");
+      options[4] = String.format("%s", "-- MORTGAGED --");
+      options[6] = String.format("%s", "-- MORTGAGED --");
     }
+
+    // Print the property's information
+    String summary = String.format(IOManager.getMsg("PROPERTY_SUMMARY"), houseCount, (hotel ? y : n),
+        (isMortgaged ? y : n),
+        calculateAmountToPay());
+    MenuBuilder.alert("PROPERTY_SUMMARY_TITLE", summary);
+    IOManager.moveCursorDown(4);
+    // Set the menu configuration
+    MenuBuilder.setConfigLastAsZero(true);
+    MenuBuilder.setClean(false);
+    // Print the menu
+    int opt = MenuBuilder.menu(title, options);
+    // Reset the menu configuration
+    MenuBuilder.setClean(true);
+    MenuBuilder.setConfigLastAsZero(false);
+
+    // If the property is mortgaged
+    if (isMortgaged)
+      if (opt == 1 || opt == 2 || opt == 3 || opt == 4 || opt == 5 || opt == 6) {
+        MenuBuilder.alert("WARN", "PROPERTY_IS_MORTGAGED");
+        return -1;
+      }
 
     // Do the chosen operation
     if (opt == 1) {

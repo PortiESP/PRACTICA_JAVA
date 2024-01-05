@@ -7,6 +7,15 @@ public class MenuBuilder {
   private final static int MENU_WIDTH = 80;
   private static boolean clean = true;
   private static String[] formValues;
+  private static boolean configLastAsZero = false;
+
+  public static boolean isConfigLastAsZero() {
+    return configLastAsZero;
+  }
+
+  public static void setConfigLastAsZero(boolean configLastAsZero) {
+    MenuBuilder.configLastAsZero = configLastAsZero;
+  }
 
   public static int menu(String title, String[] options) {
     int numOptions = options.length;
@@ -34,8 +43,9 @@ public class MenuBuilder {
     IOManager.print(String.format("║%s║\n", " ".repeat(MENU_WIDTH - 2)));
     // Print the options
     for (int i = 0; i < options.length; i++) {
-      IOManager.print(String.format("║%s║\n",
-          leftString(String.format("       - [%d] %s", i + 1, options[i]), MENU_WIDTH - 2)));
+      int index = (configLastAsZero && i == options.length - 1) ? 0 : i + 1;
+      String eIn = String.format("- [%d] %s", index, options[i]);
+      IOManager.print(String.format("║%s║\n", leftString(eIn, MENU_WIDTH - 2, 7)));
     }
     IOManager.print(String.format("║%s║\n", " ".repeat(MENU_WIDTH - 2)));
     // Space here (later we will print the prompt here)
@@ -53,7 +63,7 @@ public class MenuBuilder {
       int option = IOManager
           .readInt(String.format("║    %s (%d-%d) >>> ", IOManager.getMsg("PROMPT_OPTION"), 1, numOptions));
 
-      if (option < 1 || option > numOptions) {
+      if (option < (configLastAsZero ? 0 : 1) || option > numOptions) {
         alert("WARN", "INVALID_OPTION");
         return menu(title, options);
       }
@@ -100,6 +110,9 @@ public class MenuBuilder {
     // Clear the screen
     if (clean)
       IOManager.cls();
+
+    // Translate the prompt if possible
+    prompt = IOManager.getMsg(prompt);
 
     // Print frame
     IOManager.print("\n");

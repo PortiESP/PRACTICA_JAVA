@@ -43,7 +43,7 @@ public abstract class Property extends MonopolyCode {
       }
       // If the owner is the player
       else {
-        if (IOManager.askYesNo("ASK_MANAGE_PROPERTY")) {
+        if (MenuBuilder.askYesNo("ASK_MANAGE_PROPERTY")) {
           while (propertyManagementMenu() != 0)
             ;
         }
@@ -54,7 +54,7 @@ public abstract class Property extends MonopolyCode {
       // Ask the player if he wants to buy the property
       // If the player wants to buy the property
       String prompt = String.format(IOManager.getMsg("PROPERTY_ASK_BUY"), this.description, this.propertyPrice);
-      if (IOManager.askYesNo(prompt)) {
+      if (MenuBuilder.askYesNo(prompt)) {
         // Buy the property
         player.buyProperty(this);
       }
@@ -76,26 +76,25 @@ public abstract class Property extends MonopolyCode {
    */
   public int propertyManagementMenu() {
     // Ask the player what he wants to do with the property
-    IOManager.print("\n");
-    IOManager.printlnMsg("PROPERTY_MANAGEMENT_MENU", this.description);
-    IOManager.print("\n");
-    IOManager.print(
-        String.format("\t- [%s] %s\n", (isMortgaged ? "#" : "1"),
-            (isMortgaged ? "-- MORTGAGED --" : "Mortgage property")));
-    IOManager.print("\t- [2] Pay off property mortgage\n");
-    IOManager.print(
-        String.format("\t- [%s] %s\n", (isMortgaged ? "#" : "3"), (isMortgaged ? "-- MORTGAGED --" : "Sell property")));
-    IOManager.print("\t- [0] Exit\n");
-    IOManager.print("\n");
+    String title = String.format(IOManager.getMsg("PROPERTY_MANAGEMENT_MENU"), this.description);
+    String[] options = {
+        String.format("%s", (isMortgaged ? "#" : "1"),
+            (isMortgaged ? "-- MORTGAGED --" : "PROPERTY_MANAGEMENT_MORTGAGE")),
+        "PROPERTY_MANAGEMENT_PAY_OFF_MORTGAGE",
+        String.format("%s", (isMortgaged ? "#" : "3"),
+            (isMortgaged ? "-- MORTGAGED --" : "PROPERTY_MANAGEMENT_SELL")),
+        "EXIT"
+    };
 
-    // Get the player's choice
-    int opt = IOManager.readInt("PROMPT_OPTION", 0, 3);
+    // Print the menu
+    int opt = MenuBuilder.menu(title, options);
 
     // If the property is mortgaged
-    if (isMortgaged && opt != 2 && opt != 0) {
-      IOManager.printlnMsg("PROPERTY_IS_MORTGAGED");
-      return -1;
-    }
+    if (isMortgaged)
+      if (opt == 1 || opt == 3) {
+        IOManager.printlnMsg("PROPERTY_IS_MORTGAGED");
+        return -1;
+      }
 
     // Do the chosen operation
     if (opt == 1) {
