@@ -2,6 +2,7 @@ package src.MonopolyGame.MonopolyCodes;
 
 import src.MonopolyGame.Player;
 import src.MonopolyGame.IO.IOManager;
+import src.MonopolyGame.IO.MenuBuilder;
 
 public abstract class Property extends MonopolyCode {
   protected Player owner;
@@ -35,11 +36,10 @@ public abstract class Property extends MonopolyCode {
         int payAmount = calculateAmountToPay();
         // Pay the owner
         if (payAmount > 0) {
-          IOManager.printlnMsg("SUMMARY_PLAYER_PAY_RENT", player.getName(), payAmount, owner.getName(),
-              this.description);
+          MenuBuilder.alert("TRANSACTION_TITLE", String.format("SUMMARY_PLAYER_PAY_RENT", payAmount, owner.getName()));
           player.pay(payAmount, owner);
         } else
-          IOManager.printlnMsg("PROPERTY_IS_MORTGAGED");
+          MenuBuilder.alert("TRANSACTION", "PROPERTY_IS_MORTGAGED");
       }
       // If the owner is the player
       else {
@@ -60,7 +60,7 @@ public abstract class Property extends MonopolyCode {
       }
       // The player doesn't want to buy the property
       else {
-        IOManager.printlnMsg("PLAYER_DONT_BUY_PROPERTY");
+        MenuBuilder.alert("INFO", "PLAYER_DONT_BUY_PROPERTY");
       }
     }
   }

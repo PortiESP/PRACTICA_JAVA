@@ -77,16 +77,22 @@ public class Game implements Serializable {
       IOManager.log("Option: " + option); // DEBUG
 
       // Execute the selected option
-      if (option == 1) { // Operation code
+      // Operation code
+      if (option == 1) {
         String opCode = operationCodeMenu();
         Player player = askCurrentPlayer();
         IOManager.log("Running OpCode: " + opCode + " for player " + player.getName()
             + " -> " + this.monopolyCodes.get(opCode).toString());
-        IOManager.print("\n");
+
+        // Do the operation
         this.monopolyCodes.get(opCode).doOperation(player);
-      } else if (option == 2) { // Game status
+      }
+      // Game status
+      else if (option == 2) {
         gameStatus();
-      } else if (option == 3) { // Save & Exit
+      }
+      // Save & Exit
+      else if (option == 3) {
         saveGame();
         IOManager.log("Saving and returning to the main menu...");
         this.exit = true;
@@ -297,18 +303,9 @@ public class Game implements Serializable {
    * @return The typed operation code (string)
    */
   public String operationCodeMenu() {
-    IOManager.print("\n");
 
-    // Ask a valid code
-    String opCode = null;
-    while (opCode == null) {
-      opCode = IOManager.readString("PROMPT_OP_CODE");
-      // Check if the code is valid
-      if (!monopolyCodes.containsKey(opCode)) {
-        IOManager.printlnMsg("INVALID_CODE");
-        opCode = null;
-      }
-    }
+    // Print the operations menu
+    String opCode = MenuBuilder.readString("PROMPT_OP_CODE");
 
     IOManager.log("Running OpCode: " + opCode);
     return opCode;
@@ -324,12 +321,14 @@ public class Game implements Serializable {
 
     // Ask a valid player
     IOManager.printlnMsg("PLAYER_TURN");
-    // Print all the players
-    for (int i = 0; i < players.size(); i++)
-      IOManager.print(String.format("\t - [%d] %s\n", i + 1, players.get(i).getName()));
 
-    IOManager.print("\n");
-    int opt = IOManager.readInt("PROMPT_PLAYER_LIST", 1, players.size());
+    // Create a list with the names of the players
+    String[] names = new String[players.size()];
+    for (int i = 0; i < players.size(); i++)
+      names[i] = players.get(i).getName();
+
+    // Ask the user to select a player
+    int opt = MenuBuilder.menu("PLAYER_TURN", names);
 
     return this.players.get(opt - 1);
   }

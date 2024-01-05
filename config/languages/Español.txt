@@ -61,3 +61,7 @@ WARN=Advertencia
 MUST_BE_POSITIVE=El valor introducido debe ser positivo
 MUST_BE_NUMBER=El valor introducido debe ser un numero
 MUST_NOT_BE_EMPTY=El valor introducido no puede estar vacio
+TRANSACTION_TITLE=Transaccion
+INFO=Informacion
+ASK_YES_NO=YES=[0] / NO=[1]
+MUST_BE_YES_NO=El valor introducido debe ser 1 (Si) o 0 (No)

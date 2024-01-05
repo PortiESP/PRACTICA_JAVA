@@ -86,6 +86,8 @@ public class GameManager {
 
     IOManager.setLanguage("English");
 
+    MenuBuilder.askYesNo("Test yes no");
+
     // Load the default game
     // this.game.loadGame("winner"); // Bankrupt test game
     // this.game.loadGame("bankrupt"); // Bankrupt test game

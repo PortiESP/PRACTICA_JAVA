@@ -62,3 +62,7 @@ WARN=Warning
 MUST_BE_POSITIVE=The entered value must be positive
 MUST_BE_NUMBER=The entered value must be a number
 MUST_NOT_BE_EMPTY=The input value must not be empty
+TRANSACTION_TITLE=Transaction
+INFO=Information
+ASK_YES_NO=Si=[1] / No=[0]
+MUST_BE_YES_NO=The entered value must be 1 (Yes) or 0 (No)

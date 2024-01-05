@@ -95,6 +95,49 @@ public class MenuBuilder {
     }
   }
 
+  public static boolean askYesNo(String prompt) {
+
+    // Clear the screen
+    if (clean)
+      IOManager.cls();
+
+    // Print frame
+    IOManager.print("\n");
+    IOManager.print("\n");
+    IOManager.print(String.format("╔%s╗\n", "═".repeat(MENU_WIDTH - 2)));
+    IOManager.print(String.format("║ %s ║\n", " ".repeat(MENU_WIDTH - 4)));
+    IOManager.print(String.format("║%s║\n", centerString("~ " + prompt + " ~", MENU_WIDTH - 2)));
+    IOManager.print(String.format("║ %s ║\n", " ".repeat(MENU_WIDTH - 4)));
+    IOManager.print(String.format("╠%s╣\n", "═".repeat(MENU_WIDTH - 2)));
+    IOManager.print(String.format("║ %s ║\n", " ".repeat(MENU_WIDTH - 4)));
+    IOManager.print(String.format("║%s║\n", centerString(IOManager.getMsg("ASK_YES_NO"), MENU_WIDTH - 2)));
+    IOManager.print(String.format("║ %s ║\n", " ".repeat(MENU_WIDTH - 4)));
+    IOManager.print(String.format("║%s║\n", centerString("[   ]", MENU_WIDTH - 2)));
+    IOManager.print(String.format("║ %s ║\n", " ".repeat(MENU_WIDTH - 4)));
+    IOManager.print(String.format("╚%s╝\n", "═".repeat(MENU_WIDTH - 2)));
+
+    // Move up 2 lines
+    IOManager.moveCursorUp(3);
+    // Ask the option
+    String input = IOManager.readString(String.format("║%s", " ".repeat(MENU_WIDTH / 2 - 3) + "[ "));
+    // Try again if the input is empty
+    if (input == null || input.length() == 0) {
+      alert("WARN", "MUST_NOT_BE_EMPTY");
+      return askYesNo(prompt);
+    }
+    // Valid the input
+    else {
+      if (input.equals("1"))
+        return true;
+      else if (input.equals("0"))
+        return false;
+      else {
+        alert("WARN", "MUST_BE_YES_NO");
+        return askYesNo(prompt);
+      }
+    }
+  }
+
   public static int readInt(String prompt) {
 
     // Clear the screen

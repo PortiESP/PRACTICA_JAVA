@@ -8,7 +8,7 @@ public class MonopolyBank {
     GameManager gameManager = new GameManager();
     // Run the game (loop for the back to menu option, the game ends when the user selects the exit option)
     while (true)
-      gameManager.start(); // Normal mode
-    // gameManager.startDebug(); // Debug mode
+      // gameManager.start(); // Normal mode
+      gameManager.startDebug(); // Debug mode
   }
 }
