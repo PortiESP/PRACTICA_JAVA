@@ -1,5 +1,7 @@
 package src.MonopolyGame.IO;
 
+import java.util.Arrays;
+
 /**
  * This class builds the interactive menus of the game.
  */
@@ -7,6 +9,7 @@ public class MenuBuilder {
   private final static int MENU_WIDTH = 80;
   private static boolean clean = true;
   private static String[] formValues;
+  private static boolean configFormUniqueValues = false;
   private static boolean configLastAsZero = false;
 
   public static boolean isConfigLastAsZero() {
@@ -68,6 +71,9 @@ public class MenuBuilder {
         return menu(title, options);
       }
 
+      // Reset the settings
+      resetSettings();
+      // Return the option
       return option;
 
     } catch (NumberFormatException e) {
@@ -101,6 +107,8 @@ public class MenuBuilder {
     }
     // Valid the input
     else {
+      // Reset the settings
+      resetSettings();
       return input;
     }
   }
@@ -138,12 +146,21 @@ public class MenuBuilder {
       alert("WARN", "MUST_NOT_BE_EMPTY");
       return askYesNo(prompt);
     }
-    // Valid the input
+    // Validate the input
     else {
-      if (input.equals("1"))
+      // YES
+      if (input.equals("1")) {
+        // Reset the settings
+        resetSettings();
         return true;
-      else if (input.equals("0"))
+      }
+      // NO
+      else if (input.equals("0")) {
+        // Reset the settings
+        resetSettings();
         return false;
+      }
+      // INVALID
       else {
         alert("WARN", "MUST_BE_YES_NO");
         return askYesNo(prompt);
@@ -175,6 +192,8 @@ public class MenuBuilder {
         alert("WARN", "MUST_BE_POSITIVE");
         return readInt(prompt);
       }
+      // Reset the settings
+      resetSettings();
       // Return the value
       return val;
     }
@@ -204,12 +223,16 @@ public class MenuBuilder {
     IOManager.print(String.format("╚%s╝\n", "═".repeat(MENU_WIDTH - 2)));
     IOManager.print("\n");
     IOManager.pause();
+
   }
 
   public static String[] form(String title, String[] labels) {
     // Clear the screen
     if (clean)
       IOManager.cls();
+
+    // Translate the title if possible
+    title = IOManager.getMsg(title);
 
     // Print the top
     IOManager.print("\n");
@@ -240,23 +263,39 @@ public class MenuBuilder {
       // Ask for the value  
       String name = IOManager.readString(String.format("║     %s: ", labels[i]));
 
+      // --- Validate input ---
+      // If the value is empty, try again
       if (name == null || name.length() == 0) {
         alert("WARN", "MUST_NOT_BE_EMPTY");
         return form(title, labels);
-      } else {
-        MenuBuilder.formValues[i] = name;
       }
+      // If the value is not unique, try again
+      else if (configFormUniqueValues && Arrays.asList(MenuBuilder.formValues).contains(name)) {
+        alert("WARN", "NAME_ALREADY_TAKEN");
+        return form(title, labels);
+      }
+
+      // Input is valid, store the value
+      MenuBuilder.formValues[i] = name;
 
     }
 
     // Copy the values
     String[] values = MenuBuilder.formValues.clone();
-    // Reset the form values
-    MenuBuilder.formValues = null;
+
+    // Reset the values
+    resetSettings();
 
     // Return the values
     return values;
 
+  }
+
+  public static void resetSettings() {
+    MenuBuilder.clean = true;
+    MenuBuilder.formValues = null;
+    MenuBuilder.configLastAsZero = false;
+    MenuBuilder.configFormUniqueValues = false;
   }
 
   public static void setClean(boolean clean) {
@@ -285,5 +324,29 @@ public class MenuBuilder {
 
   public static String rightString(String text, int len, int padding) {
     return String.format("%" + len + "s", text + " ".repeat(padding));
+  }
+
+  public static int getMenuWidth() {
+    return MENU_WIDTH;
+  }
+
+  public static boolean isClean() {
+    return clean;
+  }
+
+  public static String[] getFormValues() {
+    return formValues;
+  }
+
+  public static void setFormValues(String[] formValues) {
+    MenuBuilder.formValues = formValues;
+  }
+
+  public static boolean isConfigFormUniqueValues() {
+    return configFormUniqueValues;
+  }
+
+  public static void setConfigFormUniqueValues(boolean configFormUniqueValues) {
+    MenuBuilder.configFormUniqueValues = configFormUniqueValues;
   }
 }

@@ -113,7 +113,13 @@ public class GameManager {
   public String languageSelectionMenu() {
     // Language selection menu
     String title = IOManager.getMsg("LANGUAGE_SELECTION_TITLE");
-    String[] languages = getSavedGamesFilesList(Const.LANGUAGES_PATH).toArray(String[]::new);
+    // Get the list of languages
+    String[] languages = getSavedGamesFilesList(Const.LANGUAGES_PATH).toArray(new String[0]);
+    // Remove the .txt extension from the file names
+    for (int i = 0; i < languages.length; i++)
+      languages[i] = languages[i].split(".txt")[0];
+
+    // Print the menu and ask the user to select a language
     int opt = MenuBuilder.menu(title, languages);
     // Return the selected language
     return languages[opt - 1];
@@ -133,7 +139,7 @@ public class GameManager {
 
     for (File file : listOfFiles) {
       if (file.isFile())
-        fileNames.add(file.getName().split(".txt")[0]);
+        fileNames.add(file.getName());
     }
 
     return fileNames;
@@ -171,8 +177,8 @@ public class GameManager {
   public String askNewFileName() {
     String filename = MenuBuilder.readString(IOManager.getMsg("PROMPT_GAME_NAME")); // Ask the user for a file name
     while (savedGameExists(filename)) {
-      IOManager.printlnMsg("FILE_EXISTS");
-      filename = IOManager.readString("PROMPT_GAME_NAME"); // Ask the user for a file name
+      MenuBuilder.alert("WARN", "FILE_EXISTS");
+      filename = MenuBuilder.readString(IOManager.getMsg("PROMPT_GAME_NAME")); // Ask the user for a file name
     }
     return filename;
   }
@@ -191,16 +197,12 @@ public class GameManager {
     }
 
     // Print the list of existing games
-    IOManager.print("\n");
-    IOManager.print(String.format("[i] %s:\n", IOManager.getMsg("SAVED_GAMES_LIST")));
-    IOManager.print("\n");
+    String[] savedGames = new String[files.size()];
     for (int i = 0; i < files.size(); i++)
-      IOManager.print(String.format("\t- [%d] %s\n", i + 1, files.get(i).split(".xml")[0]));
-
-    IOManager.print("\n");
+      savedGames[i] = files.get(i).split(".xml")[0];
+    int option = MenuBuilder.menu("SAVED_GAMES_LIST", savedGames);
 
     // Ask the user to select a game
-    int option = IOManager.readInt("PROMPT_OPTION", 1, files.size());
     return files.get(option - 1).split(".xml")[0];
   }
 

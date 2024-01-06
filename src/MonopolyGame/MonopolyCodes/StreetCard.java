@@ -98,14 +98,10 @@ public class StreetCard extends Property {
         calculateAmountToPay());
     MenuBuilder.alert("PROPERTY_SUMMARY_TITLE", summary);
     IOManager.moveCursorDown(4);
-    // Set the menu configuration
+    // Set the menu configuration and print it
     MenuBuilder.setConfigLastAsZero(true);
     MenuBuilder.setClean(false);
-    // Print the menu
     int opt = MenuBuilder.menu(title, options);
-    // Reset the menu configuration
-    MenuBuilder.setClean(true);
-    MenuBuilder.setConfigLastAsZero(false);
 
     // If the property is mortgaged
     if (isMortgaged)

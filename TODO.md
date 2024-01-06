@@ -9,9 +9,6 @@ TO-DO
 - Tests unitarios
 - JavaDocs
 - Clean the code
-- Librería menu de opciones
-- Interfaz interactiva
-- Presione ENTER para continuar
 
 # Aspectos a tener en cuenta antes de entregar el proyecto
 

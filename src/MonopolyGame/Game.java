@@ -284,7 +284,9 @@ public class Game implements Serializable {
     String[] labels = new String[numPlayers];
     for (int i = 0; i < numPlayers; i++)
       labels[i] = String.format(IOManager.getMsg("PROMPT_PLAYER_NAME"), (i + 1));
-    String[] playerNames = MenuBuilder.form("Name of the players", labels);
+    // Set the form configuration
+    MenuBuilder.setConfigFormUniqueValues(true);
+    String[] playerNames = MenuBuilder.form("PROMPT_PLAYERS_NAMES_TITLE", labels);
 
     // Create players
     for (String name : playerNames)

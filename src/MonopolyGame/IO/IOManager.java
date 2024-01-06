@@ -37,7 +37,7 @@ import src.MonopolyGame.Const;
  * </p>
  */
 public class IOManager implements Serializable {
-  private static boolean debug = true; // Enables debug mode to print debug messages (True = on, False = off)
+  private static boolean debug = false; // Enables debug mode to print debug messages (True = on, False = off)
   private static LanguageManager languageManager = new LanguageManager(); // Language manager to get the messages from the language files
   private static Scanner scanner = new Scanner(System.in);
 
