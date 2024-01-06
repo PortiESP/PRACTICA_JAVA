@@ -11,6 +11,7 @@ TO-DO
 - Clean the code
 - COLORS with escape codes
 - Price of the houses on the management menu  
+- Test the liquidation menu
 
 # Aspectos a tener en cuenta antes de entregar el proyecto
 

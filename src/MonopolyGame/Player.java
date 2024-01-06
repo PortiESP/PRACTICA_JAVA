@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import src.MonopolyGame.IO.IOManager;
+import src.MonopolyGame.IO.MenuBuilder;
 import src.MonopolyGame.MonopolyCodes.Property;
 import src.MonopolyGame.MonopolyCodes.ServiceCard;
 import src.MonopolyGame.MonopolyCodes.StationCard;
@@ -24,7 +25,7 @@ public class Player implements Serializable {
   // Attributes
   private String name; // Player name
   private int money; // Player money
-  private boolean broke; // Is the player broke?
+  private boolean broke; // Is the player broke? (couldn't afford payment)
   private ArrayList<Property> properties = new ArrayList<>(); // Player properties
 
   // Constructors (for serialization)
@@ -49,17 +50,17 @@ public class Player implements Serializable {
    * @return A string of the summary.
    */
   public String[] summary() {
-    String[] stations = new String[getStationCount()];
-    String[] services = new String[getServicesCount()];
-    String[] streets = new String[getStreetsCount()];
+    ArrayList<String> stations = new ArrayList<>();
+    ArrayList<String> services = new ArrayList<>();
+    ArrayList<String> streets = new ArrayList<>();
 
     for (Property property : properties) {
       if (property instanceof StationCard)
-        stations[stations.length - 1] = property.summary();
+        stations.add(property.summary());
       else if (property instanceof ServiceCard)
-        services[services.length - 1] = property.summary();
+        services.add(property.summary());
       else if (property instanceof StreetCard)
-        streets[streets.length - 1] = property.summary();
+        streets.add(property.summary());
     }
 
     ArrayList<String> result = new ArrayList<>();
@@ -219,12 +220,15 @@ public class Player implements Serializable {
     // If the player can't afford the payment, ask if he wants to liquidate assets
     else {
       // If the player wants to liquidate assets
-      if (IOManager.askYesNo("PLAYER_LIQUIDATE_ASSETS")) {
+      if (MenuBuilder.askYesNo("ASK_LIQUIDATE_ASSETS")) {
         // Liquidate assets until the player can afford the payment
         this.liquidateAssets(property.getPropertyPrice());
         // Buy the property
         this.properties.add(property);
         property.setOwner(this);
+
+        MenuBuilder.alert("TRANSACTION", String.format("PLAYER_BUY_PROPERTY", this.name, property.getDescription()));
+        return;
       }
     }
 
@@ -235,21 +239,22 @@ public class Player implements Serializable {
    * Liquidate assets until the player can afford the specified amount.
    * 
    * @param amount The amount of money the player needs to afford.
-   * @return True if the player is broke, false otherwise.
+   * @return True if the player could liquidate any assets, false otherwise.
    */
   public boolean liquidateAssets(int amount) {
     // While the player can't afford the payment
     while (this.money < amount) {
-      IOManager.printlnMsg("PLAYER_LIQUIDATE_ASSETS");
       // If the player has no properties, he is broke
       if (this.properties.size() == 0) {
+        MenuBuilder.alert("WARN", "NO_PROPERTIES_TO_LIQUIDATE");
         return false;
       }
 
-      // Otherwise, print the liquidation menu
+      // Otherwise, print the liquidation menu until the player can afford the payment
       liquidateMenu();
     }
 
+    // If the player could afford the payment, return true  
     return true;
   }
 
@@ -262,38 +267,40 @@ public class Player implements Serializable {
    * Print the liquidation menu.
    */
   public void liquidateMenu() {
-    // Print the liquidation menu
-    IOManager.printlnMsg("LIQUIDATE_MENU");
-    IOManager.print("\n");
-    IOManager.print("\t- [1] Sell a property");
-    IOManager.print("\t- [2] Mortgage a property");
-    IOManager.print("\n");
+    String mortgaged = "-- " + IOManager.getMsg("MORTGAGED").toUpperCase() + " --";
 
-    // Get the user's input
-    int opt = IOManager.readInt("PROMPT_OPTION", 1, 2);
+    // Setup the properties list
+    String title = IOManager.getMsg("PLAYER_PROPERTIES_LIST");
+    String[] propertiesNames = new String[this.properties.size()];
+
+    // Print the liquidation menu
+    int opt = MenuBuilder.menu("LIQUIDATE_MENU",
+        new String[] { "PROPERTY_MANAGEMENT_SELL", "PROPERTY_MANAGEMENT_MORTGAGE" });
 
     // Sell a property
     if (opt == 1) {
-      printPropertiesList();
-      int sellOpt = IOManager.readInt("PROMPT_OPTION", 1, this.properties.size()) - 1;
-
+      for (int i = 0; i < this.properties.size(); i++) {
+        Property property = this.properties.get(i);
+        String description = property.getDescription() + " (+" + property.getPropertyPrice() + ")";
+        propertiesNames[i] = property.isMortgaged() ? mortgaged : description;
+      }
+      // Ask the player what property he wants to sell
+      int sellOpt = MenuBuilder.menu(title, propertiesNames) - 1;
+      // Sell the property
       this.sell2Bank(sellOpt);
     }
     // Mortgage a property
     else {
-      printPropertiesList();
-      int mortgageOpt = IOManager.readInt("PROMPT_OPTION", 1, this.properties.size()) - 1;
-
+      for (int i = 0; i < this.properties.size(); i++) {
+        Property property = this.properties.get(i);
+        String description = property.getDescription() + " ($" + property.getMortgageValue() + ")";
+        propertiesNames[i] = property.isMortgaged() ? mortgaged : description;
+      }
+      // Ask the player what property he wants to sell
+      int mortgageOpt = MenuBuilder.menu(title, propertiesNames) - 1;
+      // Mortgage the property
       this.mortgage(mortgageOpt);
     }
-  }
-
-  public void printPropertiesList() {
-    IOManager.printlnMsg("PLAYER_PROPERTIES_LIST");
-    for (int i = 0; i < this.properties.size(); i++) {
-      IOManager.print(String.format("\t-[%d] %s\n", i + 1, this.properties.get(i).toString()));
-    }
-    IOManager.print("\n");
   }
 
   /**
@@ -319,6 +326,12 @@ public class Player implements Serializable {
   public void mortgage(int index) {
     // Get the property to mortgage
     Property property = this.properties.get(index);
+
+    // If the property is mortgaged, return
+    if (property.isMortgaged()) {
+      MenuBuilder.alert("WARN", "PROPERTY_ALREADY_MORTGAGED");
+      return;
+    }
 
     // Mortgage the property
     property.setMortgaged(true);

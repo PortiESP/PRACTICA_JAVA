@@ -58,7 +58,7 @@
       <void property="owner">
        <object class="src.MonopolyGame.Player" id="Player0">
         <void property="money">
-         <int>922</int>
+         <int>1322</int>
         </void>
         <void property="name">
          <string>Alberto</string>
@@ -90,70 +90,6 @@
            </void>
            <void property="propertyPrice">
             <int>150</int>
-           </void>
-          </object>
-         </void>
-         <void method="add">
-          <object class="src.MonopolyGame.MonopolyCodes.StationCard" id="StationCard0">
-           <void property="description">
-            <string>ESTACIÓN DEL MEDIO DIA</string>
-           </void>
-           <void property="fare">
-            <array class="int" length="4">
-             <void index="0">
-              <int>25</int>
-             </void>
-             <void index="1">
-              <int>50</int>
-             </void>
-             <void index="2">
-              <int>100</int>
-             </void>
-             <void index="3">
-              <int>200</int>
-             </void>
-            </array>
-           </void>
-           <void property="mortgageValue">
-            <int>100</int>
-           </void>
-           <void property="owner">
-            <object idref="Player0"/>
-           </void>
-           <void property="propertyPrice">
-            <int>200</int>
-           </void>
-          </object>
-         </void>
-         <void method="add">
-          <object class="src.MonopolyGame.MonopolyCodes.StationCard" id="StationCard1">
-           <void property="description">
-            <string>ESTACIÓN DE GOYA</string>
-           </void>
-           <void property="fare">
-            <array class="int" length="4">
-             <void index="0">
-              <int>25</int>
-             </void>
-             <void index="1">
-              <int>50</int>
-             </void>
-             <void index="2">
-              <int>75</int>
-             </void>
-             <void index="3">
-              <int>100</int>
-             </void>
-            </array>
-           </void>
-           <void property="mortgageValue">
-            <int>100</int>
-           </void>
-           <void property="owner">
-            <object idref="Player0"/>
-           </void>
-           <void property="propertyPrice">
-            <int>200</int>
            </void>
           </object>
          </void>
@@ -223,7 +159,33 @@
     </void>
     <void method="put">
      <string>05</string>
-     <object idref="StationCard1"/>
+     <object class="src.MonopolyGame.MonopolyCodes.StationCard">
+      <void property="description">
+       <string>ESTACIÓN DE GOYA</string>
+      </void>
+      <void property="fare">
+       <array class="int" length="4">
+        <void index="0">
+         <int>25</int>
+        </void>
+        <void index="1">
+         <int>50</int>
+        </void>
+        <void index="2">
+         <int>75</int>
+        </void>
+        <void index="3">
+         <int>100</int>
+        </void>
+       </array>
+      </void>
+      <void property="mortgageValue">
+       <int>100</int>
+      </void>
+      <void property="propertyPrice">
+       <int>200</int>
+      </void>
+     </object>
     </void>
     <void method="put">
      <string>06</string>
@@ -784,7 +746,7 @@
     </void>
     <void method="put">
      <string>21</string>
-     <object class="src.MonopolyGame.MonopolyCodes.StreetCard" id="StreetCard1">
+     <object class="src.MonopolyGame.MonopolyCodes.StreetCard">
       <void property="WHotelRent">
        <int>1050</int>
       </void>
@@ -816,65 +778,6 @@
       <void property="mortgageValue">
        <int>110</int>
       </void>
-      <void property="owner">
-       <object class="src.MonopolyGame.Player" id="Player1">
-        <void property="money">
-         <int>760</int>
-        </void>
-        <void property="name">
-         <string>Diego</string>
-        </void>
-        <void property="properties">
-         <void method="add">
-          <object class="src.MonopolyGame.MonopolyCodes.StreetCard" id="StreetCard2">
-           <void property="WHotelRent">
-            <int>1400</int>
-           </void>
-           <void property="WHousesRent">
-            <array class="int" length="4">
-             <void index="0">
-              <int>150</int>
-             </void>
-             <void index="1">
-              <int>450</int>
-             </void>
-             <void index="2">
-              <int>1000</int>
-             </void>
-             <void index="3">
-              <int>1200</int>
-             </void>
-            </array>
-           </void>
-           <void property="description">
-            <string>GRAN VÍA</string>
-           </void>
-           <void property="hotelPrice">
-            <int>200</int>
-           </void>
-           <void property="housePrice">
-            <int>200</int>
-           </void>
-           <void property="mortgageValue">
-            <int>160</int>
-           </void>
-           <void property="owner">
-            <object idref="Player1"/>
-           </void>
-           <void property="propertyPrice">
-            <int>320</int>
-           </void>
-           <void property="rent">
-            <int>28</int>
-           </void>
-          </object>
-         </void>
-         <void method="add">
-          <object idref="StreetCard1"/>
-         </void>
-        </void>
-       </object>
-      </void>
       <void property="propertyPrice">
        <int>220</int>
       </void>
@@ -901,7 +804,7 @@
     </void>
     <void method="put">
      <string>23</string>
-     <object class="src.MonopolyGame.MonopolyCodes.StreetCard" id="StreetCard3">
+     <object class="src.MonopolyGame.MonopolyCodes.StreetCard">
       <void property="WHotelRent">
        <int>1050</int>
       </void>
@@ -933,21 +836,6 @@
       <void property="mortgageValue">
        <int>110</int>
       </void>
-      <void property="owner">
-       <object class="src.MonopolyGame.Player" id="Player2">
-        <void property="money">
-         <int>1280</int>
-        </void>
-        <void property="name">
-         <string>Carlos</string>
-        </void>
-        <void property="properties">
-         <void method="add">
-          <object idref="StreetCard3"/>
-         </void>
-        </void>
-       </object>
-      </void>
       <void property="propertyPrice">
        <int>220</int>
       </void>
@@ -969,7 +857,7 @@
     </void>
     <void method="put">
      <string>24</string>
-     <object class="src.MonopolyGame.MonopolyCodes.StreetCard" id="StreetCard4">
+     <object class="src.MonopolyGame.MonopolyCodes.StreetCard">
       <void property="WHotelRent">
        <int>1100</int>
       </void>
@@ -1001,21 +889,6 @@
       <void property="mortgageValue">
        <int>120</int>
       </void>
-      <void property="owner">
-       <object class="src.MonopolyGame.Player" id="Player3">
-        <void property="money">
-         <int>1258</int>
-        </void>
-        <void property="name">
-         <string>Barbara</string>
-        </void>
-        <void property="properties">
-         <void method="add">
-          <object idref="StreetCard4"/>
-         </void>
-        </void>
-       </object>
-      </void>
       <void property="propertyPrice">
        <int>240</int>
       </void>
@@ -1037,7 +910,33 @@
     </void>
     <void method="put">
      <string>25</string>
-     <object idref="StationCard0"/>
+     <object class="src.MonopolyGame.MonopolyCodes.StationCard">
+      <void property="description">
+       <string>ESTACIÓN DEL MEDIO DIA</string>
+      </void>
+      <void property="fare">
+       <array class="int" length="4">
+        <void index="0">
+         <int>25</int>
+        </void>
+        <void index="1">
+         <int>50</int>
+        </void>
+        <void index="2">
+         <int>100</int>
+        </void>
+        <void index="3">
+         <int>200</int>
+        </void>
+       </array>
+      </void>
+      <void property="mortgageValue">
+       <int>100</int>
+      </void>
+      <void property="propertyPrice">
+       <int>200</int>
+      </void>
+     </object>
     </void>
     <void method="put">
      <string>69</string>
@@ -1374,7 +1273,60 @@
     </void>
     <void method="put">
      <string>34</string>
-     <object idref="StreetCard2"/>
+     <object class="src.MonopolyGame.MonopolyCodes.StreetCard" id="StreetCard1">
+      <void property="WHotelRent">
+       <int>1400</int>
+      </void>
+      <void property="WHousesRent">
+       <array class="int" length="4">
+        <void index="0">
+         <int>150</int>
+        </void>
+        <void index="1">
+         <int>450</int>
+        </void>
+        <void index="2">
+         <int>1000</int>
+        </void>
+        <void index="3">
+         <int>1200</int>
+        </void>
+       </array>
+      </void>
+      <void property="description">
+       <string>GRAN VÍA</string>
+      </void>
+      <void property="hotelPrice">
+       <int>200</int>
+      </void>
+      <void property="housePrice">
+       <int>200</int>
+      </void>
+      <void property="mortgageValue">
+       <int>160</int>
+      </void>
+      <void property="owner">
+       <object class="src.MonopolyGame.Player" id="Player1">
+        <void property="money">
+         <int>980</int>
+        </void>
+        <void property="name">
+         <string>Diego</string>
+        </void>
+        <void property="properties">
+         <void method="add">
+          <object idref="StreetCard1"/>
+         </void>
+        </void>
+       </object>
+      </void>
+      <void property="propertyPrice">
+       <int>320</int>
+      </void>
+      <void property="rent">
+       <int>28</int>
+      </void>
+     </object>
     </void>
     <void method="put">
      <string>78</string>
@@ -1536,10 +1488,24 @@
      <object idref="Player0"/>
     </void>
     <void method="add">
-     <object idref="Player3"/>
+     <object class="src.MonopolyGame.Player">
+      <void property="money">
+       <int>1</int>
+      </void>
+      <void property="name">
+       <string>Barbara</string>
+      </void>
+     </object>
     </void>
     <void method="add">
-     <object idref="Player2"/>
+     <object class="src.MonopolyGame.Player">
+      <void property="money">
+       <int>1</int>
+      </void>
+      <void property="name">
+       <string>Carlos</string>
+      </void>
+     </object>
     </void>
     <void method="add">
      <object idref="Player1"/>

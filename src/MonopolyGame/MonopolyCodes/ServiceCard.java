@@ -37,8 +37,8 @@ public class ServiceCard extends Property {
     if (isMortgaged) {
       return String.format("[%s]: %s", IOManager.getMsg("MORTGAGED"));
     } else {
-      return String.format("[%s]: %s=(%s * [%d|%d]) ~ %s=%s", this.description,
-          IOManager.getMsg("INCOME"), IOManager.getMsg("DICE"), priceFactor[0], priceFactor[1],
+      return String.format("[%s]: %s=(%s * %d) ~ %s=%s", this.description,
+          IOManager.getMsg("INCOME"), IOManager.getMsg("DICE"), priceFactor[owner.getServicesCount() - 1],
           IOManager.getMsg("MORTGAGED"), isMortgaged() ? IOManager.getMsg("YES") : IOManager.getMsg("NO"));
     }
   }
