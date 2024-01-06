@@ -200,20 +200,15 @@ public class Game implements Serializable {
    * Prints the game status (filename, players, etc.).
    */
   public void gameStatus() {
-    IOManager.print("\n");
-    // Title
-    IOManager.print(String.format("[i] %s\n", IOManager.getMsg("GAME_STATUS")));
-    IOManager.print("\n");
-    // Filename
-    IOManager.print(String.format("\t- %s: %s\n", IOManager.getMsg("GAME_STATUS_FILENAME"), gameFilename));
-    IOManager.print("\n");
-    // Players
-    IOManager.print(String.format("\t- %s:\n", IOManager.getMsg("GAME_STATUS_PLAYERS")));
-    for (int i = 0; i < players.size(); i++)
-      IOManager.print(String.format("\t\t- %s\n", players.get(i).toString()));
+
+    IOManager.cls();
+    for (Player player : players) {
+      MenuBuilder.setClean(false);
+      MenuBuilder.doc(String.format(IOManager.getMsg("GAME_STATUS_PLAYER") + ": ", player.getName()), player.summary());
+    }
 
     IOManager.print("\n");
-    IOManager.print("\n");
+    IOManager.pause();
 
   }
 

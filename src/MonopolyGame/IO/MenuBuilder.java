@@ -226,6 +226,25 @@ public class MenuBuilder {
 
   }
 
+  public static void doc(String title, String[] lines) {
+    // Clear the screen
+    if (clean)
+      IOManager.cls();
+
+    // Translate the title if possible
+    title = IOManager.getMsg(title);
+
+    IOManager.print(String.format("╔%s╗\n", "═".repeat(MENU_WIDTH - 2)));
+    IOManager.print(String.format("║%s║\n", leftString(title, MENU_WIDTH - 2, 4)));
+    IOManager.print(String.format("╠%s╣\n", "═".repeat(MENU_WIDTH - 2)));
+    IOManager.print(String.format("║%s║\n", " ".repeat(MENU_WIDTH - 2)));
+    for (String line : lines)
+      IOManager.print(String.format("║%s║\n", leftString(line, MENU_WIDTH - 2, 4)));
+    IOManager.print(String.format("║%s║\n", " ".repeat(MENU_WIDTH - 2)));
+    IOManager.print(String.format("╚%s╝\n", "═".repeat(MENU_WIDTH - 2)));
+
+  }
+
   public static String[] form(String title, String[] labels) {
     // Clear the screen
     if (clean)

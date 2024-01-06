@@ -40,7 +40,7 @@ public class Player implements Serializable {
 
   // Methods
   public String toString() {
-    return String.format("%s [$%d] - %s", this.name, this.money, this.properties.toString());
+    return String.format("%s: [$%d] - %s", this.name, this.money, this.properties.toString());
   }
 
   /**
@@ -48,9 +48,36 @@ public class Player implements Serializable {
    * 
    * @return A string of the summary.
    */
-  public String summary() {
-    return String.format("%s [$%d]", this.name, this.money);
-  }
+  public String[] summary() {
+    String[] streets = new String[getStreetsCount()];
+    String[] stations = new String[getStationCount()];
+    String[] services = new String[getServicesCount()];
+
+    for (Property property : properties) {
+      if (property instanceof StationCard)
+        streets[streets.length] = property.summary();
+      else if (property instanceof ServiceCard)
+        stations[stations.length] = property.summary();
+      else if (property instanceof StreetCard)
+        services[services.length] = property.summary();
+    }
+
+    ArrayList<String> result = new ArrayList<>();
+    result.add(String.format("%s: %s", IOManager.getMsg("NAME"), name));
+    result.add(String.format("%s: $%d", IOManager.getMsg("MONEY"), money));
+    result.add(String.format("%s: (%s)", IOManager.getMsg("PROPERTIES"), properties.size()));
+    result.add(String.format("    - %s (%d)", IOManager.getMsg("STATIONS"), getStationCount()));
+    for (String station : stations)
+      result.add(String.format("        - %s", station));
+    result.add(String.format("    - %s (%d)", IOManager.getMsg("SERVICES"), getServicesCount()));
+    for (String service : services)
+      result.add(String.format("        - %s", service));
+    result.add(String.format("    - %s (%d)", IOManager.getMsg("STREETS"), getStreetsCount()));
+    for (String street : streets)
+      result.add(String.format("        - %s", street));
+
+    return result.toArray(String[]::new);
+  };
 
   /**
    * Get the number of stations the player owns.
@@ -75,6 +102,20 @@ public class Player implements Serializable {
     int count = 0;
     for (Property property : properties) {
       if (property instanceof ServiceCard)
+        count++;
+    }
+    return count;
+  }
+
+  /**
+   * Get the number of streets the player owns.
+   * 
+   * @return The number of streets the player owns.
+   */
+  public int getStreetsCount() {
+    int count = 0;
+    for (Property property : properties) {
+      if (property instanceof StreetCard)
         count++;
     }
     return count;

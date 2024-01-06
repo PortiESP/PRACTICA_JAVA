@@ -9,6 +9,7 @@ TO-DO
 - Tests unitarios
 - JavaDocs
 - Clean the code
+- COLORS with escape codes
 
 # Aspectos a tener en cuenta antes de entregar el proyecto
 

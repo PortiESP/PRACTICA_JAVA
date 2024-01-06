@@ -113,6 +113,16 @@ public abstract class Property extends MonopolyCode {
     return -1; // Should never happen
   }
 
+  public String summary() {
+    if (isMortgaged) {
+      return String.format("[%s]: %s", IOManager.getMsg("MORTGAGED"));
+    } else {
+      return String.format("[%s]: %s=(%d), %s=%s", this.description,
+          IOManager.getMsg("INCOME"), calculateAmountToPay(),
+          IOManager.getMsg("IS_MORTGAGED"), isMortgaged() ? IOManager.getMsg("YES") : IOManager.getMsg("NO"));
+    }
+  }
+
   /**
    * Calculate the amount to pay for the rent/fare of this property.
    * 
