@@ -9,8 +9,10 @@ public class StationCard extends Property {
   }
 
   // Constructor
-  public StationCard(String description, String fare1, String fare2, String fare3, String fare4) {
+  public StationCard(String description, String fare1, String fare2, String fare3, String fare4, String mortgageValue) {
     this.description = description;
+    this.mortgageValue = Integer.parseInt(mortgageValue);
+    this.propertyPrice = Integer.parseInt(mortgageValue) * 2;
     this.fare = new int[] { Integer.parseInt(fare1), Integer.parseInt(fare2), Integer.parseInt(fare3),
         Integer.parseInt(fare4) };
   }

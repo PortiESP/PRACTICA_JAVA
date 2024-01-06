@@ -49,17 +49,17 @@ public class Player implements Serializable {
    * @return A string of the summary.
    */
   public String[] summary() {
-    String[] streets = new String[getStreetsCount()];
     String[] stations = new String[getStationCount()];
     String[] services = new String[getServicesCount()];
+    String[] streets = new String[getStreetsCount()];
 
     for (Property property : properties) {
       if (property instanceof StationCard)
-        streets[streets.length] = property.summary();
+        stations[stations.length - 1] = property.summary();
       else if (property instanceof ServiceCard)
-        stations[stations.length] = property.summary();
+        services[services.length - 1] = property.summary();
       else if (property instanceof StreetCard)
-        services[services.length] = property.summary();
+        streets[streets.length - 1] = property.summary();
     }
 
     ArrayList<String> result = new ArrayList<>();

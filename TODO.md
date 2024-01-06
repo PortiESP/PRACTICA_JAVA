@@ -10,6 +10,7 @@ TO-DO
 - JavaDocs
 - Clean the code
 - COLORS with escape codes
+- Price of the houses on the management menu  
 
 # Aspectos a tener en cuenta antes de entregar el proyecto
 

@@ -53,7 +53,7 @@ PROPERTY_ASK_BUY=Do you want to buy the property [%s] for %d?
 PROMPT_AMOUNT=Enter the amount
 PROPERTY_SUMMARY=Houses=%d ~ Hotel=%s ~ Mortgaged=%s ~ Income=%d
 PROPERTY_CANT_BUY_HOTEL=The property must have 4 houses before buying a hotel
-SUMMARY_PLAYER_PAY_RENT=The player [%s] will pay (%d) to the player [%s] for using the property [%s]
+SUMMARY_PLAYER_PAY_RENT=%s will pay (%d) to %s to rent [%s]
 PROMPT_OP_CODE =Enter the operation code
 PLAYER_WINNER=The player [%s] has won the game
 PRESS_ENTER=Press enter to continue...
@@ -62,9 +62,9 @@ WARN=Warning
 MUST_BE_POSITIVE=The entered value must be positive
 MUST_BE_NUMBER=The entered value must be a number
 MUST_NOT_BE_EMPTY=The input value must not be empty
-TRANSACTION_TITLE=Transaction
+TRANSACTION=Transaction
 INFO=Information
-ASK_YES_NO=Si=[1] / No=[0]
+ASK_YES_NO=Yes=[1] / No=[0]
 MUST_BE_YES_NO=The entered value must be 1 (Yes) or 0 (No)
 PROPERTY_SUMMARY_TITLE=Property summary
 PROPERTY_MANAGEMENT_BUY_HOUSES=Buy houses
@@ -74,6 +74,10 @@ PROPERTY_MANAGEMENT_SELL_HOTEL=Sell hotel
 PROPERTY_MANAGEMENT_MORTGAGE=Mortgage property
 PROPERTY_MANAGEMENT_PAY_OFF_MORTGAGE=Pay off mortgage
 PROPERTY_MANAGEMENT_SELL=Sell property
+PROPERTY_MANAGEMENT_IS_MORTGAGED=You can't access this option because the property is mortgaged
 PROMPT_PLAYERS_NAMES_TITLE=Players names
 INCOME=Income
 MORTGAGED=Mortgaged
+HOUSES=Houses
+HOTEL=Hotel
+DICE=Dice

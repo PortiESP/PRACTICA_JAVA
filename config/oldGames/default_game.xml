@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <java version="20.0.2" class="java.beans.XMLDecoder">
  <object class="src.MonopolyGame.Game">
-  <void property="autosave">
-   <boolean>false</boolean>
-  </void>
   <void property="gameFilename">
    <string>default_game</string>
   </void>
@@ -22,7 +19,7 @@
     </void>
     <void method="put">
      <string>01</string>
-     <object class="src.MonopolyGame.MonopolyCodes.StreetCard" id="StreetCard0">
+     <object class="src.MonopolyGame.MonopolyCodes.StreetCard">
       <void property="WHotelRent">
        <int>250</int>
       </void>
@@ -53,41 +50,6 @@
       </void>
       <void property="mortgageValue">
        <int>30</int>
-      </void>
-      <void property="owner">
-       <object class="src.MonopolyGame.Player" id="Player0">
-        <void property="money">
-         <int>1448</int>
-        </void>
-        <void property="name">
-         <string>Player 1</string>
-        </void>
-        <void property="properties">
-         <void method="add">
-          <object idref="StreetCard0"/>
-         </void>
-         <void method="add">
-          <object class="src.MonopolyGame.MonopolyCodes.ServiceCard" id="ServiceCard0">
-           <void property="description">
-            <string>COMPAÑÍA DE ELECTRICIDAD</string>
-           </void>
-           <void property="owner">
-            <object idref="Player0"/>
-           </void>
-           <void property="priceFactor">
-            <array class="int" length="2">
-             <void index="0">
-              <int>4</int>
-             </void>
-             <void index="1">
-              <int>10</int>
-             </void>
-            </array>
-           </void>
-          </object>
-         </void>
-        </void>
-       </object>
       </void>
       <void property="propertyPrice">
        <int>60</int>
@@ -171,6 +133,12 @@
          <int>100</int>
         </void>
        </array>
+      </void>
+      <void property="mortgageValue">
+       <int>100</int>
+      </void>
+      <void property="propertyPrice">
+       <int>200</int>
       </void>
      </object>
     </void>
@@ -441,7 +409,27 @@
     </void>
     <void method="put">
      <string>12</string>
-     <object idref="ServiceCard0"/>
+     <object class="src.MonopolyGame.MonopolyCodes.ServiceCard">
+      <void property="description">
+       <string>COMPAÑÍA DE ELECTRICIDAD</string>
+      </void>
+      <void property="mortgageValue">
+       <int>75</int>
+      </void>
+      <void property="priceFactor">
+       <array class="int" length="2">
+        <void index="0">
+         <int>4</int>
+        </void>
+        <void index="1">
+         <int>10</int>
+        </void>
+       </array>
+      </void>
+      <void property="propertyPrice">
+       <int>150</int>
+      </void>
+     </object>
     </void>
     <void method="put">
      <string>56</string>
@@ -539,6 +527,12 @@
          <int>100</int>
         </void>
        </array>
+      </void>
+      <void property="mortgageValue">
+       <int>100</int>
+      </void>
+      <void property="propertyPrice">
+       <int>200</int>
       </void>
      </object>
     </void>
@@ -911,6 +905,12 @@
         </void>
        </array>
       </void>
+      <void property="mortgageValue">
+       <int>100</int>
+      </void>
+      <void property="propertyPrice">
+       <int>200</int>
+      </void>
      </object>
     </void>
     <void method="put">
@@ -1014,6 +1014,9 @@
       <void property="description">
        <string>COMPAÑÍA DE AGUAS</string>
       </void>
+      <void property="mortgageValue">
+       <int>75</int>
+      </void>
       <void property="priceFactor">
        <array class="int" length="2">
         <void index="0">
@@ -1023,6 +1026,9 @@
          <int>10</int>
         </void>
        </array>
+      </void>
+      <void property="propertyPrice">
+       <int>150</int>
       </void>
      </object>
     </void>
@@ -1312,6 +1318,12 @@
         </void>
        </array>
       </void>
+      <void property="mortgageValue">
+       <int>100</int>
+      </void>
+      <void property="propertyPrice">
+       <int>200</int>
+      </void>
      </object>
     </void>
     <void method="put">
@@ -1433,15 +1445,12 @@
   <void property="players">
    <object class="java.util.ArrayList">
     <void method="add">
-     <object idref="Player0"/>
-    </void>
-    <void method="add">
      <object class="src.MonopolyGame.Player">
       <void property="money">
-       <int>1492</int>
+       <int>1500</int>
       </void>
       <void property="name">
-       <string>Player 2</string>
+       <string>Alberto</string>
       </void>
      </object>
     </void>
@@ -1451,7 +1460,7 @@
        <int>1500</int>
       </void>
       <void property="name">
-       <string>Player 3</string>
+       <string>Barbara</string>
       </void>
      </object>
     </void>
@@ -1461,7 +1470,17 @@
        <int>1500</int>
       </void>
       <void property="name">
-       <string>Player 4</string>
+       <string>Carlos</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="src.MonopolyGame.Player">
+      <void property="money">
+       <int>1500</int>
+      </void>
+      <void property="name">
+       <string>Diego</string>
       </void>
      </object>
     </void>

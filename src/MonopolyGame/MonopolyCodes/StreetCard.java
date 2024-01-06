@@ -68,8 +68,7 @@ public class StreetCard extends Property {
    * @return The option the player chose
    */
   public int propertyManagementMenu() {
-    String y = IOManager.getMsg("YES");
-    String n = IOManager.getMsg("NO");
+    String mortgaged = IOManager.getMsg("MORTGAGED").toUpperCase();
     // Ask the player what he wants to do with the property
     String title = String.format(IOManager.getMsg("PROPERTY_MANAGEMENT_MENU"), this.description);
     String[] options = {
@@ -84,19 +83,19 @@ public class StreetCard extends Property {
     };
 
     if (isMortgaged) {
-      options[0] = String.format("%s", "-- MORTGAGED --");
-      options[1] = String.format("%s", "-- MORTGAGED --");
-      options[2] = String.format("%s", "-- MORTGAGED --");
-      options[3] = String.format("%s", "-- MORTGAGED --");
-      options[4] = String.format("%s", "-- MORTGAGED --");
-      options[6] = String.format("%s", "-- MORTGAGED --");
+      options[0] = String.format("%s", "-- " + mortgaged + " --");
+      options[1] = String.format("%s", "-- " + mortgaged + " --");
+      options[2] = String.format("%s", "-- " + mortgaged + " --");
+      options[3] = String.format("%s", "-- " + mortgaged + " --");
+      options[4] = String.format("%s", "-- " + mortgaged + " --");
+      options[6] = String.format("%s", "-- " + mortgaged + " --");
     }
 
     // Print the property's information
-    String summary = String.format(IOManager.getMsg("PROPERTY_SUMMARY"), houseCount, (hotel ? y : n),
-        (isMortgaged ? y : n),
-        calculateAmountToPay());
-    MenuBuilder.alert("PROPERTY_SUMMARY_TITLE", summary);
+    String[] summary = {
+        summary()
+    };
+    MenuBuilder.doc("PROPERTY_SUMMARY_TITLE", summary);
     IOManager.moveCursorDown(4);
     // Set the menu configuration and print it
     MenuBuilder.setConfigLastAsZero(true);
@@ -105,8 +104,8 @@ public class StreetCard extends Property {
 
     // If the property is mortgaged
     if (isMortgaged)
-      if (opt == 1 || opt == 2 || opt == 3 || opt == 4 || opt == 5 || opt == 6) {
-        MenuBuilder.alert("WARN", "PROPERTY_IS_MORTGAGED");
+      if (opt == 1 || opt == 2 || opt == 3 || opt == 4 || opt == 5 || opt == 7) {
+        MenuBuilder.alert("WARN", "PROPERTY_MANAGEMENT_IS_MORTGAGED");
         return -1;
       }
 
@@ -137,6 +136,24 @@ public class StreetCard extends Property {
     }
 
     return -1; // Should never happen
+  }
+
+  @Override
+  /**
+   * Prints the property's information
+   * 
+   * @return The property's information
+   */
+  public String summary() {
+    if (isMortgaged) {
+      return String.format("[%s]: %s", this.description, IOManager.getMsg("MORTGAGED"));
+    } else {
+      return String.format("[%s]: %s=(%d) ~ %s=%s ~ %s=%d ~ %s=%s", this.description,
+          IOManager.getMsg("INCOME"), calculateAmountToPay(),
+          IOManager.getMsg("MORTGAGED"), isMortgaged() ? IOManager.getMsg("YES") : IOManager.getMsg("NO"),
+          IOManager.getMsg("HOUSES"), houseCount,
+          IOManager.getMsg("HOTEL"), hotel ? IOManager.getMsg("YES") : IOManager.getMsg("NO"));
+    }
   }
 
   /**

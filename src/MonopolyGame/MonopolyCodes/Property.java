@@ -36,7 +36,9 @@ public abstract class Property extends MonopolyCode {
         int payAmount = calculateAmountToPay();
         // Pay the owner
         if (payAmount > 0) {
-          MenuBuilder.alert("TRANSACTION_TITLE", String.format("SUMMARY_PLAYER_PAY_RENT", payAmount, owner.getName()));
+          String message = String.format(IOManager.getMsg("SUMMARY_PLAYER_PAY_RENT"),
+              player.getName(), payAmount, owner.getName(), this.description);
+          MenuBuilder.alert("TRANSACTION", message);
           player.pay(payAmount, owner);
         } else
           MenuBuilder.alert("TRANSACTION", "PROPERTY_IS_MORTGAGED");
@@ -75,14 +77,15 @@ public abstract class Property extends MonopolyCode {
    * @return The option chosen by the player
    */
   public int propertyManagementMenu() {
+    String mortgaged = IOManager.getMsg("MORTGAGED").toUpperCase();
     // Ask the player what he wants to do with the property
     String title = String.format(IOManager.getMsg("PROPERTY_MANAGEMENT_MENU"), this.description);
     String[] options = {
         String.format("%s", (isMortgaged ? "#" : "1"),
-            (isMortgaged ? "-- MORTGAGED --" : "PROPERTY_MANAGEMENT_MORTGAGE")),
+            (isMortgaged ? "-- " + mortgaged + " --" : "PROPERTY_MANAGEMENT_MORTGAGE")),
         "PROPERTY_MANAGEMENT_PAY_OFF_MORTGAGE",
         String.format("%s", (isMortgaged ? "#" : "3"),
-            (isMortgaged ? "-- MORTGAGED --" : "PROPERTY_MANAGEMENT_SELL")),
+            (isMortgaged ? "-- " + mortgaged + " --" : "PROPERTY_MANAGEMENT_SELL")),
         "EXIT"
     };
 
@@ -92,7 +95,7 @@ public abstract class Property extends MonopolyCode {
     // If the property is mortgaged
     if (isMortgaged)
       if (opt == 1 || opt == 3) {
-        IOManager.printlnMsg("PROPERTY_IS_MORTGAGED");
+        IOManager.printlnMsg("PROPERTY_MANAGEMENT_IS_MORTGAGED");
         return -1;
       }
 
@@ -117,9 +120,9 @@ public abstract class Property extends MonopolyCode {
     if (isMortgaged) {
       return String.format("[%s]: %s", IOManager.getMsg("MORTGAGED"));
     } else {
-      return String.format("[%s]: %s=(%d), %s=%s", this.description,
+      return String.format("[%s]: %s=(%d) ~ %s=%s", this.description,
           IOManager.getMsg("INCOME"), calculateAmountToPay(),
-          IOManager.getMsg("IS_MORTGAGED"), isMortgaged() ? IOManager.getMsg("YES") : IOManager.getMsg("NO"));
+          IOManager.getMsg("MORTGAGED"), isMortgaged() ? IOManager.getMsg("YES") : IOManager.getMsg("NO"));
     }
   }
 

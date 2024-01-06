@@ -81,6 +81,7 @@ public class Game implements Serializable {
       if (option == 1) {
         String opCode = operationCodeMenu();
         Player player = askCurrentPlayer();
+
         IOManager.log("Running OpCode: " + opCode + " for player " + player.getName()
             + " -> " + this.monopolyCodes.get(opCode).toString());
 
@@ -239,9 +240,10 @@ public class Game implements Serializable {
           monopolyCodes.put(cardCode, new StreetCard(fields[2], fields[3], fields[4], fields[5], fields[6], fields[7],
               fields[8], fields[9], fields[10], fields[11]));
         else if ("SERVICE".equals(cardType))
-          monopolyCodes.put(cardCode, new ServiceCard(fields[2], fields[3], fields[4]));
+          monopolyCodes.put(cardCode, new ServiceCard(fields[2], fields[3], fields[4], fields[5]));
         else if ("TRANSPORT".equals(cardType))
-          monopolyCodes.put(cardCode, new StationCard(fields[2], fields[3], fields[4], fields[5], fields[6]));
+          monopolyCodes.put(cardCode,
+              new StationCard(fields[2], fields[3], fields[4], fields[5], fields[6], fields[7]));
         else if ("REPAIRS_CARD".equals(cardType))
           monopolyCodes.put(cardCode, new RepairsCard(fields[2]));
         else {
@@ -303,6 +305,11 @@ public class Game implements Serializable {
 
     // Print the operations menu
     String opCode = MenuBuilder.readString("PROMPT_OP_CODE");
+
+    if (!monopolyCodes.containsKey(opCode)) {
+      MenuBuilder.alert("WARN", "INVALID_CODE");
+      return operationCodeMenu();
+    }
 
     IOManager.log("Running OpCode: " + opCode);
     return opCode;

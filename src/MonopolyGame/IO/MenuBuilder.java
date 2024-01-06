@@ -6,7 +6,7 @@ import java.util.Arrays;
  * This class builds the interactive menus of the game.
  */
 public class MenuBuilder {
-  private final static int MENU_WIDTH = 80;
+  private final static int MENU_WIDTH = 100;
   private static boolean clean = true;
   private static String[] formValues;
   private static boolean configFormUniqueValues = false;
@@ -88,6 +88,9 @@ public class MenuBuilder {
     // Clear the screen
     if (clean)
       IOManager.cls();
+
+    // Translate the prompt if possible
+    prompt = IOManager.getMsg(prompt);
 
     // Print frame
     IOManager.print("\n");
@@ -243,6 +246,8 @@ public class MenuBuilder {
     IOManager.print(String.format("║%s║\n", " ".repeat(MENU_WIDTH - 2)));
     IOManager.print(String.format("╚%s╝\n", "═".repeat(MENU_WIDTH - 2)));
 
+    // Reset the settings
+    resetSettings();
   }
 
   public static String[] form(String title, String[] labels) {

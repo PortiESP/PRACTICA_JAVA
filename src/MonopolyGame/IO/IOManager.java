@@ -99,6 +99,11 @@ public class IOManager implements Serializable {
     * Clear the screen
     */
   public static void cls() {
+    // Print a few new lines to clear the screen
+    for (int i = 0; i < 100; i++)
+      print("\n");
+
+    // Clear the screen (moves the cursor to the top left corner)
     try {
       if (System.getProperty("os.name").contains("Windows")) {
         new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
