@@ -83,3 +83,5 @@ HOUSES=Houses
 HOTEL=Hotel
 DICE=Dice
 NO_PROPERTIES_TO_LIQUIDATE=The player don't have any properties to liquidate
+PAYMENT_CARD_TITLE=Payment card
+REPAIRS_CARD_TITLE=Repairs card

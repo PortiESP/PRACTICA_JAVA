@@ -1,7 +1,7 @@
 package src.MonopolyGame.MonopolyCodes;
 
 import src.MonopolyGame.Player;
-import src.MonopolyGame.IO.IOManager;
+import src.MonopolyGame.IO.MenuBuilder;
 
 public class PaymentCard extends MonopolyCode {
   // Attributes
@@ -19,11 +19,12 @@ public class PaymentCard extends MonopolyCode {
 
   @Override
   public void doOperation(Player player) {
-    IOManager.print("\n");
-    IOManager.print(String.format("%s: [%s]\n", IOManager.getMsg("PAYMENT_CARD"), this.description));
-
     // The amount is negative (the player pays money)
     if (this.amount < 0) {
+      // Print the operation summary
+      MenuBuilder.alert("PAYMENT_CARD_TITLE", this.description);
+
+      // Pay the amount
       if (player.decreaseMoney(-this.amount) == -1) {
         if (!player.liquidateAssets(-this.amount)) {
           player.loser();
@@ -32,6 +33,9 @@ public class PaymentCard extends MonopolyCode {
     }
     // The amount is positive (the player receives money)
     else {
+      // Print the operation summary
+      MenuBuilder.alert("PAYMENT_CARD_TITLE", this.description);
+      // Receive the amount
       player.increaseMoney(amount);
     }
   }

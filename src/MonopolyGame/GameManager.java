@@ -47,6 +47,7 @@ public class GameManager {
     // Print the MONOPOLY logo
     IOManager.print(Const.MONOPOLY_LOGO);
     // Print the language selection menu
+    MenuBuilder.setClean(false);
     String langFileName = languageSelectionMenu();
     // Load the language from the file
     IOManager.setLanguage(langFileName);

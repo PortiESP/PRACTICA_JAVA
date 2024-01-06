@@ -4,6 +4,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import src.MonopolyGame.Player;
+import src.MonopolyGame.IO.MenuBuilder;
 
 public class RepairsCard extends MonopolyCode {
   // Attributes
@@ -26,6 +27,9 @@ public class RepairsCard extends MonopolyCode {
     int houses = player.getTotalHouses();
     int hotels = player.getTotalHotels();
     int total = houses * this.pricePerHouse + hotels * this.pricePerHotel;
+
+    // Print the operation summary
+    MenuBuilder.alert("REPAIRS_CARD_TITLE", this.description);
 
     player.pay(total);
   }

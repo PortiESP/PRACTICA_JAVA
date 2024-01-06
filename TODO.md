@@ -12,6 +12,7 @@ TO-DO
 - COLORS with escape codes
 - Price of the houses on the management menu  
 - Test the liquidation menu
+- Repairs menu summary
 
 # Aspectos a tener en cuenta antes de entregar el proyecto
 
