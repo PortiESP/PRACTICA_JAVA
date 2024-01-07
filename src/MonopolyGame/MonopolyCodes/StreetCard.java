@@ -163,6 +163,11 @@ public class StreetCard extends Property {
    */
   public void buyHouses() {
     int amount = MenuBuilder.readInt("PROMPT_AMOUNT", 1, 4);
+    // The player can own a maximum of 4 houses
+    if (this.houseCount + amount > 4) {
+      MenuBuilder.alert("WARN", "PROPERTY_CANT_BUY_HOUSES");
+      return;
+    }
     if (owner.decreaseMoney(amount * this.housePrice) != -1) {
       this.houseCount += amount;
     } else {

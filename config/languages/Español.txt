@@ -96,3 +96,4 @@ REPAIRS_BRIBE    =Agilizar tramites con el ayuntamiento ........................
 REPAIRS_TAX      =IVA ................................................................ 21%% ..... $%.2f
 REPAIRS_TOTAL    =Total ........................................................................ $%.2f
 PLAY_AGAIN=La partida ha terminado, quieres jugar otra vez?
+PROPERTY_CANT_BUY_HOUSES=No se pueden construir mas casas en esta propiedad
