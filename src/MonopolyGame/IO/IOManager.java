@@ -116,7 +116,7 @@ public class IOManager implements Serializable {
   }
 
   /**
-   * Move the cursot up {@code lines} lines.
+   * Move the cursor up {@code lines} lines.
    * @param lines
    */
   public static void moveCursorUp(int lines) {
@@ -124,7 +124,7 @@ public class IOManager implements Serializable {
   }
 
   /**
-   * Move the cursot down {@code lines} lines.
+   * Move the cursor down {@code lines} lines.
    * @param lines The number of lines to move the cursor down.
    */
   public static void moveCursorDown(int lines) {
@@ -151,8 +151,11 @@ public class IOManager implements Serializable {
    * Pause the program until the user presses the enter key.
    */
   public static void pause() {
+
     printMsg("PRESS_ENTER");
+    System.out.print("\033[8m\033[?25l"); // Hide the cursor and disable echo and blink
     scanner.nextLine();
+    System.out.print("\033[28m\033[?25h"); // Reset the cursor and enable echo 
   }
 
   /**

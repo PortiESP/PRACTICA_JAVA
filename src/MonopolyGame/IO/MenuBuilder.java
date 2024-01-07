@@ -75,6 +75,7 @@ public class MenuBuilder {
 
       // Try again if the option is invalid
       if (option < (configLastAsZero ? 0 : 1) || option > numOptions) {
+        setClean(true);
         alert("WARN", "INVALID_OPTION");
         return menu(title, options);
       }
