@@ -13,6 +13,7 @@ import java.util.ArrayList;
 public class GameManager {
   // Attributes
   private Game game; // Game instance
+  private String filename; // Name of the file to save the game
 
   // ========================================= Start the game =========================================
   /**
@@ -56,15 +57,16 @@ public class GameManager {
     int option = mainMenu();
 
     // Execute the selected option
-    if (option == 1) // ------------------------ New game
-      this.game.newGame(askNewFileName());
-
-    else if (option == 2) { // ----------------- Load game
-      String filename = askExistingFileName();
+    if (option == 1) { // ------------------------ New game
+      this.filename = askNewFileName(); // Ask the user for a file name
+      this.game.newGame(this.filename);
+    } else if (option == 2) { // ----------------- Load game
+      this.filename = askExistingFileName();
       // If there are no saved games, start a new game
       if (filename == null) {
         IOManager.printlnMsg("NO_SAVED_GAMES");
-        this.game.newGame(askNewFileName());
+        this.filename = askNewFileName();
+        this.game.newGame(this.filename);
       } else {
         this.game.loadGame(filename);
       }
@@ -75,7 +77,8 @@ public class GameManager {
       exit();
 
     // Start the game ============================
-    this.game.play();
+    if (this.game.play())
+      deleteSavedGame(this.filename);
 
   }
 
@@ -107,7 +110,11 @@ public class GameManager {
 
     IOManager.log("[!!!] Playing a test game");
 
-    this.game.play(); // Default game
+    boolean finished = this.game.play(); // Default game
+
+    if (finished) {
+
+    }
   }
 
   public String languageSelectionMenu() {
@@ -215,6 +222,11 @@ public class GameManager {
   public boolean savedGameExists(String filename) {
     File file = new File(Const.SAVES_PATH + filename + ".xml");
     return file.exists();
+  }
+
+  public void deleteSavedGame(String filename) {
+    File file = new File(Const.SAVES_PATH + filename + ".xml");
+    file.delete();
   }
 
   /**

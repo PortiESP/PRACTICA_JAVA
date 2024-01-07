@@ -61,8 +61,10 @@ public class Game implements Serializable {
    *    <li>{@code 4} <strong>Exit</strong>: Exit the game</li>
    * </ul>
    * </p>
+   * 
+   * @return {@code true} if the game has ended, {@code false} otherwise (Saved and exited)
    */
-  public void play() {
+  public boolean play() {
 
     // Check if the game has been created or loaded, otherwise create a new game with default name
     if (this.players == null) {
@@ -70,8 +72,7 @@ public class Game implements Serializable {
     }
 
     // ======================= Main loop ========================
-    this.exit = false;
-    while (this.exit == false) {
+    while (true) {
       // Print the operations menu
       int option = operationsMenu();
       IOManager.log("Option: " + option); // DEBUG
@@ -96,15 +97,15 @@ public class Game implements Serializable {
       else if (option == 3) {
         saveGame();
         IOManager.log("Saving and returning to the main menu...");
-        this.exit = true;
-        break;
+        return false;
       }
 
       // Eliminate players that are broke
       eliminatePlayers();
 
       // Check if there is only one player left (winner)
-      checkWinner();
+      if (checkWinner())
+        return true;
 
       // Autosave
       if (autosave)
@@ -375,14 +376,18 @@ public class Game implements Serializable {
 
   /**
    * Checks if there is only one player left in the game, if so, it will print a message and exit the game.
+   * 
+   * @return True if there is only one player left, false otherwise.
    */
-  public void checkWinner() {
+  public boolean checkWinner() {
     // If there is only one player left, print a message and exit the game
     if (players.size() == 1) {
       MenuBuilder.alert("PLAYER_INFO_TITLE",
           String.format(IOManager.getMsg("PLAYER_WINNER"), players.get(0).getName()));
-      this.exit = true;
+      return true;
     }
+
+    return false;
   }
 
   // ---------------------------------------------- Getters and setters ----------------------------------------------
