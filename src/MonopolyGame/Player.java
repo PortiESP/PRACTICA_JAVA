@@ -362,7 +362,7 @@ public class Player implements Serializable {
    */
   public int decreaseMoney(int amount) {
     // Try to decrease the money, if the player has enough money, return the new amount of money
-    if (this.money - amount > 0) {
+    if (this.money - amount >= 0) {
       this.money -= amount;
       return this.money;
     }

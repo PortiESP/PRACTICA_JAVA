@@ -122,9 +122,6 @@
         </void>
        </object>
       </void>
-      <void property="propertyPrice">
-       <int>60</int>
-      </void>
       <void property="rent">
        <int>2</int>
       </void>
@@ -1317,7 +1314,7 @@
       <void property="owner">
        <object class="src.MonopolyGame.Player" id="Player1">
         <void property="money">
-         <int>1370</int>
+         <int>1304</int>
         </void>
         <void property="name">
          <string>Diego</string>

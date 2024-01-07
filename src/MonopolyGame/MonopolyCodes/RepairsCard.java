@@ -4,6 +4,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import src.MonopolyGame.Player;
+import src.MonopolyGame.IO.IOManager;
 import src.MonopolyGame.IO.MenuBuilder;
 
 public class RepairsCard extends MonopolyCode {
@@ -24,18 +25,38 @@ public class RepairsCard extends MonopolyCode {
 
   @Override
   public void doOperation(Player player) {
+    // Print the card description
+    MenuBuilder.alert("REPAIRS_CARD_TITLE", this.description);
+
     int houses = player.getTotalHouses();
     int hotels = player.getTotalHotels();
     int total = houses * this.pricePerHouse + hotels * this.pricePerHotel;
+    // Cargos (por las risas)
+    int bribe = (int) (Math.random() * 100);
+    float tax = total * 0.21F;
+    float totalWithTax = total + tax;
+
+    String[] lines = {
+        IOManager.getMsg("REPAIRS_BILL_HEAD"),
+        "",
+        String.format(IOManager.getMsg("REPAIRS_HOUSES"), houses, this.pricePerHouse),
+        String.format(IOManager.getMsg("REPAIRS_HOTELS"), hotels, this.pricePerHotel),
+        "",
+        String.format(IOManager.getMsg("REPAIRS_BRIBE"), bribe),
+        "",
+        String.format(IOManager.getMsg("REPAIRS_TAX"), tax),
+        String.format(IOManager.getMsg("REPAIRS_TOTAL"), totalWithTax + bribe)
+    };
 
     // Print the operation summary
-    MenuBuilder.alert("REPAIRS_CARD_TITLE", this.description);
+    MenuBuilder.doc("REPAIRS_BILL", lines);
+    IOManager.pause();
 
-    player.pay(total);
+    player.pay((int) totalWithTax + bribe);
   }
 
   public void parsePricePerHouse() {
-    String pricePerHousePattern = ".+(\\d+)€.+(\\d+)€";
+    String pricePerHousePattern = ".+ (\\d+)€.+ (\\d+)€";
     Matcher matcher = Pattern.compile(pricePerHousePattern).matcher(this.description);
 
     if (matcher.find()) {

@@ -65,7 +65,7 @@ public class MenuBuilder {
     try {
       String prompt;
       // Range from 1 to N
-      if (configLastAsZero)
+      if (configLastAsZero == false)
         prompt = String.format("║    %s (%d-%d) >>> ", IOManager.getMsg("PROMPT_OPTION"), 1, numOptions);
       // Range from 0 to (N-1)
       else
