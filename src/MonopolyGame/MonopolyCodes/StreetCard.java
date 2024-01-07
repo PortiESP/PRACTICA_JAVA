@@ -162,7 +162,7 @@ public class StreetCard extends Property {
    * @param player
    */
   public void buyHouses() {
-    int amount = IOManager.readInt("PROMPT_AMOUNT", 1, 4);
+    int amount = MenuBuilder.readInt("PROMPT_AMOUNT", 1, 4);
     if (owner.decreaseMoney(amount * this.housePrice) != -1) {
       this.houseCount += amount;
     } else {
@@ -186,7 +186,7 @@ public class StreetCard extends Property {
     }
     // If the player doesn't have enough houses to sell
     else {
-      IOManager.printlnMsg("PROPERTY_CANT_SELL_HOUSES");
+      MenuBuilder.alert("WARN", "PROPERTY_CANT_SELL_HOUSES");
     }
   }
 
@@ -198,42 +198,42 @@ public class StreetCard extends Property {
   public void buyHotel() {
     // If the property already has a hotel
     if (this.hotel)
-      IOManager.printlnMsg("PROPERTY_ALREADY_HAS_HOTEL");
+      MenuBuilder.alert("WARN", "PROPERTY_ALREADY_HAS_HOTEL");
     // If the property has less than 4 houses
     else if (this.houseCount < 4)
-      IOManager.printlnMsg("PROPERTY_CANT_BUY_HOTEL");
+      MenuBuilder.alert("WARN", "PROPERTY_CANT_BUY_HOTEL");
     else {
       // If the player has enough money to buy a hotel
       if (owner.decreaseMoney(this.hotelPrice) != -1)
         this.hotel = true;
       // If the player doesn't have enough money to buy a hotel
       else
-        IOManager.printlnMsg("PLAYER_CANT_AFFORD");
+        MenuBuilder.alert("WARN", "PLAYER_CANT_AFFORD");
     }
   }
 
   public void sellHotel() {
     // If the property doesn't have a hotel
     if (!this.hotel)
-      IOManager.printlnMsg("PROPERTY_CANT_SELL_HOTEL");
+      MenuBuilder.alert("WARN", "PROPERTY_CANT_SELL_HOTEL");
     // If the player has enough money to sell the hotel
     else if (owner.increaseMoney(this.hotelPrice) != -1)
       this.hotel = false;
     // If the player doesn't have enough money to sell the hotel
     else
-      IOManager.printlnMsg("PLAYER_CANT_AFFORD");
+      MenuBuilder.alert("WARN", "PLAYER_CANT_AFFORD");
   }
 
   @Override
   public void mortgageProperty() {
     // If the property is already mortgaged
     if (this.isMortgaged) {
-      IOManager.printlnMsg("PROPERTY_ALREADY_MORTGAGED");
+      MenuBuilder.alert("WARN", "PROPERTY_ALREADY_MORTGAGED");
       return;
     }
     // If the property has houses or a hotel
     else if (this.houseCount > 0 || this.hotel) {
-      IOManager.printlnMsg("PROPERTY_CANT_MORTGAGE");
+      MenuBuilder.alert("WARN", "PROPERTY_CANT_MORTGAGE");
       return;
     }
 

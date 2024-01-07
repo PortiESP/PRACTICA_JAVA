@@ -63,9 +63,17 @@ public class MenuBuilder {
 
     // Ask for the option
     try {
-      int option = IOManager
-          .readInt(String.format("║    %s (%d-%d) >>> ", IOManager.getMsg("PROMPT_OPTION"), 1, numOptions));
+      String prompt;
+      // Range from 1 to N
+      if (configLastAsZero)
+        prompt = String.format("║    %s (%d-%d) >>> ", IOManager.getMsg("PROMPT_OPTION"), 1, numOptions);
+      // Range from 0 to (N-1)
+      else
+        prompt = String.format("║    %s (%d-%d) >>> ", IOManager.getMsg("PROMPT_OPTION"), 0, numOptions - 1);
+      // Ask for the option
+      int option = IOManager.readInt(prompt);
 
+      // Try again if the option is invalid
       if (option < (configLastAsZero ? 0 : 1) || option > numOptions) {
         alert("WARN", "INVALID_OPTION");
         return menu(title, options);
@@ -177,6 +185,9 @@ public class MenuBuilder {
     if (clean)
       IOManager.cls();
 
+    // Translate the prompt if possible
+    prompt = IOManager.getMsg(prompt);
+
     // Print frame
     IOManager.print("\n");
     IOManager.print("\n");
@@ -205,6 +216,15 @@ public class MenuBuilder {
       alert("WARN", "MUST_BE_NUMBER");
       return readInt(prompt);
     }
+  }
+
+  public static int readInt(String prompt, int min, int max) {
+    int val = readInt(prompt);
+    if (val < min || val > max) {
+      alert("WARN", "INVALID_OPTION");
+      return readInt(prompt, min, max);
+    }
+    return val;
   }
 
   public static void alert(String title, String msg) {

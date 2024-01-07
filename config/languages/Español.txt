@@ -87,3 +87,4 @@ DICE=Dado
 NO_PROPERTIES_TO_LIQUIDATE=El jugador no tiene propiedades que liquidar
 PAYMENT_CARD_TITLE=Tarjetas de pago
 REPAIRS_CARD_TITLE=Tarjetas de reparaciones
+PLAYER_INFO_TITLE=Informacion del jugador

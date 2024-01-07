@@ -2,7 +2,7 @@
 <java version="20.0.2" class="java.beans.XMLDecoder">
  <object class="src.MonopolyGame.Game" id="Game0">
   <void property="gameFilename">
-   <string>low_money</string>
+   <string>liquidate</string>
   </void>
   <void id="Boolean0" method="isAutosave"/>
   <void property="monopolyCodes">

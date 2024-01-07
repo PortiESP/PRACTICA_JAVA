@@ -175,7 +175,7 @@ public abstract class Property extends MonopolyCode {
   public void sellProperty() {
     // If the property is mortgaged
     if (this.isMortgaged) {
-      IOManager.printlnMsg("PROPERTY_CANT_SELL_MORTGAGED");
+      MenuBuilder.alert("WARN", "PROPERTY_CANT_SELL_MORTGAGED");
       return;
     }
 
@@ -242,7 +242,12 @@ public abstract class Property extends MonopolyCode {
   }
 
   public int getPropertyPrice() {
-    return propertyPrice;
+    // If the property is mortgaged, return the mortgage value (half of the property price)
+    if (isMortgaged)
+      return mortgageValue;
+    // If the property is not mortgaged, return the full property price
+    else
+      return propertyPrice;
   }
 
   public void setPropertyPrice(int propertyPrice) {

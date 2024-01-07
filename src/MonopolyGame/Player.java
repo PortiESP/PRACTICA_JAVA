@@ -149,8 +149,8 @@ public class Player implements Serializable {
     // If the player can't afford the payment, liquidate assets
     else {
       if (this.liquidateAssets(amount) == false) {
-        this.loser();
-        this.pay(this.money, player);
+        this.loser(); // The player is broke
+        this.pay(this.money, player); // Pay the remaining money to the other player
       }
       return;
     }
@@ -242,6 +242,7 @@ public class Player implements Serializable {
    * @return True if the player could liquidate any assets, false otherwise.
    */
   public boolean liquidateAssets(int amount) {
+    MenuBuilder.alert("WARN", "PLAYER_LIQUIDATE_ASSETS");
     // While the player can't afford the payment
     while (this.money < amount) {
       // If the player has no properties, he is broke
@@ -260,7 +261,7 @@ public class Player implements Serializable {
 
   public void loser() {
     this.broke = true;
-    IOManager.printlnMsg("PLAYER_LOSER", this.name);
+    MenuBuilder.alert("PLAYER_INFO_TITLE", String.format(IOManager.getMsg("PLAYER_LOSER"), name));
   }
 
   /**
@@ -274,11 +275,13 @@ public class Player implements Serializable {
     String[] propertiesNames = new String[this.properties.size()];
 
     // Print the liquidation menu
-    int opt = MenuBuilder.menu("LIQUIDATE_MENU",
+    int opt = MenuBuilder.menu(
+        "LIQUIDATE_MENU",
         new String[] { "PROPERTY_MANAGEMENT_SELL", "PROPERTY_MANAGEMENT_MORTGAGE" });
 
     // Sell a property
     if (opt == 1) {
+      // Generate the properties list for the menu
       for (int i = 0; i < this.properties.size(); i++) {
         Property property = this.properties.get(i);
         String description = property.getDescription() + " (+" + property.getPropertyPrice() + ")";
@@ -291,9 +294,10 @@ public class Player implements Serializable {
     }
     // Mortgage a property
     else {
+      // Generate the properties list for the menu
       for (int i = 0; i < this.properties.size(); i++) {
         Property property = this.properties.get(i);
-        String description = property.getDescription() + " ($" + property.getMortgageValue() + ")";
+        String description = property.getDescription() + " (+" + property.getMortgageValue() + ")";
         propertiesNames[i] = property.isMortgaged() ? mortgaged : description;
       }
       // Ask the player what property he wants to sell

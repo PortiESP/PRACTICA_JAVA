@@ -379,9 +379,8 @@ public class Game implements Serializable {
   public void checkWinner() {
     // If there is only one player left, print a message and exit the game
     if (players.size() == 1) {
-      IOManager.print("\n");
-      IOManager.printlnMsg("PLAYER_WINNER", players.get(0).getName());
-      IOManager.print("\n");
+      MenuBuilder.alert("PLAYER_INFO_TITLE",
+          String.format(IOManager.getMsg("PLAYER_WINNER"), players.get(0).getName()));
       this.exit = true;
     }
   }
