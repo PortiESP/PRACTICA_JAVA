@@ -14,6 +14,7 @@ TO-DO
 - Test the liquidation menu
 - Repairs menu summary
 - remove the game from the list after finishing it
+- Disable echo on press enter
 
 # Aspectos a tener en cuenta antes de entregar el proyecto
 

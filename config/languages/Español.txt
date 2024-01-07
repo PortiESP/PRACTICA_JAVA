@@ -93,5 +93,5 @@ REPAIRS_BILL_HEAD=CONCEPTO                                                      
 REPAIRS_HOUSES   =Reparaciones en casas ................................................ %d ..... $%d
 REPAIRS_HOTELS   =Reparaciones en hoteles .............................................. %d ..... $%d
 REPAIRS_BRIBE    =Agilizar tramites con el ayuntamiento ........................................ $%d
-REPAIRS_TAX      =IVA ................................................................ 21%% .... $%.2f
+REPAIRS_TAX      =IVA ................................................................ 21%% ..... $%.2f
 REPAIRS_TOTAL    =Total ........................................................................ $%.2f

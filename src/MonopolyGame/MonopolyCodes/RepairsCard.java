@@ -39,8 +39,8 @@ public class RepairsCard extends MonopolyCode {
     String[] lines = {
         IOManager.getMsg("REPAIRS_BILL_HEAD"),
         "",
-        String.format(IOManager.getMsg("REPAIRS_HOUSES"), houses, this.pricePerHouse),
-        String.format(IOManager.getMsg("REPAIRS_HOTELS"), hotels, this.pricePerHotel),
+        String.format(IOManager.getMsg("REPAIRS_HOUSES"), houses, (houses * this.pricePerHouse)),
+        String.format(IOManager.getMsg("REPAIRS_HOTELS"), hotels, (hotels * this.pricePerHotel)),
         "",
         String.format(IOManager.getMsg("REPAIRS_BRIBE"), bribe),
         "",
