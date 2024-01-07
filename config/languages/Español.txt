@@ -95,3 +95,4 @@ REPAIRS_HOTELS   =Reparaciones en hoteles ......................................
 REPAIRS_BRIBE    =Agilizar tramites con el ayuntamiento ........................................ $%d
 REPAIRS_TAX      =IVA ................................................................ 21%% ..... $%.2f
 REPAIRS_TOTAL    =Total ........................................................................ $%.2f
+PLAY_AGAIN=La partida ha terminado, quieres jugar otra vez?

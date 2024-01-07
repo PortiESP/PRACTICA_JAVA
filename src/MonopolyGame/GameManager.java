@@ -77,8 +77,12 @@ public class GameManager {
       exit();
 
     // Start the game ============================
-    if (this.game.play())
+    if (this.game.play()) {
       deleteSavedGame(this.filename);
+      if (!MenuBuilder.askYesNo("PLAY_AGAIN"))
+        exit();
+
+    }
 
   }
 

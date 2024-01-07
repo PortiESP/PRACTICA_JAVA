@@ -95,3 +95,4 @@ REPAIRS_HOTELS   =Hotels reparations ...........................................
 REPAIRS_BRIBE    =Meal with the mayor ...................................................... $%d
 REPAIRS_TAX      =VAT ............................................................ 21%% ..... $%.2f
 REPAIRS_TOTAL    =TOTAL .................................................................... $%.2f
+PLAY_AGAIN=The game has ended, do you want to play again?
