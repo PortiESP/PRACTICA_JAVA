@@ -95,7 +95,7 @@ public abstract class Property extends MonopolyCode {
     // If the property is mortgaged
     if (isMortgaged)
       if (opt == 1 || opt == 3) {
-        IOManager.printlnMsg("PROPERTY_MANAGEMENT_IS_MORTGAGED");
+        MenuBuilder.alert("WARN", "PROPERTY_MANAGEMENT_IS_MORTGAGED");
         return -1;
       }
 
@@ -139,7 +139,7 @@ public abstract class Property extends MonopolyCode {
   public void mortgageProperty() {
     // If the property is already mortgaged
     if (this.isMortgaged) {
-      IOManager.printlnMsg("PROPERTY_ALREADY_MORTGAGED");
+      MenuBuilder.alert("WARN", "PROPERTY_ALREADY_MORTGAGED");
       return;
     }
 
@@ -154,7 +154,7 @@ public abstract class Property extends MonopolyCode {
   public void payOffMortgage() {
     // If the property is not mortgaged
     if (!this.isMortgaged) {
-      IOManager.printlnMsg("PROPERTY_NOT_MORTGAGED");
+      MenuBuilder.alert("WARN", "PROPERTY_NOT_MORTGAGED");
       return;
     }
 
@@ -165,7 +165,7 @@ public abstract class Property extends MonopolyCode {
     }
     // If the player doesn't have enough money to pay off the mortgage
     else {
-      IOManager.printlnMsg("PLAYER_CANT_AFFORD");
+      MenuBuilder.alert("WARN", "PLAYER_CANT_AFFORD");
     }
   }
 

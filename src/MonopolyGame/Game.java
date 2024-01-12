@@ -324,9 +324,6 @@ public class Game implements Serializable {
   public Player askCurrentPlayer() {
     IOManager.print("\n");
 
-    // Ask a valid player
-    IOManager.printlnMsg("PLAYER_TURN");
-
     // Create a list with the names of the players
     String[] names = new String[players.size()];
     for (int i = 0; i < players.size(); i++)

@@ -7,7 +7,7 @@ import java.util.Arrays;
  */
 public class MenuBuilder {
   private final static int MENU_WIDTH = 100;
-  private static boolean clean = true;
+  private static boolean clean = false;  // DEBUG (Set to false to debug the menus)
   private static String[] formValues;
   private static boolean configFormUniqueValues = false;
   private static boolean configLastAsZero = false;
@@ -337,7 +337,7 @@ public class MenuBuilder {
   }
 
   public static void resetSettings() {
-    MenuBuilder.clean = true;
+    MenuBuilder.clean = false;  // DEBUG (Set to false to debug the menus)
     MenuBuilder.formValues = null;
     MenuBuilder.configLastAsZero = false;
     MenuBuilder.configFormUniqueValues = false;

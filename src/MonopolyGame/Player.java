@@ -230,9 +230,10 @@ public class Player implements Serializable {
         MenuBuilder.alert("TRANSACTION", String.format("PLAYER_BUY_PROPERTY", this.name, property.getDescription()));
         return;
       }
+
+      MenuBuilder.alert("WARN", "PLAYER_DONT_BUY_PROPERTY");
     }
 
-    IOManager.printlnMsg("PLAYER_DONT_BUY_PROPERTY");
   }
 
   /**

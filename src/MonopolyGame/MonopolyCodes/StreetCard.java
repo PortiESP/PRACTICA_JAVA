@@ -171,7 +171,7 @@ public class StreetCard extends Property {
     if (owner.decreaseMoney(amount * this.housePrice) != -1) {
       this.houseCount += amount;
     } else {
-      IOManager.printlnMsg("PLAYER_CANT_AFFORD");
+      MenuBuilder.alert("WARN", "PLAYER_CANT_AFFORD");
     }
   }
 

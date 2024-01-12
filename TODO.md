@@ -4,7 +4,6 @@ TO-DO
 # Por hacer
 
 - CLS (clear screen) 
-- Delete old games
 - Mejorar el estilos de los menus
 - Tests unitarios
 - JavaDocs
@@ -12,8 +11,7 @@ TO-DO
 - COLORS with escape codes
 - Price of the houses on the management menu  
 - Test the liquidation menu
-- Repairs menu summary
-- remove the game from the list after finishing it
+- Traducir al resto de idiomas
 
 # Aspectos a tener en cuenta antes de entregar el proyecto
 
@@ -21,6 +19,7 @@ TO-DO
 - [ ] Comprobar que todos los strings están traducidos
 - [ ] Poner en private o protected todo lo que sea posible
 - [ ] Usar constantes para todo lo que sea posible
+- [ ] Eliminar o comentar código que no se use (`DEBUG` y `StartDebug`)
 
 
 # Cosas que justificar en el informe

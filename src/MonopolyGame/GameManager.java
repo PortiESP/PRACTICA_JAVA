@@ -64,7 +64,7 @@ public class GameManager {
       this.filename = askExistingFileName();
       // If there are no saved games, start a new game
       if (filename == null) {
-        IOManager.printlnMsg("NO_SAVED_GAMES");
+        MenuBuilder.alert("WARN", "NO_SAVED_GAMES");
         this.filename = askNewFileName();
         this.game.newGame(this.filename);
       } else {
