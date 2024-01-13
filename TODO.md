@@ -3,10 +3,7 @@ TO-DO
 
 # Por hacer
 
-- CLS (clear screen) 
-- Mejorar el estilos de los menus
 - Tests unitarios
-- Test the liquidation menu
 - Traducir al resto de idiomas (vasco, gallego, catalán)
 
 # Aspectos a tener en cuenta antes de entregar el proyecto
