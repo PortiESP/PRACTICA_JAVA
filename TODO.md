@@ -6,10 +6,6 @@ TO-DO
 - CLS (clear screen) 
 - Mejorar el estilos de los menus
 - Tests unitarios
-- JavaDocs
-- Clean the code
-- COLORS with escape codes
-- Price of the houses on the management menu  
 - Test the liquidation menu
 - Traducir al resto de idiomas (vasco, gallego, catalán)
 

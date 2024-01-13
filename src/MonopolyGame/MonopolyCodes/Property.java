@@ -89,13 +89,17 @@ public abstract class Property extends MonopolyCode {
     // Ask the player what he wants to do with the property
     String title = String.format(IOManager.getMsg("PROPERTY_MANAGEMENT_MENU"), this.description);
     String[] options = {
-        String.format("%s", (isMortgaged ? "#" : "1"),
-            (isMortgaged ? "-- " + mortgaged + " --" : "PROPERTY_MANAGEMENT_MORTGAGE")),
-        "PROPERTY_MANAGEMENT_PAY_OFF_MORTGAGE",
-        String.format("%s", (isMortgaged ? "#" : "3"),
-            (isMortgaged ? "-- " + mortgaged + " --" : "PROPERTY_MANAGEMENT_SELL")),
+        String.format("%s ($%d)", IOManager.getMsg("PROPERTY_MANAGEMENT_MORTGAGE"), this.mortgageValue),
+        String.format("%s ($%d)", IOManager.getMsg("PROPERTY_MANAGEMENT_PAY_OFF_MORTGAGE"), this.mortgageValue),
+        String.format("%s ($%d)", IOManager.getMsg("PROPERTY_MANAGEMENT_SELL"), this.propertyPrice),
         "EXIT"
     };
+
+    if (isMortgaged) {
+      options[0] = String.format("%s", "-- " + mortgaged + " --");
+      options[1] = String.format("%s", "-- " + mortgaged + " --");
+      options[2] = String.format("%s", "-- " + mortgaged + " --");
+    }
 
     // Print the menu
     int opt = MenuBuilder.menu(title, options);

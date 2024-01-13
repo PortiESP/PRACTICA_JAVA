@@ -79,13 +79,13 @@ public class StreetCard extends Property {
     // Ask the player what he wants to do with the property
     String title = String.format(IOManager.getMsg("PROPERTY_MANAGEMENT_MENU"), this.description);
     String[] options = {
-        "PROPERTY_MANAGEMENT_BUY_HOUSES",
-        "PROPERTY_MANAGEMENT_SELL_HOUSES",
-        "PROPERTY_MANAGEMENT_BUY_HOTEL",
-        "PROPERTY_MANAGEMENT_SELL_HOTEL",
-        "PROPERTY_MANAGEMENT_MORTGAGE",
-        "PROPERTY_MANAGEMENT_PAY_OFF_MORTGAGE",
-        "PROPERTY_MANAGEMENT_SELL",
+        String.format("%s ($%d)", IOManager.getMsg("PROPERTY_MANAGEMENT_BUY_HOUSES"), this.housePrice),
+        String.format("%s ($%d)", IOManager.getMsg("PROPERTY_MANAGEMENT_SELL_HOUSES"), this.housePrice),
+        String.format("%s ($%d)", IOManager.getMsg("PROPERTY_MANAGEMENT_BUY_HOTEL"), this.hotelPrice),
+        String.format("%s ($%d)", IOManager.getMsg("PROPERTY_MANAGEMENT_SELL_HOTEL"), this.hotelPrice),
+        String.format("%s ($%d)", IOManager.getMsg("PROPERTY_MANAGEMENT_MORTGAGE"), this.mortgageValue),
+        String.format("%s ($%d)", IOManager.getMsg("PROPERTY_MANAGEMENT_PAY_OFF_MORTGAGE"), this.mortgageValue),
+        String.format("%s ($%d)", IOManager.getMsg("PROPERTY_MANAGEMENT_SELL"), this.propertyPrice),
         "EXIT"
     };
 
