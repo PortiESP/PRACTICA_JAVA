@@ -3,6 +3,14 @@ package src.MonopolyGame.MonopolyCodes;
 import src.MonopolyGame.IO.IOManager;
 import src.MonopolyGame.IO.MenuBuilder;
 
+/**
+ * The ServiceCard represents the services in the game (electricity and water)
+ * 
+ * <p>
+ * The rent of the services is calculated based on the number of services the owner has (at least 1 since we are paying rent) and the dice roll.
+ * Depending on the number of services the owner has, dice roll will be multiplied by a factor (<em>the factor are provided by the description of the card</em>)
+ * </p>
+ */
 public class ServiceCard extends Property {
   private int[] priceFactor;
 
@@ -18,6 +26,15 @@ public class ServiceCard extends Property {
     this.priceFactor = new int[] { Integer.parseInt(priceFactor1), Integer.parseInt(priceFactor2) };
   }
 
+  /**
+   * This method will calculate the amount of money the player has to pay to the owner of the property
+   * 
+   * <p>
+   * The rent of the services is calculated based on the number of services the owner has (at least 1 since we are paying rent) and the dice roll.
+   * Depending on the number of services the owner has, dice roll will be multiplied by a factor (<em>the factor are provided by the description of the card</em>)
+   * </p>
+   * 
+   */
   @Override
   public int calculateAmountToPay() {
 
@@ -32,6 +49,13 @@ public class ServiceCard extends Property {
     return dice * priceFactor[owner.getServicesCount() - 1];
   }
 
+  /**
+   * This method will return a summary of the property
+   * 
+   * <p>
+   * The summary will contain the description of the property, the rent (<em>depending on the dice roll</em>) and if the property is mortgaged or not
+   * </p>
+   */
   @Override
   public String summary() {
     if (isMortgaged) {
@@ -43,6 +67,7 @@ public class ServiceCard extends Property {
     }
   }
 
+  // ---------------------------------------- Getters and Setters ----------------------------------------
   public int[] getPriceFactor() {
     return priceFactor;
   }
