@@ -3,6 +3,13 @@ package src.MonopolyGame.MonopolyCodes;
 import src.MonopolyGame.IO.IOManager;
 import src.MonopolyGame.IO.MenuBuilder;
 
+/**
+ * The StreetCard represents the streets in the game
+ * 
+ * <p>
+ * The rent of the streets is calculated based on the number of houses and hotels the owner has.
+ * </p>
+ */
 public class StreetCard extends Property {
   // Attributes
   private int[] wHousesRent;
@@ -217,6 +224,9 @@ public class StreetCard extends Property {
     }
   }
 
+  /**
+   * Sells the hotel of the property
+   */
   public void sellHotel() {
     // If the property doesn't have a hotel
     if (!this.hotel)
@@ -229,6 +239,9 @@ public class StreetCard extends Property {
       MenuBuilder.alert("WARN", "PLAYER_CANT_AFFORD");
   }
 
+  /**
+   * Mortgages the property
+   */
   @Override
   public void mortgageProperty() {
     // If the property is already mortgaged
