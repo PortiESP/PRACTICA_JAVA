@@ -4,6 +4,9 @@ import src.MonopolyGame.Player;
 import src.MonopolyGame.IO.IOManager;
 import src.MonopolyGame.IO.MenuBuilder;
 
+/**
+ * The Property class is the base class for all properties in the game (streets, stations and services). This class is defined as abstract to define the common methods and attributes for all properties and also implement some of those methods
+ */
 public abstract class Property extends MonopolyCode {
   protected Player owner;
   protected int mortgageValue;
@@ -11,19 +14,24 @@ public abstract class Property extends MonopolyCode {
   protected int rent;
   protected int propertyPrice;
 
-  @Override
+  // @Override
   /**
    * Do the corresponding operation for this property
    * 
-   * <p>
+   * <h4>If the property is owned by someone</h4>
    * <ul>
-   * <li>If the property is owned by someone</li>
-   *    <ul>
-   *    <li>If the owner is not the player -> Pay the rent</li>
-  *     <li>If the owner is the player -> Ask if he wants to manage the property</li>
-   *    </ul>
-   * <li>If the property is not owned by anyone -> Ask if the player wants to buy the property</li>
+   * <li>If the owner is not the player, pay rent</li>
+   * <li>If the owner is the player, ask the player if he wants to manage the property</li>
    * </ul>
+   * 
+   * <h4>If the property is not owned by someone</h4>
+   * <ul>
+   * <li>Ask the player if he wants to buy the property</li>
+   * </ul>
+   * 
+   * <p>
+   * The methods will automatically handle if the player doesn't have enough money to pay the rent or buy the property and will ask the player if he wants to liquidate his assets.
+   * </p>
    * 
    * @param player The player who landed on this property
    */
@@ -116,6 +124,15 @@ public abstract class Property extends MonopolyCode {
     return -1; // Should never happen
   }
 
+  /**
+   * Get the summary of this property. 
+   * 
+   * <p>
+   * The summary contains the description of this property, the income of this property and if this property is mortgaged or not.
+   * </p>
+   * 
+   * @return The summary of this property
+   */
   public String summary() {
     if (isMortgaged) {
       return String.format("[%s]: %s", IOManager.getMsg("MORTGAGED"));

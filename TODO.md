@@ -11,7 +11,7 @@ TO-DO
 - COLORS with escape codes
 - Price of the houses on the management menu  
 - Test the liquidation menu
-- Traducir al resto de idiomas
+- Traducir al resto de idiomas (vasco, gallego, catalán)
 
 # Aspectos a tener en cuenta antes de entregar el proyecto
 
