@@ -96,6 +96,7 @@ public class RepairsCard extends MonopolyCode {
       throw new IllegalArgumentException("Invalid description for repairs card: " + this.description);
   }
 
+  // ---------------------------------------- Getters and Setters ----------------------------------------
   public String getDescription() {
     return description;
   }
