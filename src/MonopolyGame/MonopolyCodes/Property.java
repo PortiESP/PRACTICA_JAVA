@@ -14,7 +14,6 @@ public abstract class Property extends MonopolyCode {
   protected int rent;
   protected int propertyPrice;
 
-  // @Override
   /**
    * Do the corresponding operation for this property
    * 
@@ -35,6 +34,7 @@ public abstract class Property extends MonopolyCode {
    * 
    * @param player The player who landed on this property
    */
+  @Override
   public void doOperation(Player player) {
     // This property is owned by a player (current player or other player)
     if (isOwned()) {

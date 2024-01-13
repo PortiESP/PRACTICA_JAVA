@@ -34,12 +34,12 @@ public class StreetCard extends Property {
     this.hotel = false;
   }
 
-  @Override
   /**
    * Calculates the amount of money the player has to pay to the owner of the property when he lands on it
    * 
    * @return The amount of money the player has to pay
    */
+  @Override
   public int calculateAmountToPay() {
 
     // If the property is mortgaged, no rent is paid
@@ -58,7 +58,6 @@ public class StreetCard extends Property {
 
   }
 
-  @Override
   /**
    * Prints the property's information and a menu with the available operations.
    * 
@@ -67,6 +66,7 @@ public class StreetCard extends Property {
    * @param player The player that landed on the property
    * @return The option the player chose
    */
+  @Override
   public int propertyManagementMenu() {
     String mortgaged = IOManager.getMsg("MORTGAGED").toUpperCase();
     // Ask the player what he wants to do with the property
@@ -138,12 +138,12 @@ public class StreetCard extends Property {
     return -1; // Should never happen
   }
 
-  @Override
   /**
    * Prints the property's information
    * 
    * @return The property's information
    */
+  @Override
   public String summary() {
     if (isMortgaged) {
       return String.format("[%s]: %s", this.description, IOManager.getMsg("MORTGAGED"));

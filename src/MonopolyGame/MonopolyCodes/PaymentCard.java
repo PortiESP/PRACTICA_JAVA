@@ -3,9 +3,12 @@ package src.MonopolyGame.MonopolyCodes;
 import src.MonopolyGame.Player;
 import src.MonopolyGame.IO.MenuBuilder;
 
+/**
+ * The PaymentCard will make the player pay or receive money
+ */
 public class PaymentCard extends MonopolyCode {
   // Attributes
-  private int amount; // Amount to pay
+  private int amount; // Amount to pay/receive (negative = player pays, positive = player receives)
 
   // Constructors (for serialization)
   public PaymentCard() {
@@ -17,6 +20,9 @@ public class PaymentCard extends MonopolyCode {
     this.amount = parseIntFromDescription();
   }
 
+  /**
+   * This method will make the player pay or receive money based on the values od the attribute {@code amount} of this card
+   */
   @Override
   public void doOperation(Player player) {
     // The amount is negative (the player pays money)

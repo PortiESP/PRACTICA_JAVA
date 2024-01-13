@@ -122,13 +122,13 @@ public class Player implements Serializable {
     return count;
   }
 
-  @Override
   /**
    * Checks if the player is the same as another player.
    * 
    * @param player The player to compare.
    * @return True if the players are the same, false otherwise.
    */
+  @Override
   public boolean equals(Object player) {
     // If the player is the same object, return true
     return (player == this);
