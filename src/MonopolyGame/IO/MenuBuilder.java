@@ -3,23 +3,46 @@ package src.MonopolyGame.IO;
 import java.util.Arrays;
 
 /**
- * This class builds the interactive menus of the game.
+ * Build pretty CLIs.
+ * 
+ * <p>
+ * This class is used to build pretty CLIs. It has methods to build menus, forms, alerts, docs, read inputs, etc.
+ * <p>
+ * 
+ * <p>
+ * <h4>Attributes</h4>
+ * <ul>
+ * <li>{@code clean}: If true, the screen will be cleared before printing the menu.</li>
+ * <li>{@code MENU_WIDTH}: Width of the menus.</li>
+ * <li>{@code formValues}: Used to store the values of the last form.</li>
+ * <li>{@code configFormUniqueValues}: If true, the form will not allow repeated values.</li>
+ * <li>{@code configLastAsZero}: If true, the last option of the menus will be 0 instead of N.</li>
+ * </ul>
+ * <p>
  */
 public class MenuBuilder {
-  private final static int MENU_WIDTH = 100;
-  private static boolean clean = false;  // DEBUG (Set to false to debug the menus)
-  private static String[] formValues;
-  private static boolean configFormUniqueValues = false;
-  private static boolean configLastAsZero = false;
 
-  public static boolean isConfigLastAsZero() {
-    return configLastAsZero;
-  }
+  private static boolean clean = false; // Clean the screen before printing the menu
+  private final static int MENU_WIDTH = 100; // Width of the menus
+  private static String[] formValues; // Used to store the values of the last form
+  private static boolean configFormUniqueValues = false; // If true, the form will not allow repeated values
+  private static boolean configLastAsZero = false; // If true, the last option of the menus will be 0 instead of N
 
-  public static void setConfigLastAsZero(boolean configLastAsZero) {
-    MenuBuilder.configLastAsZero = configLastAsZero;
-  }
-
+  /**
+   * Build a menu.
+   * 
+   * <p>
+   * This method builds a menu with the given title and options. It will return the number selected option.
+   * <p>
+   * 
+   * <p>
+   * The options will be numbered from 1 to N, where N is the number of options. If the setting {@code configLastAsZero} is set to true, then the last option will be 0 instead of N.
+   * <p>
+   * 
+   * @param title The title of the menu (translated if posible).
+   * @param options Array of options of the menu (translated if posible).
+   * @return The number of the selected option.
+   */
   public static int menu(String title, String[] options) {
     int numOptions = options.length;
 
@@ -27,8 +50,9 @@ public class MenuBuilder {
     if (clean)
       IOManager.cls();
 
+    // Translate the title and options if possible
     title = IOManager.getMsg(title);
-
+    // Translate the options if possible
     for (int i = 0; i < options.length; i++)
       options[i] = IOManager.getMsg(options[i]);
 
@@ -36,14 +60,17 @@ public class MenuBuilder {
     IOManager.print("\n");
     IOManager.print("\n");
     IOManager.print(String.format("╔%s╗\n", "═".repeat(MENU_WIDTH - 2)));
+
     // Print the title
     IOManager.print(String.format("║%s║\n", centerString("~ " + title + " ~", MENU_WIDTH - 2)));
     IOManager.print(String.format("╠%s╣\n", "═".repeat(MENU_WIDTH - 2)));
     IOManager.print(String.format("║%s║\n", " ".repeat(MENU_WIDTH - 2)));
+
     // Print the hint
     IOManager.print(String.format("║%s║\n",
         leftString("[i] " + String.format(IOManager.getMsg("MENU_HINT"), 1, numOptions), MENU_WIDTH - 2, 4)));
     IOManager.print(String.format("║%s║\n", " ".repeat(MENU_WIDTH - 2)));
+
     // Print the options
     for (int i = 0; i < options.length; i++) {
       int index = (configLastAsZero && i == options.length - 1) ? 0 : i + 1;
@@ -51,9 +78,11 @@ public class MenuBuilder {
       IOManager.print(String.format("║%s║\n", leftString(eIn, MENU_WIDTH - 2, 7)));
     }
     IOManager.print(String.format("║%s║\n", " ".repeat(MENU_WIDTH - 2)));
+
     // Space here (later we will print the prompt here)
     IOManager
         .print(String.format("║%s║\n", " ".repeat(MENU_WIDTH - 2)));
+
     // Print the bottom
     IOManager.print(String.format("║%s║\n", " ".repeat(MENU_WIDTH - 2)));
     IOManager.print(String.format("╚%s╝\n", "═".repeat(MENU_WIDTH - 2)));
@@ -92,6 +121,12 @@ public class MenuBuilder {
 
   }
 
+  /**
+   * Ask the user to enter a string.
+   * 
+   * @param prompt The prompt to show (translated if possible).
+   * @return The string entered by the user.
+   */
   public static String readString(String prompt) {
 
     // Clear the screen
@@ -125,6 +160,12 @@ public class MenuBuilder {
     }
   }
 
+  /**
+   * Ask the user a yes/no question.
+   * 
+   * @param prompt The prompt to show (translated if possible).
+   * @return True if the user answered yes, false if the user answered no.
+   */
   public static boolean askYesNo(String prompt) {
 
     // Clear the screen
@@ -158,6 +199,7 @@ public class MenuBuilder {
       alert("WARN", "MUST_NOT_BE_EMPTY");
       return askYesNo(prompt);
     }
+
     // Validate the input
     else {
       // YES
@@ -180,6 +222,12 @@ public class MenuBuilder {
     }
   }
 
+  /**
+   * Ask the user to enter an integer.
+   * 
+   * @param prompt The prompt to show (translated if possible).
+   * @return The integer entered by the user.
+   */
   public static int readInt(String prompt) {
 
     // Clear the screen
@@ -219,6 +267,14 @@ public class MenuBuilder {
     }
   }
 
+  /**
+   * Ask the user to enter an integer in a range.
+   * 
+   * @param prompt The prompt to show (translated if possible).
+   * @param min    The minimum value.
+   * @param max    The maximum value.
+   * @return The integer entered by the user.
+   */
   public static int readInt(String prompt, int min, int max) {
     int val = readInt(prompt);
     if (val < min || val > max) {
@@ -228,6 +284,12 @@ public class MenuBuilder {
     return val;
   }
 
+  /**
+   * Show an alert to the user.
+   * 
+   * @param title The title of the alert (translated if possible).
+   * @param msg  The message of the alert (translated if possible).
+   */
   public static void alert(String title, String msg) {
     // Clear the screen
     if (clean)
@@ -250,6 +312,16 @@ public class MenuBuilder {
 
   }
 
+  /**
+   * Print a document.
+   * 
+   * <p>
+   * A document is an array of strings printed in a pretty way. The document will be printed until the user presses enter.
+   * <p>
+   * 
+   * @param title The title of the documentation (translated if possible).
+   * @param lines The lines of the documentation (translated if possible).
+   */
   public static void doc(String title, String[] lines) {
     // Clear the screen
     if (clean)
@@ -271,6 +343,17 @@ public class MenuBuilder {
     resetSettings();
   }
 
+  /**
+   * Build a form.
+   * 
+   * <p>
+   * This method prints a form with the given the labels for the necessary fields. It will return an array with the values entered by the user in the same order as their labels in the labels array.
+   * <p>
+   * 
+   * @param title  The title of the form (translated if possible).
+   * @param labels The labels of the form fields.
+   * @return An array with the values entered by the user.
+   */
   public static String[] form(String title, String[] labels) {
     // Clear the screen
     if (clean)
@@ -336,17 +419,15 @@ public class MenuBuilder {
 
   }
 
+  // --------------------------------------------- UTILS ---------------------------------------------
   public static void resetSettings() {
-    MenuBuilder.clean = false;  // DEBUG (Set to false to debug the menus)
+    MenuBuilder.clean = false; // DEBUG (Set to false to debug the menus)
     MenuBuilder.formValues = null;
     MenuBuilder.configLastAsZero = false;
     MenuBuilder.configFormUniqueValues = false;
   }
 
-  public static void setClean(boolean clean) {
-    MenuBuilder.clean = clean;
-  }
-
+  // --------------------------------------------- STRING UTILS ---------------------------------------------
   public static String centerString(String text, int len) {
     String out = String.format("%" + len + "s%s%" + len + "s", "", text, "");
     float mid = (out.length() / 2);
@@ -371,6 +452,11 @@ public class MenuBuilder {
     return String.format("%" + len + "s", text + " ".repeat(padding));
   }
 
+  // --------------------------------------------- GETTERS AND SETTERS ---------------------------------------------
+  public static void setClean(boolean clean) {
+    MenuBuilder.clean = clean;
+  }
+
   public static int getMenuWidth() {
     return MENU_WIDTH;
   }
@@ -393,5 +479,13 @@ public class MenuBuilder {
 
   public static void setConfigFormUniqueValues(boolean configFormUniqueValues) {
     MenuBuilder.configFormUniqueValues = configFormUniqueValues;
+  }
+
+  public static boolean isConfigLastAsZero() {
+    return configLastAsZero;
+  }
+
+  public static void setConfigLastAsZero(boolean configLastAsZero) {
+    MenuBuilder.configLastAsZero = configLastAsZero;
   }
 }

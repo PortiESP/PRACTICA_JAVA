@@ -25,7 +25,8 @@ TO-DO
 # Cosas que justificar en el informe
 
 - [ ] Mapa de `monopolyCodes` en vez de array
-- [ ] Clase estática para el LanguageManager y IOManager
+- [ ] Clase estática para el LanguageManager, MenuBuilder y IOManager
 - [ ] El diccionario de idiomas no se serializa
 - [ ] Por qué no he usado colores para identificar a los jugadores
 - [ ] Por qué los newGame y loadGame están en Game
+- [ ] Por qué no he usado el principio SOLID de responsabilidad única en el MenuBuilder a la hora de implementar los métodos de utilidades de los strings

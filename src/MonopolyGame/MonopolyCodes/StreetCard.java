@@ -181,7 +181,7 @@ public class StreetCard extends Property {
    * @param player The player that owns the property
    */
   public void sellHouses() {
-    int amount = IOManager.readInt("PROMPT_AMOUNT", 1, 4);
+    int amount = MenuBuilder.readInt("PROMPT_AMOUNT", 1, 4);
     // If the player has enough houses to sell
     if (this.houseCount >= amount) {
       // Increase the player's money
