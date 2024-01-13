@@ -4,7 +4,6 @@ TO-DO
 # Por hacer
 
 - Tests unitarios
-- Traducir al resto de idiomas (vasco, gallego, catalán)
 
 # Aspectos a tener en cuenta antes de entregar el proyecto
 
