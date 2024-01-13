@@ -21,7 +21,14 @@ public class PaymentCard extends MonopolyCode {
   }
 
   /**
-   * This method will make the player pay or receive money based on the values od the attribute {@code amount} of this card
+   * This method will make the player pay or receive money based on the value of the attribute {@code amount} of this card. 
+   * 
+   * <ul>
+   * <li>If the amount is <strong>negative</strong>, the player pays the amount.</li>
+   * <li>If the amount is <strong>positive</strong>, the player receives the amount.</li>
+   * </ul>
+   * 
+   * <hr/>
    */
   @Override
   public void doOperation(Player player) {
@@ -46,6 +53,7 @@ public class PaymentCard extends MonopolyCode {
     }
   }
 
+  // ---------------------------------------- Getters and Setters ----------------------------------------
   public int getAmount() {
     return amount;
   }
