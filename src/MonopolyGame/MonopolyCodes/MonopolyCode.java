@@ -8,17 +8,25 @@ import java.util.regex.Pattern;
 
 import src.MonopolyGame.Const;
 
+/**
+ * The MonopolyCode class is the base class for all Monopoly codes in the game. This class is defined as abstract to define the common methods and attributes for all Monopoly codes and also implement some of those methods.
+ */
 public abstract class MonopolyCode implements Serializable {
   // Attributes
   protected String description; // Card description
 
-  // Methods
+  /**
+   * Do the corresponding operation for this Monopoly code
+   * 
+   * @param player
+   */
   public abstract void doOperation(Player player);
 
-  public String toString() {
-    return this.description;
-  }
-
+  /**
+   * Parse the integer from the description of this Monopoly code
+   * 
+   * @return The integer parsed from the description of this Monopoly code
+   */
   public int parseIntFromDescription() {
     // Parse using regex
     Pattern pattern = Pattern.compile("(-?\\d+)" + Const.CURRENCY_SYMBOL);
@@ -29,6 +37,12 @@ public abstract class MonopolyCode implements Serializable {
       return 0;
   }
 
+  @Override
+  public String toString() {
+    return this.description;
+  }
+
+  // ------------------------ Getters and Setters ------------------------
   public String getDescription() {
     return description;
   }

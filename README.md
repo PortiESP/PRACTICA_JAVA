@@ -11,8 +11,8 @@ Documentación de la práctica Monopoly
     - [Introducción (`IOManager`)](#introducción-iomanager)
     - [Clase `languageManager`](#clase-languagemanager)
     - [Clase `MenuBuilder`](#clase-menubuilder)
-    - [Gestión del sistema idiomas](#gestión-del-sistema-idiomas)
-      - [Ficheros de idiomas](#ficheros-de-idiomas)
+  - [Gestión del sistema idiomas](#gestión-del-sistema-idiomas)
+    - [Ficheros de idiomas](#ficheros-de-idiomas)
 
 ## Introducción
 
@@ -102,7 +102,7 @@ Esta clase se sirve para construir la CLI del juego. La clase implemente método
 > - ...
 
 
-### Gestión del sistema idiomas
+## Gestión del sistema idiomas
 
 Como ya he mencionado anteriormente, el sistema de idiomas se basa en un mapa que hace corresponder un identificador de un cierto mensaje con el mensaje en sí, en el idioma seleccionado por el usuario. 
 
@@ -110,7 +110,7 @@ El mapa se carga en la clase `LanguageManager` y se accede a él a través de la
 
 El mapa se carga a través del método `load(filename)` de la clase `LanguageManager`. Este método recibe como parámetro el nombre del fichero de idioma que se quiere cargar. 
 
-#### Ficheros de idiomas
+### Ficheros de idiomas
 
 El fichero de idioma es un fichero de texto plano que contiene las frases que luego la clase `LanguageManager` cargará en el mapa.
 
