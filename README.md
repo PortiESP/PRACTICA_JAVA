@@ -16,6 +16,12 @@ Documentación de la práctica Monopoly
 
 ## Introducción
 
+> 🎓 Práctica de la asignatura de **Programación Orientada a Objetos** de la **Universidad Rey Juan Carlos (URJC)**. La práctica consiste en la implementación de una versión del juego de mesa **Monopoly** en Java. 
+> 
+> En esta versión se pretende introducir un ordenado que se encarga de gestionar las transacciones entre los jugadores y el banco, así como de gestionar las propiedades del tablero. No se pretende simular el juego en sí, sino solo la parte de gestión de las propiedades y las transacciones. 
+> 
+> El juego se ejecuta en la terminal y se puede jugar en varios idiomas.
+
 Este documento contiene la documentación de la práctica así como una explicación de las decisiones de diseño tomadas durante el desarrollo de la misma con el fin de ayudar a entender el código. Se incluye también una explicación de aquellas partes que difieren del enunciado de la práctica.
 
 ## Resumen de las clases
