@@ -8,9 +8,11 @@ Documentación de la práctica Monopoly
   - [Introducción](#introducción)
   - [Resumen de las clases](#resumen-de-las-clases)
   - [Gestión de la entrada y salida de datos](#gestión-de-la-entrada-y-salida-de-datos)
-    - [Introducción](#introducción-1)
+    - [Introducción (`IOManager`)](#introducción-iomanager)
     - [Clase `languageManager`](#clase-languagemanager)
     - [Clase `MenuBuilder`](#clase-menubuilder)
+    - [Gestión del sistema idiomas](#gestión-del-sistema-idiomas)
+      - [Ficheros de idiomas](#ficheros-de-idiomas)
 
 ## Introducción
 
@@ -50,7 +52,7 @@ Este documento contiene la documentación de la práctica así como una explicac
 
 ## Gestión de la entrada y salida de datos
 
-### Introducción
+### Introducción (`IOManager`)
 
 La entrada y salida de datos se gestiona únicamente desde la clase `IOManager`. Esta clase funciona como un *wrapper* de la clase `Scanner` de Java y sirve como interfaz entre el código y la entrada y salida de datos.
 
@@ -73,7 +75,7 @@ De esta clase surgen dos clases derivadas:
 
 Esta clase se encarga de gestionar el idioma del juego a través de un mapa que hace corresponder un identificador de un cierto mensaje con el mensaje en sí, en el idioma seleccionado por el usuario.
 
-> Esta clase solo tiene dos métodos:
+> *Esta clase solo tiene dos métodos:*
 > 
 > - `load(filename)` ~ Lee el fichero de idioma y carga el mapa de frases con el contenido de este archivo. Este método recibe como parámetro el nombre del fichero de idioma que se quiere cargar. Este fichero debe estar ubicado en la carpeta indicada en el archivo de **constantes** como la constante `LANGUAGES_PATH`.
 > - `get(id)` ~ Devuelve el string correspondiente al identificador `id` en el idioma seleccionado por el usuario.
@@ -82,6 +84,64 @@ Esta clase se encarga de gestionar el idioma del juego a través de un mapa que 
 
 Esta clase se sirve para construir la CLI del juego. La clase implemente métodos para construir menus, alertas, formularios, documentos, leer entradas de datos, etc.
 
-> Esta clase tiene los siguientes métodos:
+> *Esta clase tiene los siguientes métodos:*
 >
-> - `menu()`
+> - `menu()` ~ Construye un menú con las opciones pasadas como parámetro. Este método devuelve el número de la opción seleccionada por el usuario.
+> - `alert()` ~ Imprime una alerta con el mensaje pasado como parámetro. 
+> - `askYesNo()` ~ Imprime una pregunta con las opciones *Sí* y *No*. Este método devuelve `true` si el usuario selecciona *Sí* y `false` si el usuario selecciona *No*.
+> - `form()` ~ Construye un formulario con los campos pasados como parámetro. Este método devuelve un array con los valores introducidos por el usuario.
+> - `doc()` ~ Construye un documento con el contenido pasado como parámetro.
+> - `readInt()` ~ Lee un entero de la entrada estándar.
+> - `readString()` ~ Lee una cadena de caracteres de la entrada estándar.
+> - ...
+
+
+### Gestión del sistema idiomas
+
+Como ya he mencionado anteriormente, el sistema de idiomas se basa en un mapa que hace corresponder un identificador de un cierto mensaje con el mensaje en sí, en el idioma seleccionado por el usuario. 
+
+El mapa se carga en la clase `LanguageManager` y se accede a él a través de la clase `IOManager`.
+
+El mapa se carga a través del método `load(filename)` de la clase `LanguageManager`. Este método recibe como parámetro el nombre del fichero de idioma que se quiere cargar. 
+
+#### Ficheros de idiomas
+
+El fichero de idioma es un fichero de texto plano que contiene las frases que luego la clase `LanguageManager` cargará en el mapa.
+
+
+> 📁 Estos ficheros deben estar ubicados en la carpeta indicada en el archivo de **constantes** como la constante `LANGUAGES_PATH`.
+
+> 🏷️ Estos ficheros deben tener llamarse con el formato `Idioma.txt` (*siendo `Idioma` el nombre del idioma en cuestión*).
+
+> 📝 Formato que deben seguir de los ficheros de idiomas:
+>
+> - Cada frase se encuentra en una línea distinta.
+> - Cada línea tiene el siguiente formato: `ID=FRASE` (*Siendo `ID` el identificador de dicha frase y `FRASE` el string de la frase en sí*)
+> - Todos los archivos de idiomas deben tener los mismos identificadores definidos.
+> - El orden de las líneas no importa (*cada línea se identifica por su identificador*).
+> - Los nombres de los identificadores deben seguir la siguiente convención:
+>   - No pueden contener espacios (*palabras separadas por `_`*)
+>   - Deben estas en mayúsculas (*E.G. `WELCOME_1`*)
+>   - Deben describir brevemente la frase o el contexto que identifican (*E.G. `PROMPT_PLAYER_NAME`*)
+>   - Si la frase contiene una variable, esta debe aparecer en el string como `%s` (*como los placeholders de C de la función `printf()`*)
+>   - Los identificadores no pueden contener el carácter `=`
+>   - Está permitido usar espacios entre el separador `=` con el identificador y la frase (*E.G. `WELCOME_1 = Welcome to Monopoly!`*)
+
+> **EJEMPLO**
+> 
+> En este caso, el identificador es `WELCOME_1` y la frase es `Welcome to Monopoly!`, que es la que se imprimirá cuando se llame a `WELCOME_1` en el código. En caso de que el idioma sea español, la frase que se imprimirá será `¡Bienvenido a Monopoly!` la cual se encuentra en el fichero `Español.txt`. También se muestran otras frases de ejemplo.
+> 
+> - *Fichero `English.txt`*
+> ```txt
+> WELCOME_1=Welcome to Monopoly!
+> PROMPT_OPTION=Please, select an option:
+> PROMPT_PLAYER_NAME=Please, enter your name:
+> ```
+> 
+> - *Fichero `Español.txt`*
+> 
+> ```txt
+> WELCOME_1=¡Bienvenido a Monopoly!
+> PROMPT_OPTION=Por favor, seleccione una opción:
+> PROMPT_PLAYER_NAME=Por favor, introduzca su nombre:
+> ```
