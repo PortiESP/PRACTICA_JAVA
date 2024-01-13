@@ -1,5 +1,12 @@
 package src.MonopolyGame.MonopolyCodes;
 
+/**
+ * The StationCard represents the stations in the game
+ * 
+ * <p>
+ * The rent of the stations is calculated based on the number of stations the owner has (at least 1 since we are paying rent)
+ * </p>
+ */
 public class StationCard extends Property {
   // Attributes
   private int fare[];
@@ -17,6 +24,14 @@ public class StationCard extends Property {
         Integer.parseInt(fare4) };
   }
 
+  /**
+   * This method will calculate the amount of money the player has to pay to the owner of the property
+   * 
+   * <p>
+   * The rent of the stations is calculated based on the number of stations the owner has (at least 1 since we are paying rent)
+   * </p>
+   * 
+   */
   @Override
   public int calculateAmountToPay() {
 
@@ -28,6 +43,7 @@ public class StationCard extends Property {
     return fare[owner.getStationCount() - 1];
   }
 
+  // ---------------------------------------- Getters and Setters ----------------------------------------
   public int[] getFare() {
     return fare;
   }
