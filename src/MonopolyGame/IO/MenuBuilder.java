@@ -22,7 +22,7 @@ import java.util.Arrays;
  */
 public class MenuBuilder {
 
-  private static boolean clean = false; // Clean the screen before printing the menu
+  private static boolean clean = true; // Clean the screen before printing the menu (DEBUG: Set to false to debug the menus (Every method will reset this value at the end))
   private final static int MENU_WIDTH = 100; // Width of the menus
   private static String[] formValues; // Used to store the values of the last form
   private static boolean configFormUniqueValues = false; // If true, the form will not allow repeated values
@@ -421,7 +421,7 @@ public class MenuBuilder {
 
   // --------------------------------------------- UTILS ---------------------------------------------
   public static void resetSettings() {
-    MenuBuilder.clean = false; // DEBUG (Set to false to debug the menus)
+    MenuBuilder.clean = true; // DEBUG (Set to false to debug the menus)
     MenuBuilder.formValues = null;
     MenuBuilder.configLastAsZero = false;
     MenuBuilder.configFormUniqueValues = false;

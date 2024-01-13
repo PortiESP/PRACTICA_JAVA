@@ -197,7 +197,7 @@ public abstract class Property extends MonopolyCode {
     }
 
     // Sell the property
-    owner.increaseMoney(this.propertyPrice);
+    owner.sell2Bank(this);
     this.owner = null;
   }
 
@@ -227,6 +227,20 @@ public abstract class Property extends MonopolyCode {
    */
   public boolean isMortgaged() {
     return isMortgaged;
+  }
+
+  /**
+   * Check if this property is equal to the given property.
+   * 
+   * <p>
+   * Two properties are equal if they have the same description.
+   * </p>
+   * 
+   * @param property The property to check if it is equal to this property
+   * @return True if this property is equal to the given property, false otherwise
+   */
+  public boolean equals(Property property) {
+    return this.description.equals(property.description);
   }
 
   // ---------------------------------------- Getters and Setters ----------------------------------------

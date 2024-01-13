@@ -324,6 +324,18 @@ public class Player implements Serializable {
   }
 
   /**
+   * Sell a property.
+   * 
+   * @param int The index of the property to sell in the player's properties list.
+   */
+  public void sell2Bank(Property property) {
+    // Sell the property
+    this.properties.remove(property);
+    this.increaseMoney(property.getPropertyPrice());
+    property.setOwner(null);
+  }
+
+  /**
    * Mortgage a property.
    * 
    * @param int The index of the property to mortgage in the player's properties list.

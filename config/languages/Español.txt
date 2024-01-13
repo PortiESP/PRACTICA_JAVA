@@ -46,7 +46,7 @@ PROPERTY_CANT_SELL_HOUSES=La propiedad no tiene tantas casas para vender
 PROPERTY_ALREADY_HAS_HOTEL=La propiedad ya tiene un hotel
 PROPERTY_CANT_SELL_HOTEL=La propiedad no tiene un hotel para vender
 PROPERTY_ALREADY_MORTGAGED=La propiedad ya esta hipotecada
-PROPERTY_CANT_MORTGAGE=La propiedad no se puede hipotecar, asegurate de que no tiene casas ni hoteles antes de deshipotecarla
+PROPERTY_CANT_MORTGAGE=La propiedad no se puede hipotecar si tiene casas o hoteles construidos
 PROPERTY_NOT_MORTGAGED=La propiedad no esta hipotecada
 PROPERTY_CANT_SELL_MORTGAGED=La propiedad no se puede vender porque esta hipotecada
 PAYMENT_CARD=El jugador ha sacado la carta
@@ -54,7 +54,7 @@ PLAYER_LOSER=El jugador [%s] ha perdido
 PROPERTY_ASK_BUY=¿Quieres comprar la propiedad [%s] por %d?
 PROMPT_AMOUNT=Introduzca la cantidad
 PROPERTY_SUMMARY=Casas=%d ~ Hotel=%s ~ Hipotecada=%s ~ Ingresos=%d
-PROPERTY_CANT_BUY_HOTEL=La propiedad no se puede comprar un hotel, asegurate de que tiene 4 casas antes de comprar un hotel
+PROPERTY_CANT_BUY_HOTEL=La propiedad no se puede comprar un hotel si no tiene 4 casas construidas
 SUMMARY_PLAYER_PAY_RENT=%s paga (%d) de alquiler a %s por caer en %s
 PROMPT_OP_CODE=Introduzca el codigo de operacion
 PLAYER_WINNER=El jugador [%s] ha ganado
