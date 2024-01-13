@@ -7,6 +7,13 @@ import src.MonopolyGame.Player;
 import src.MonopolyGame.IO.IOManager;
 import src.MonopolyGame.IO.MenuBuilder;
 
+/**
+ * The RepairsCard will make the player pay for the "repairs" of his properties (houses and hotels)
+ * 
+ * <p>
+ * The description of the card must be contain two prices, one for the houses and one for the hotels. The first price that appears in the description will be the price per house, and the second one will be the price per hotel.
+ * </p>
+ */
 public class RepairsCard extends MonopolyCode {
   // Attributes
   private String description;
@@ -20,9 +27,23 @@ public class RepairsCard extends MonopolyCode {
   // Constructor
   public RepairsCard(String description) {
     this.description = description;
-    parsePricePerHouse(); // Store the price per house and hotel
+    parseDescription(); // Store the price per house and hotel
   }
 
+  /**
+   * This method will make the player pay for the repairs of his properties (houses and hotels)
+   * 
+   * <p>
+   * The player will pay the price per house multiplied by the number of houses he has, and the price per hotel multiplied by the number of hotels he has.
+   * </p>
+   * 
+   * <h4>Random values for fun</h4>
+   * <p>
+   * The player will also pay a bribe (random value between 0 and 100) and a tax (21% of the total price)
+   * </p>
+   * 
+   * <hr/>
+   */
   @Override
   public void doOperation(Player player) {
     // Print the card description
@@ -55,7 +76,16 @@ public class RepairsCard extends MonopolyCode {
     player.pay((int) totalWithTax + bribe);
   }
 
-  public void parsePricePerHouse() {
+  /**
+   * This method will parse the description of the card to get the price per house and hotel
+   * 
+   * <p>
+   * The description of the card must be contain two prices, one for the houses and one for the hotels. The first price that appears in the description will be the price per house, and the second one will be the price per hotel.
+   * </p>
+   * 
+   * <hr/>
+   */
+  public void parseDescription() {
     String pricePerHousePattern = ".+ (\\d+)€.+ (\\d+)€";
     Matcher matcher = Pattern.compile(pricePerHousePattern).matcher(this.description);
 
