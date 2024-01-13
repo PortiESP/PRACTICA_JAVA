@@ -1,6 +1,8 @@
 Documentación de la práctica Monopoly
 ======================================
 
+-------------------------------------------
+
 ## Índice
 
 - [Documentación de la práctica Monopoly](#documentación-de-la-práctica-monopoly)
@@ -13,6 +15,9 @@ Documentación de la práctica Monopoly
     - [Clase `MenuBuilder`](#clase-menubuilder)
   - [Gestión del sistema idiomas](#gestión-del-sistema-idiomas)
     - [Ficheros de idiomas](#ficheros-de-idiomas)
+  - [Referencias](#referencias)
+
+-------------------------------------------
 
 ## Introducción
 
@@ -23,6 +28,8 @@ Documentación de la práctica Monopoly
 > El juego se ejecuta en la terminal y se puede jugar en varios idiomas.
 
 Este documento contiene la documentación de la práctica así como una explicación de las decisiones de diseño tomadas durante el desarrollo de la misma con el fin de ayudar a entender el código. Se incluye también una explicación de aquellas partes que difieren del enunciado de la práctica.
+
+-------------------------------------------
 
 ## Resumen de las clases
 
@@ -55,6 +62,8 @@ Este documento contiene la documentación de la práctica así como una explicac
 > > > - [**`StreetCard`**](#streetcard) ~ Esta clase se encarga de gestionar las propiedades de tipo calle.
 > > > - [**`StationCard`**](#stationcard) ~ Esta clase se encarga de gestionar las propiedades de tipo estación.
 > > > - [**`ServiceCard`**](#servicecard) ~ Esta clase se encarga de gestionar las propiedades de tipo servicio (compañía de aguas y electricidad).
+
+-------------------------------------------
 
 ## Gestión de la entrada y salida de datos
 
@@ -151,3 +160,11 @@ El fichero de idioma es un fichero de texto plano que contiene las frases que lu
 > PROMPT_OPTION=Por favor, seleccione una opción:
 > PROMPT_PLAYER_NAME=Por favor, introduzca su nombre:
 > ```
+
+-------------------------------------------
+
+## Referencias
+
+> 💡 Ver el resto de documentación de la práctica `docs/`:
+> - [**`enunciado.pdf`**](docs/enunciado.pdf) ~ Enunciado de la práctica.
+> - [**`decisiones_tecnicas.md`**](docs/decisiones_tecnicas.md) ~ Documentación sobre las decisiones técnicas tomadas durante el desarrollo de la práctica que difieren de la implementación propuesta en el enunciado.
