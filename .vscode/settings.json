@@ -25,5 +25,6 @@
     "Transaccion",
     "vacio",
     "whotel"
-  ]
+  ],
+  "java.debug.settings.console": "internalConsole",
 }
