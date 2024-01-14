@@ -21,7 +21,7 @@ import src.MonopolyGame.Const;
  */
 public class LanguageManager {
   // Map of the game strings (ID=STRING)
-  private Map<String, String> gameStrings = new HashMap<>();
+  private Map<String, String> gameStrings;
 
   /**
    * Load a language from its the language file. The language file must be in the {@code Const.LANGUAGES_PATH} directory.
@@ -33,6 +33,9 @@ public class LanguageManager {
       // Prepare the reader
       Reader file = new FileReader(Const.LANGUAGES_PATH + filename + ".txt");
       BufferedReader reader = new BufferedReader(file);
+
+      // Initialize the map
+      gameStrings = new HashMap<String, String>();
 
       // Read the file
       String line = reader.readLine();
@@ -62,7 +65,19 @@ public class LanguageManager {
    * @param id The ID of the string to get. Example: {@code "NEW_GAME"}
    * @return The string with the given ID or {@code null} if the ID is not found in the map. Example: {@code "New Game"} (<em>from the English language file</em>)
    */
-  public String get(String id) {
+  public String get(String id) throws RuntimeException {
+    if (gameStrings == null) {
+      throw new RuntimeException("[!] There is no dictionary loaded");
+    }
     return gameStrings.get(id);
   }
+
+  public Map<String, String> getGameStrings() {
+    return gameStrings;
+  }
+
+  public void setGameStrings(Map<String, String> gameStrings) {
+    this.gameStrings = gameStrings;
+  }
+
 }

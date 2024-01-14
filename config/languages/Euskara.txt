@@ -1,4 +1,4 @@
-WELCOME=ONGI ETORRI MONOPOLYra (Digital Bank Edition)
+WELCOME=ONGI ETORRI MONOPOLY (Digital Bank Edition)
 LANGUAGE_SELECTION_TITLE=Hizkuntza aukeraketa
 MAIN_MENU_TITLE=Nagusia menua
 INVALID_OPTION=Baliogabeko aukera!
