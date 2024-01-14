@@ -103,8 +103,11 @@ public class Game implements Serializable {
       eliminatePlayers();
 
       // Check if there is only one player left (winner)
-      if (checkWinner())
+      if (checkWinner()) {
+        MenuBuilder.alert("PLAYER_INFO_TITLE",
+            String.format(IOManager.getMsg("PLAYER_WINNER"), players.get(0).getName()));
         return true;
+      }
 
       // Autosave
       if (autosave)
@@ -377,11 +380,8 @@ public class Game implements Serializable {
    */
   public boolean checkWinner() {
     // If there is only one player left, print a message and exit the game
-    if (players.size() == 1) {
-      MenuBuilder.alert("PLAYER_INFO_TITLE",
-          String.format(IOManager.getMsg("PLAYER_WINNER"), players.get(0).getName()));
+    if (players.size() == 1)
       return true;
-    }
 
     return false;
   }

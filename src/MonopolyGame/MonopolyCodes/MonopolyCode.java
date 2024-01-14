@@ -27,7 +27,7 @@ public abstract class MonopolyCode implements Serializable {
    * 
    * @return The integer parsed from the description of this Monopoly code
    */
-  public int parseIntFromDescription() {
+  public int parsePriceFromDescription() {
     // Parse using regex
     Pattern pattern = Pattern.compile("(-?\\d+)" + Const.CURRENCY_SYMBOL);
     Matcher matcher = pattern.matcher(this.description);

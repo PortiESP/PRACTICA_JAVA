@@ -2,7 +2,6 @@ package tests;
 
 import org.junit.Test;
 import static org.junit.Assert.*;
-import org.junit.jupiter.api.BeforeAll;
 
 import java.io.ByteArrayInputStream;
 import java.util.ArrayList;
@@ -13,12 +12,6 @@ import src.MonopolyGame.Player;
 import src.MonopolyGame.IO.IOManager;
 
 public class Game_test {
-
-  @BeforeAll
-  public void setUp() {
-    // Set the language to English
-    IOManager.setLanguage("English");
-  }
 
   /*
    * Test the `saveGame` method
@@ -44,7 +37,7 @@ public class Game_test {
    * Test the `eliminatePlayers` method (no players eliminated)
    */
   @Test
-  public void eliminatePlayers() {
+  public void eliminatePlayers0() {
     // Create a new game
     Game game = new Game();
     // Use the template players (4 players)
@@ -80,13 +73,10 @@ public class Game_test {
   }
 
   /*
-  * Test the `checkWinner` method (2 players eliminated)
+  * Test the `checkWinner` method (Should be a winner)
   */
   @Test
-  public void checkWinnerTrue() {
-    // Initialize the stdin buffer
-    stdinBuffer("\n");
-
+  public void checkWinner() {
     // Create a new game
     Game game = new Game();
     IOManager.setLanguage("English");

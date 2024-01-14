@@ -17,7 +17,7 @@ public class PaymentCard extends MonopolyCode {
   // Constructor
   public PaymentCard(String description) {
     this.description = description;
-    this.amount = parseIntFromDescription();
+    this.amount = parsePriceFromDescription();
   }
 
   /**
