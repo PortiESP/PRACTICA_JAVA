@@ -6,7 +6,7 @@ import static org.junit.Assert.*;
 import src.MonopolyGame.IO.IOManager;
 import src.MonopolyGame.IO.LanguageManager;
 
-public class IO_Tests {
+public class IO_tests {
 
   // =========================[ LanguageManager ]=========================>>>
   /*

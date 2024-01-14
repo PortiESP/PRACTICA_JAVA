@@ -140,7 +140,7 @@ public class GameManager {
    * This method returns a list of files in a given directory.
    * 
    * @param path The path to the directory.
-   * @return An array list with the names of the files in the directory (without extension).
+   * @return An array list with the names of the files in the directory (with extension).
    */
   public ArrayList<String> getSavedGamesFilesList(String path) {
     File folder = new File(path);
