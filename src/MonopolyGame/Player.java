@@ -170,7 +170,10 @@ public class Player implements Serializable {
       }
       // If the player can't afford the payment, liquidate assets
       else {
-        this.liquidateAssets(amount);
+        if (this.liquidateAssets(amount) == false) {
+          this.loser(); // The player is broke
+        }
+        return;
       }
     }
   }
