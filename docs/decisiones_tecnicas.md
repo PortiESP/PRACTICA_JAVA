@@ -28,7 +28,7 @@
 > 
 > La diferencia más significativa entre el diagrama de clases propuesto y el implementado es que en el diagrama de clases propuesto se muestra la clase `Terminal` que se encarga de la entrada y salida de datos. Sin embargo en la implementación se ha decidido llamar a dicha clase `IOManager` y que esta sea una clase estática.
 >
-> En la implementación, la clase `IOManager` no tiene la responsabilidad de gestionar los idiomas. Esta responsabilidad se ha delegado a la clase `LanguageManager` que también es una clase estática por las mismas razones.
+> En la implementación, la clase `IOManager` no tiene la responsabilidad de gestionar los idiomas. Esta responsabilidad se ha delegado a la clase `LanguageManager`.
 >
 > > 🧠 Esto se ha hecho así por las siguientes razones:
 > > - No tiene sentido crear una instancia de la clase `IOManager` ya que esta no tiene un estado interno que la diferencie de otras instancias.
@@ -78,8 +78,6 @@
 >
 > Esta clase se corresponde con la clase `LanguageManager` en la implementación.
 > 
-> Como ya hemos mencionado anteriormente, en la implementación se ha decidido que la clase `LanguageManager` sea una clase estática (*[ver punto 2.1](#1️⃣-➡-renombrado-a-iomanager-y-estática-diagrama-de-clases-principal-figura-2)*). 
->
 > Esta clase es la encargada de cargar los idiomas desde los ficheros de idiomas y de devolver los mensajes solicitados en el idioma seleccionado.
 >
 > > 🧠 Se ha decidido llamar a esta clase `LanguageManager` en vez de `Translator` por los siguientes motivos:
@@ -107,7 +105,7 @@
 >
 > El diagrama de secuencia implementado difiere del propuesto en los siguientes puntos
 >
-> 1. Como ya he mencionado antes, las clases `IOManager`, `LanguageManager` y `MenuBuilder` son estáticas por lo que no es necesario instanciarlas al principio del programa.
+> 1. Como ya he mencionado antes, las clases `IOManager` y `MenuBuilder` son estáticas por lo que no es necesario instanciarlas al principio del programa. La clase `LanguageManager` es la única que se instancia al principio del programa al definirse la clase `IOManager`.
 >
 > 2. Los métodos que se usar para imprimir y leer datos son aquellos proporcionados por la clase `MenuBuilder`, que en ultima instancia estos métodos llaman a los métodos de la clase `IOManager`.
 >
