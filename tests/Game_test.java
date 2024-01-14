@@ -3,7 +3,6 @@ package tests;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-import java.io.ByteArrayInputStream;
 import java.util.ArrayList;
 
 import src.MonopolyGame.Game;
@@ -103,7 +102,7 @@ public class Game_test {
   @Test
   public void checkWinnerFalse() {
     // Initialize the stdin buffer
-    stdinBuffer("\n");
+    TestUtils.stdinBuffer("\n");
 
     // Create a new game
     Game game = new Game();
@@ -140,9 +139,4 @@ public class Game_test {
     game.setPlayers(players);
   }
 
-  // Function to simulate the user typing a string in the console
-  private void stdinBuffer(String input) {
-    // Set the input stream to the input string
-    System.setIn(new ByteArrayInputStream(input.getBytes()));
-  }
 }

@@ -1,10 +1,6 @@
 TO-DO
 ------------------------------------------
 
-# Por hacer
-
-- Tests unitarios
-
 # Aspectos a tener en cuenta antes de entregar el proyecto
 
 - [ ] Comprobar que todos los strings comprueban con equals
