@@ -100,11 +100,11 @@ public class MenuBuilder {
       else
         prompt = String.format("║    %s (%d-%d) >>> ", IOManager.getMsg("PROMPT_OPTION"), 0, numOptions - 1);
       // Ask for the option
+      setClean(true);
       int option = IOManager.readInt(prompt);
 
       // Try again if the option is invalid
       if (option < (configLastAsZero ? 0 : 1) || option > numOptions) {
-        setClean(true);
         alert("WARN", "INVALID_OPTION");
         return menu(title, options);
       }

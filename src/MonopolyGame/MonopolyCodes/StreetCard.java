@@ -103,7 +103,6 @@ public class StreetCard extends Property {
         summary()
     };
     MenuBuilder.doc("PROPERTY_SUMMARY_TITLE", summary);
-    IOManager.moveCursorDown(4);
     // Set the menu configuration and print it
     MenuBuilder.setConfigLastAsZero(true);
     MenuBuilder.setClean(false);
