@@ -1,8 +1,14 @@
 package src.MonopolyGame.IO;
 
 import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.Reader;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -71,6 +77,58 @@ public class LanguageManager {
     }
     return gameStrings.get(id);
   }
+
+  // DEBUG
+  public void readFile() {
+
+    ArrayList<Integer> dataList = new ArrayList<Integer>();
+
+    // Read input  
+    try {
+      InputStream in = new FileInputStream("data.txt");
+
+      int data = -1;
+
+      while (data != -1) {
+        data = in.read();
+        dataList.add(data);
+      }
+
+      // Close the reader
+      in.close();
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+
+    // Write output
+    try {
+      OutputStream os = new FileOutputStream(Const.LANGUAGES_PATH + "prueba.txt");
+      os.write(dataList.toString().getBytes());
+      os.close();
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+
+  }
+
+  public void readFileStrings() {
+
+    try (Reader in = new FileReader(Const.LANGUAGES_PATH + "prueba.txt")) {
+      BufferedReader buf = new BufferedReader(in, 10);
+      String s;
+
+      do {
+        s = buf.readLine();
+        System.out.print(s);
+      } while (s != null);
+
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+
+  }
+
+  // ---------------------------------------- GETTERS AND SETTERS ----------------------------------------
 
   public Map<String, String> getGameStrings() {
     return gameStrings;
